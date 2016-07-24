@@ -1,0 +1,30 @@
+# -----------------------------------
+
+general:
+    branches:
+        only:
+            - master
+
+# -----------------------------------
+
+machine:
+    timezone:
+        UTC
+    node:
+        version: 5.1.0
+
+# -----------------------------------
+
+dependencies:
+    override:
+        - npm install -g bower
+        - npm install -g ember-cli
+        - npm cache clean && bower cache clean
+        - npm install && bower install
+
+
+# -----------------------------------
+
+test:
+    override:
+        - npm test
