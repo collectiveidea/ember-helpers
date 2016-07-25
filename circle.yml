@@ -18,7 +18,7 @@ machine:
 dependencies:
     override:
         - npm install -g bower
-        - npm install -g ember-cli
+        - npm install -g ember-cli@2.6.3
         - npm cache clean && bower cache clean
         - npm install && bower install
 
