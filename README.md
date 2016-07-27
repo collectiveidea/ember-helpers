@@ -40,7 +40,7 @@ The `throttle` helper waits for the specified time before running an action, dis
 {{/my-component}}
 ```
 
-#### Text helpers
+### Text helpers
 
 The text helpers enable easy formatting of text, numbers, and currencies.
 
@@ -55,7 +55,7 @@ number     | -                            | `{{number 134153 decimals=0}}`    | 
 ucwords    | -                            | `{{ucwords "some TEXT"}}`         | Some TEXT
 uppercase  | `str.toUpperCase()`          | `{{uppercase "some TEXT"}}`       | SOME TEXT
 
-#### Truth helpers
+### Truth helpers
 
 The truth helpers enable advanced logic in handlebars statements.
 
@@ -76,7 +76,7 @@ nontains   | `if (a.indexOf(b)) === -1`   | `{{if (nontains a b)}}`
 or         | `if (a || b)`                | `{{if (or a b)}}`
 xor        | `if (a && !b || !a && b)`    | `{{if (xor a b)}}`
 
-#### Math helpers
+### Math helpers
 
 The math helpers enable maths operations in handlebars statements.
 
