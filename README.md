@@ -53,6 +53,7 @@ lcwords    | -                            | `{{lcwords "some TEXT"}}`         | 
 lowercase  | `str.toLowerCase()`          | `{{lowercase "some TEXT"}}`       | some text
 money      | -                            | `{{money 10000 symbol="GBP"}}`    | £10,000.00
 number     | -                            | `{{number 134153 decimals=0}}`    | 13,415,53
+swapcase   | -                            | `{{swapcase "some TEXT"}}`        | SOME text
 ucwords    | -                            | `{{ucwords "some TEXT"}}`         | Some TEXT
 uppercase  | `str.toUpperCase()`          | `{{uppercase "some TEXT"}}`       | SOME TEXT
 
