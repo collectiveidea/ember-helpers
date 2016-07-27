@@ -6,9 +6,94 @@ A collection of helpers for Ember enabling advanced templating logic.
 
 ## Usage
 
-#### Installation
+### Installation
 
-- Install addon - `ember install @abcum/ember-helpers`
+`ember install @abcum/ember-helpers`
+
+### Action helpers
+
+#### route
+
+The `route` helper works in the same way as `link-to` but allows the route to be changed from an action on a component.
+
+```handlebars
+{{#my-component onclick=(route "basket" sort=true)}}
+	Go to basket
+{{/my-component}}
+```
+
+#### debounce
+
+The `debounce` helper ensures an action is triggered once during the specified time.
+```handlebars
+{{#my-component onclick=(debounce (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
+
+#### throttle
+
+The `throttle` helper waits for the specified time before running an action, discarding all events in the meantime.
+```handlebars
+{{#my-component onclick=(debounce (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
+
+#### Text helpers
+
+The text helpers enable easy formatting of text, numbers, and currencies.
+
+Helper     | JavaScript equivalent        | HTMLBars                          | Result
+-----------|------------------------------|-----------------------------------|----------------
+bytes      | -                            | `{{bytes 134186)}}`               | 1.34MB
+currency   | -                            | `{{currency "GBP"}}`              | £
+lcwords    | -                            | `{{lcwords "some TEXT"}}`         | some tEXT
+lowercase  | `str.toLowerCase()`          | `{{lowercase "some TEXT"}}`       | some text
+money      | -                            | `{{money 10000 symbol="GBP"}}`    | £10,000.00
+number     | -                            | `{{number 134153 decimals=0}}`    | 13,415,53
+ucwords    | -                            | `{{ucwords "some TEXT"}}`         | Some TEXT
+uppercase  | `str.toUpperCase()`          | `{{uppercase "some TEXT"}}`       | SOME TEXT
+
+#### Truth helpers
+
+The truth helpers enable advanced logic in handlebars statements.
+
+Helper     | JavaScript equivalent        | HTMLBars
+-----------|------------------------------|-----------------------------------
+and        | `if (a && b)`                | `{{if (and a b)}}`
+contains   | `if (a.indexOf(b)) > -1`     | `{{if (contains a b}}`
+eq         | `if (a == b)`                | `{{if (eq a b)}}`
+gt         | `if (a > b)`                 | `{{if (gt a b)}}`
+gte        | `if (a >= b)`                | `{{if (gte a b)}}`
+is         | `if (a === true)`            | `{{if (is a)}}`
+isnt       | `if (a !== true)`            | `{{if (isnt a)}}`
+ix         | `if (a !== true)`            | `{{if (ix a)}}`
+lt         | `if (a < b)`                 | `{{if (lt a b)}}`
+lte        | `if (a <= b)`                | `{{if (lte a b)}}`
+ne         | `if (a !== b)`               | `{{if (ne a b))}}`
+nontains   | `if (a.indexOf(b)) === -1`   | `{{if (nontains a b)}}`
+or         | `if (a || b)`                | `{{if (or a b)}}`
+xor        | `if (a && !b || !a && b)`    | `{{if (xor a b)}}`
+
+#### Math helpers
+
+The math helpers enable maths operations in handlebars statements.
+
+Helper     | JavaScript equivalent        | HTMLBars
+-----------|------------------------------|-----------------------------------
+add        | `a + b`                      | `{{add a b}}`
+ceil       | `Math.ceil(a)`               | `{{ceil a}}`
+div        | `a / b`                      | `{{div a b}}`
+floor      | `Math.floor(a)`              | `{{floor a}}`
+max        | `Math.max([a, b, c])`        | `{{max a b c}}`
+min        | `Math.min([a, b, c])`        | `{{min a b c}}`
+mod        | `a % b`                      | `{{mod a b}}`
+mult       | `a * b`                      | `{{mult a b}}`
+percent    | `a / b * 100`                | `{{percent a b}}`
+round      | `Math.round(a)`              | `{{round a}}`
+sqrt       | `Math.sqrt(a)`               | `{{sqrt a}}`
+sub        | `a - b`                      | `{{sub a b}}`
 
 ## Development
 
