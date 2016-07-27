@@ -47,6 +47,7 @@ The text helpers enable easy formatting of text, numbers, and currencies.
 Helper     | JavaScript equivalent        | HTMLBars                          | Result
 -----------|------------------------------|-----------------------------------|----------------
 bytes      | -                            | `{{bytes 134186)}}`               | 1.34MB
+country    | -                            | `{{country "GBR"}}`               | United Kingdom
 currency   | -                            | `{{currency "GBP"}}`              | £
 lcwords    | -                            | `{{lcwords "some TEXT"}}`         | some tEXT
 lowercase  | `str.toLowerCase()`          | `{{lowercase "some TEXT"}}`       | some text
