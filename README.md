@@ -35,7 +35,7 @@ The `debounce` helper ensures an action is triggered once during the specified t
 
 The `throttle` helper waits for the specified time before running an action, discarding all events in the meantime.
 ```handlebars
-{{#my-component onclick=(debounce (action 'increment') 1000)}}
+{{#my-component onclick=(throttle (action 'increment') 1000)}}
 	+1
 {{/my-component}}
 ```
