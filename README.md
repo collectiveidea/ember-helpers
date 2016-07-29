@@ -84,6 +84,7 @@ Helper     | HTMLBars                                | Result
 :----------|:----------------------------------------|:----------------------------
 bytes      | `{{bytes 134186)}}`                     | 1.34MB
 country    | `{{country "GBR"}}`                     | United Kingdom
+convert    | `{{convert 1 from="GBP" to="EUR"}}`     | 1.1861095104682045
 currency   | `{{currency "GBP"}}`                    | £
 lcwords    | `{{lcwords "some TEXT"}}`               | some tEXT
 linkify    | `{{linkify "Click: https://abcum.com}}` | Click <a href="https://abcum.com">https://abcum.com</a>
