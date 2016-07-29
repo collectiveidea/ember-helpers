@@ -5,9 +5,9 @@ export default Ember.Helper.extend({
 	compute([name, text, icon], hash) {
 		return () => {
 
-			let n = typeof name == 'function' ? name() : name;
-			let t = typeof text == 'function' ? text() : text;
-			let i = typeof icon == 'function' ? icon() : icon;
+			let n = typeof name === 'function' ? name() : name;
+			let t = typeof text === 'function' ? text() : text;
+			let i = typeof icon === 'function' ? icon() : icon;
 
 			if (!window.Notification) {
 				return;
@@ -19,18 +19,18 @@ export default Ember.Helper.extend({
 
 			if (window.Notification.permission === 'default') {
 				return window.Notification.requestPermission( () => {
-					this.notify(n, t, i);
+					this.notify(n, t, i, hash);
 				});
 			}
 
 			if (window.Notification.permission === 'granted') {
-				this.notify(n, t, i);
+				this.notify(n, t, i, hash);
 			}
 
 		};
 	},
 
-	notify(name, text, icon) {
+	notify(name, text, icon, hash) {
 
 		let n = new Notification(name, { icon: icon, body: text });
 
