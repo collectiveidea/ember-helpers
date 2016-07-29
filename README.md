@@ -80,62 +80,62 @@ The `alert` helper adds functionality to display an alert message as a result of
 
 The text helpers enable easy formatting of text, numbers, and currencies.
 
-Helper     | JavaScript equivalent        | HTMLBars                          | Result
------------|------------------------------|-----------------------------------|----------------
-bytes      | -                            | `{{bytes 134186)}}`               | 1.34MB
-country    | -                            | `{{country "GBR"}}`               | United Kingdom
-currency   | -                            | `{{currency "GBP"}}`              | £
-lcwords    | -                            | `{{lcwords "some TEXT"}}`         | some tEXT
-lowercase  | `str.toLowerCase()`          | `{{lowercase "some TEXT"}}`       | some text
-md5        | -                            | `{{md5 "info@abcum.com"}}`        | 2a14a47beb82beba88c705145d572702
-money      | -                            | `{{money 10000 symbol="GBP"}}`    | £10,000.00
-number     | -                            | `{{number 134153 decimals=0}}`    | 13,415,53
-slug       | -                            | `{{slug "This is some TEXT"}}`    | this-is-some-text
-swapcase   | -                            | `{{swapcase "some TEXT"}}`        | SOME text
-ucwords    | -                            | `{{ucwords "some TEXT"}}`         | Some TEXT
-uppercase  | `str.toUpperCase()`          | `{{uppercase "some TEXT"}}`       | SOME TEXT
-uuid       | -                            | `{{uuid}}`                        | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
+Helper     | HTMLBars                                | Result
+-----------|-----------------------------------------|----------------------------------------------------
+bytes      | `{{bytes 134186)}}`                     | 1.34MB
+country    | `{{country "GBR"}}`                     | United Kingdom
+currency   | `{{currency "GBP"}}`                    | £
+lcwords    | `{{lcwords "some TEXT"}}`               | some tEXT
+lowercase  | `{{lowercase "some TEXT"}}`             | some text
+md5        | `{{md5 "info@abcum.com"}}`              | 2a14a47beb82beba88c705145d572702
+money      | `{{money 10000 symbol="GBP"}}`          | £10,000.00
+number     | `{{number 134153 decimals=0}}`          | 13,415,53
+slug       | `{{slug "This is some TEXT"}}`          | this-is-some-text
+swapcase   | `{{swapcase "some TEXT"}}`              | SOME text
+ucwords    | `{{ucwords "some TEXT"}}`               | Some TEXT
+uppercase  | `{{uppercase "some TEXT"}}`             | SOME TEXT
+uuid       | `{{uuid}}`                              | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
 
 ### Truth helpers
 
 The truth helpers enable advanced logic in handlebars statements.
 
-Helper     | JavaScript equivalent        | HTMLBars
------------|------------------------------|-----------------------------------
-and        | `if (a && b)`                | `{{if (and a b)}}`
-contains   | `if (a.indexOf(b)) > -1`     | `{{if (contains a b}}`
-eq         | `if (a == b)`                | `{{if (eq a b)}}`
-gt         | `if (a > b)`                 | `{{if (gt a b)}}`
-gte        | `if (a >= b)`                | `{{if (gte a b)}}`
-is         | `if (a === true)`            | `{{if (is a)}}`
-isnt       | `if (a !== true)`            | `{{if (isnt a)}}`
-ix         | `if (a !== true)`            | `{{if (ix a)}}`
-lt         | `if (a < b)`                 | `{{if (lt a b)}}`
-lte        | `if (a <= b)`                | `{{if (lte a b)}}`
-ne         | `if (a !== b)`               | `{{if (ne a b))}}`
-nontains   | `if (a.indexOf(b)) === -1`   | `{{if (nontains a b)}}`
-or         | `if (a || b)`                | `{{if (or a b)}}`
-xor        | `if (a && !b || !a && b)`    | `{{if (xor a b)}}`
+Helper     | HTMLBars                                | JavaScript equivalent             
+-----------|-----------------------------------------|-----------------------------
+and        | `{{if (and a b)}}`                      | `if (a && b)`                   
+contains   | `{{if (contains a b}}`                  | `if (a.indexOf(b)) > -1`        
+eq         | `{{if (eq a b)}}`                       | `if (a == b)`                    
+gt         | `{{if (gt a b)}}`                       | `if (a > b)`                  
+gte        | `{{if (gte a b)}}`                      | `if (a >= b)`                   
+is         | `{{if (is a)}}`                         | `if (a === true)`               
+isnt       | `{{if (isnt a)}}`                       | `if (a !== true)`                 
+ix         | `{{if (ix a)}}`                         | `if (a !== true)`                
+lt         | `{{if (lt a b)}}`                       | `if (a < b)`                     
+lte        | `{{if (lte a b)}}`                      | `if (a <= b)`                     
+ne         | `{{if (ne a b))}}`                      | `if (a !== b)`                    
+nontains   | `{{if (nontains a b)}}`                 | `if (a.indexOf(b)) === -1`         
+or         | `{{if (or a b)}}`                       | `if (a || b)`                    
+xor        | `{{if (xor a b)}}`                      | `if (a && !b || !a && b)`        
 
 ### Math helpers
 
 The math helpers enable maths operations in handlebars statements.
 
-Helper     | JavaScript equivalent        | HTMLBars
------------|------------------------------|-----------------------------------
-add        | `a + b`                      | `{{add a b}}`
-ceil       | `Math.ceil(a)`               | `{{ceil a}}`
-div        | `a / b`                      | `{{div a b}}`
-floor      | `Math.floor(a)`              | `{{floor a}}`
-max        | `Math.max([a, b, c])`        | `{{max a b c}}`
-min        | `Math.min([a, b, c])`        | `{{min a b c}}`
-mod        | `a % b`                      | `{{mod a b}}`
-mult       | `a * b`                      | `{{mult a b}}`
-percent    | `a / b * 100`                | `{{percent a b}}`
-random     | `Math.random(a, b)`          | `{{random a b}}`
-round      | `Math.round(a)`              | `{{round a}}`
-sqrt       | `Math.sqrt(a)`               | `{{sqrt a}}`
-sub        | `a - b`                      | `{{sub a b}}`
+Helper     | HTMLBars                                | JavaScript equivalent        
+-----------|-----------------------------------------|-----------------------------
+add        | `{{add a b}}`                           | `a + b`                       
+ceil       | `{{ceil a}}`                            | `Math.ceil(a)`                
+div        | `{{div a b}}`                           | `a / b`                        
+floor      | `{{floor a}}`                           | `Math.floor(a)`                 
+max        | `{{max a b c}}`                         | `Math.max([a, b, c])`            
+min        | `{{min a b c}}`                         | `Math.min([a, b, c])`             
+mod        | `{{mod a b}}`                           | `a % b`                         
+mult       | `{{mult a b}}`                          | `a * b`                         
+percent    | `{{percent a b}}`                       | `a / b * 100`                   
+random     | `{{random a b}}`                        | `Math.random(a, b)`             
+round      | `{{round a}}`                           | `Math.round(a)`                  
+sqrt       | `{{sqrt a}}`                            | `Math.sqrt(a)`                 
+sub        | `{{sub a b}}`                           | `a - b`                         
 
 ## Development
 
@@ -166,3 +166,22 @@ sub        | `a - b`                      | `{{sub a b}}`
 #### Deployment
 
 - Deploy production app by pushing to master branch on github.com
+
+<style>
+table {
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1) {
+	text-align:left;
+    width:150px;
+}
+table th:nth-of-type(2) {
+	text-align:left;
+    width:400px;
+}
+table th:nth-of-type(3) {
+	text-align:left;
+    width:400px;
+}
+</style>
