@@ -40,6 +40,42 @@ The `throttle` helper waits for the specified time before running an action, dis
 {{/my-component}}
 ```
 
+#### open
+
+The `open` helper runs `window.open()` enabling opening a new browser tab or browser window from an action on a component.
+
+```handlebars
+{{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
+```
+
+#### reload
+
+The `reload` helper runs `window.location.reload()` enabling reloading the page, or changin the location from an action on a component.
+
+```handlebars
+{{my-component onkeypress=(reload)}}
+```
+
+#### notify
+
+The `notify` helper adds functionality to display os notifications as a result of an action on a component.
+
+```handlebars
+{{#my-component onsave=(notify "Thanks" "The blog post data has been saved.")}}
+	Save
+{{/my-component}}
+```
+
+#### alert
+
+The `alert` helper adds functionality to display an alert message as a result of an action on a component.
+
+```handlebars
+{{#my-component onsave=(alert "The blog post" blog.title "has been saved.")}}
+	Save
+{{/my-component}}
+```
+
 ### Text helpers
 
 The text helpers enable easy formatting of text, numbers, and currencies.
@@ -51,12 +87,14 @@ country    | -                            | `{{country "GBR"}}`               | 
 currency   | -                            | `{{currency "GBP"}}`              | £
 lcwords    | -                            | `{{lcwords "some TEXT"}}`         | some tEXT
 lowercase  | `str.toLowerCase()`          | `{{lowercase "some TEXT"}}`       | some text
+md5        | -                            | `{{md5 "info@abcum.com"}}`        | 2a14a47beb82beba88c705145d572702
 money      | -                            | `{{money 10000 symbol="GBP"}}`    | £10,000.00
 number     | -                            | `{{number 134153 decimals=0}}`    | 13,415,53
 slug       | -                            | `{{slug "This is some TEXT"}}`    | this-is-some-text
 swapcase   | -                            | `{{swapcase "some TEXT"}}`        | SOME text
 ucwords    | -                            | `{{ucwords "some TEXT"}}`         | Some TEXT
 uppercase  | `str.toUpperCase()`          | `{{uppercase "some TEXT"}}`       | SOME TEXT
+uuid       | -                            | `{{uuid}}`                        | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
 
 ### Truth helpers
 
@@ -94,6 +132,7 @@ min        | `Math.min([a, b, c])`        | `{{min a b c}}`
 mod        | `a % b`                      | `{{mod a b}}`
 mult       | `a * b`                      | `{{mult a b}}`
 percent    | `a / b * 100`                | `{{percent a b}}`
+random     | `Math.random(a, b)`          | `{{random a b}}`
 round      | `Math.round(a)`              | `{{round a}}`
 sqrt       | `Math.sqrt(a)`               | `{{sqrt a}}`
 sub        | `a - b`                      | `{{sub a b}}`
