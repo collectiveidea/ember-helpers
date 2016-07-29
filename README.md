@@ -81,11 +81,12 @@ The `alert` helper adds functionality to display an alert message as a result of
 The text helpers enable easy formatting of text, numbers, and currencies.
 
 Helper     | HTMLBars                                | Result
------------|-----------------------------------------|----------------------------------------------------
+:----------|:----------------------------------------|:----------------------------
 bytes      | `{{bytes 134186)}}`                     | 1.34MB
 country    | `{{country "GBR"}}`                     | United Kingdom
 currency   | `{{currency "GBP"}}`                    | £
 lcwords    | `{{lcwords "some TEXT"}}`               | some tEXT
+linkify    | `{{linkify "Click: https://abcum.com}}` | Click <a href="https://abcum.com">https://abcum.com</a>
 lowercase  | `{{lowercase "some TEXT"}}`             | some text
 md5        | `{{md5 "info@abcum.com"}}`              | 2a14a47beb82beba88c705145d572702
 money      | `{{money 10000 symbol="GBP"}}`          | £10,000.00
@@ -101,7 +102,7 @@ uuid       | `{{uuid}}`                              | 2690242b-a1f9-47a0-9347-4
 The truth helpers enable advanced logic in handlebars statements.
 
 Helper     | HTMLBars                                | JavaScript equivalent             
------------|-----------------------------------------|-----------------------------
+:----------|:----------------------------------------|:----------------------------
 and        | `{{if (and a b)}}`                      | `if (a && b)`                   
 contains   | `{{if (contains a b}}`                  | `if (a.indexOf(b)) > -1`        
 eq         | `{{if (eq a b)}}`                       | `if (a == b)`                    
@@ -122,7 +123,7 @@ xor        | `{{if (xor a b)}}`                      | `if (a && !b || !a && b)`
 The math helpers enable maths operations in handlebars statements.
 
 Helper     | HTMLBars                                | JavaScript equivalent        
------------|-----------------------------------------|-----------------------------
+:----------|:----------------------------------------|:----------------------------
 add        | `{{add a b}}`                           | `a + b`                       
 ceil       | `{{ceil a}}`                            | `Math.ceil(a)`                
 div        | `{{div a b}}`                           | `a / b`                        
@@ -166,22 +167,3 @@ sub        | `{{sub a b}}`                           | `a - b`
 #### Deployment
 
 - Deploy production app by pushing to master branch on github.com
-
-<style>
-table {
-    display:table;
-    width:100%;
-}
-table th:nth-of-type(1) {
-	text-align:left;
-    width:150px;
-}
-table th:nth-of-type(2) {
-	text-align:left;
-    width:400px;
-}
-table th:nth-of-type(3) {
-	text-align:left;
-    width:400px;
-}
-</style>
