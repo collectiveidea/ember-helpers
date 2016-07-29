@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import md5 from "md5";
 
 export default Ember.Helper.extend({
 
