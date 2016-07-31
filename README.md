@@ -104,19 +104,19 @@ The truth helpers enable advanced logic in handlebars statements.
 
 Helper     | HTMLBars                                | JavaScript equivalent             
 :----------|:----------------------------------------|:----------------------------
-and        | `{{if (and a b)}}`                      | `if (a && b)`                   
+and        | `{{if (and a b ...)}}`                  | `if (a && b && ...)`                   
 contains   | `{{if (contains a b}}`                  | `if (a.indexOf(b)) > -1`        
 eq         | `{{if (eq a b)}}`                       | `if (a == b)`                    
 gt         | `{{if (gt a b)}}`                       | `if (a > b)`                  
 gte        | `{{if (gte a b)}}`                      | `if (a >= b)`                   
-is         | `{{if (is a)}}`                         | `if (a === true)`               
-isnt       | `{{if (isnt a)}}`                       | `if (a !== true)`                 
-ix         | `{{if (ix a)}}`                         | `if (a !== true)`                
+is         | `{{if (is a ...)}}`                     | `if (a === true ...)`               
+isnt       | `{{if (isnt a ...)}}`                   | `if (a !== true ...)`                 
+ix         | `{{if (ix a ...)}}`                     | `if (a !== true ...)`                
 lt         | `{{if (lt a b)}}`                       | `if (a < b)`                     
 lte        | `{{if (lte a b)}}`                      | `if (a <= b)`                     
 ne         | `{{if (ne a b))}}`                      | `if (a !== b)`                    
 nontains   | `{{if (nontains a b)}}`                 | `if (a.indexOf(b)) === -1`         
-or         | `{{if (or a b)}}`                       | `if (a || b)`                    
+or         | `{{if (or a b ...)}}`                   | `if (a || b || ...)`                    
 xor        | `{{if (xor a b)}}`                      | `if (a && !b || !a && b)`        
 
 ### Math helpers
@@ -125,19 +125,19 @@ The math helpers enable maths operations in handlebars statements.
 
 Helper     | HTMLBars                                | JavaScript equivalent        
 :----------|:----------------------------------------|:----------------------------
-add        | `{{add a b}}`                           | `a + b`                       
+add        | `{{add a b ...}}`                       | `a + b + ...`                       
 ceil       | `{{ceil a}}`                            | `Math.ceil(a)`                
-div        | `{{div a b}}`                           | `a / b`                        
+div        | `{{div a b ...}}`                       | `a / b / ...`                        
 floor      | `{{floor a}}`                           | `Math.floor(a)`                 
-max        | `{{max a b c}}`                         | `Math.max([a, b, c])`            
-min        | `{{min a b c}}`                         | `Math.min([a, b, c])`             
-mod        | `{{mod a b}}`                           | `a % b`                         
-mult       | `{{mult a b}}`                          | `a * b`                         
+max        | `{{max a b c ...}}`                     | `Math.max([a, b, c, ...])`            
+min        | `{{min a b c ...}}`                     | `Math.min([a, b, c, ...])`             
+mod        | `{{mod a b ...}}`                       | `a % b % ...`                         
+mult       | `{{mult a b ...}}`                      | `a * b * ...`                         
 percent    | `{{percent a b}}`                       | `a / b * 100`                   
 random     | `{{random a b}}`                        | `Math.random(a, b)`             
 round      | `{{round a}}`                           | `Math.round(a)`                  
 sqrt       | `{{sqrt a}}`                            | `Math.sqrt(a)`                 
-sub        | `{{sub a b}}`                           | `a - b`                         
+sub        | `{{sub a b ...}}`                       | `a - b - ...`                         
 
 ## Development
 

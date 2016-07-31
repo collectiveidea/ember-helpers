@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export function is(params) {
-	return params[0] === true;
+	return params.every(p => p === true);
 }
 
 export default Ember.Helper.helper(is);
