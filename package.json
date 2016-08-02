@@ -1,7 +1,7 @@
 {
   "name": "@abcum/ember-helpers",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A collection of helpers for Ember.js enabling advanced templating logic.",
   "directories": {
     "doc": "doc",
     "test": "tests"
