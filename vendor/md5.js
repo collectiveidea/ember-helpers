@@ -1,15 +1,15 @@
 (function() {
-  /* globals define, codemirror */
+	/* globals define, codemirror */
 
-  function generateModule(name, values) {
-    define(name, [], function() {
-      'use strict';
-      return values;
-    });
-  }
+	function generateModule(name, values) {
+		define(name, [], function() {
+			'use strict';
+			return values;
+		});
+	}
 
-  generateModule('md5', {
-  	'default': md5
-  });
+	generateModule('md5', {
+		'default': md5
+	});
 
 })();

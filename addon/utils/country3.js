@@ -249,5 +249,5 @@ export default function country3(code) {
 		case 'ZMB': return 'Zambia';
 		case 'ZWE': return 'Zimbabwe';
 		default: return undefined;
-    }
+	}
 }
