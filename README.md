@@ -50,7 +50,7 @@ The `open` helper runs `window.open()` enabling opening a new browser tab or bro
 
 #### reload
 
-The `reload` helper runs `window.location.reload()` enabling reloading the page, or changin the location from an action on a component.
+The `reload` helper runs `window.location.reload()` enabling reloading the page, or changing the location from an action on a component.
 
 ```handlebars
 {{my-component onkeypress=(reload)}}
