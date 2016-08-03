@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import crypto from "md5";
+import crypto from "ember-helpers/utils/md5";
 
 export function md5(params) {
 	return crypto(params[0]);
