@@ -22,6 +22,7 @@ Helper                         | HTMLBars                                     | 
 :------------------------------|:---------------------------------------------|:----------------------------
 [alert](#alert)                | `{{alert "Well hello" "there")}}`            | `alert("Well hello there")`
 [debounce](#debounce)          | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
+[define](#define)              | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
 [notify](#notify)              | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
 [open](#open)                  | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
 [reload](#reload)              | `{{reload}}`                                 | `window.location.reload(...)`
@@ -228,6 +229,14 @@ Waits for the specified time before running an action, discarding all events in 
 {{#my-component onclick=(throttle (action 'increment') 1000)}}
 	+1
 {{/my-component}}
+```
+
+##### define
+
+Defines the given property on the given object.
+
+```handlebars
+{{define this 'reversed' (reverse users)}}
 ```
 
 ##### toggle
