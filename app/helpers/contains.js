@@ -1,1 +1,1 @@
-export { default, contains } from 'ember-helpers/helpers/contains';
+export { default, includes } from 'ember-helpers/helpers/includes';
