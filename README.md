@@ -10,11 +10,163 @@ A collection of helpers for Ember.js enabling advanced templating logic.
 
 `ember install @abcum/ember-helpers`
 
+### Prommise helpers
+
+Coming soon ...
+
 ### Action helpers
 
-#### route
+The action helpers enable a variety of advanced actions.
 
-The `route` helper works in the same way as `link-to` but allows the route to be changed from an action on a component.
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+[alert](#alert)                | `{{alert "Well hello" "there")}}`            | `alert("Well hello there")`
+[debounce](#debounce)          | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
+[notify](#notify)              | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
+[open](#open)                  | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
+[reload](#reload)              | `{{reload}}`                                 | `window.location.reload(...)`
+[route](#route)                | `{{route 'post' post.id}}`                   | `this.transitionTo('post', post.id)`
+[toggle](#toggle)              | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
+[throttle](#throttle)          | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
+
+### Object helpers
+
+The array helpers enable advanced array logic and manipulation.
+
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+[group-by](#group-by)          | `{{group-by "category" products}}`           | `products` grouped by unique `category`
+[object-key](#object-key)      | `{{object-key "name" person}}`               | name property of `person` object
+
+### Array helpers
+
+The array helpers enable advanced array logic and manipulation.
+
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+[any-by](#any-by)              | `{{#if (any-by "isAdult" users)}}`           | if `isAdult` is truthy on any one of `users`
+[append](#append)              | `{{#each (append users user)}}`              | `users` array with `user` appended
+[array](#array)                | `{{#each (array 1 2 3 4 5)}}`                | `[1, 2, 3, 4, 5]`
+[compact](#compact)            | `{{#each (compact users)}}`                  | `users` with `null` or `undefined` items removed
+[contains](#contains)          | `{{#if (contains user users)}}`              | if `users` contains `user`
+[empty](#empty)                | `{{#if (empty users)}}`                      | if `users` is an empty array
+[every-by](#every-by)          | `{{#if (every-by "isAdult" users)}}`         | if `isAdult` is truthy on every one of `users`
+[filter](#filter)              | `{{#each (filter (action 'check') users)}}`  | `users` where `check` action is truthy
+[filter-by](#filter-by)        | `{{#each (filter-by "isAdult" users)}}`      | `users` where `isAdult` is truthy
+[find](#find)                  | `{{#each (find (action 'check') users)}}`    | first of `users` where `check` action is truthy
+[find-by](#find-by)            | `{{#each (find-by "isAdult" users)}}`        | first of `users` where `isAdult` is truthy
+[flatten](#flatten)            | `{{#each (flatten multiarray)}}`             | flattened array of `multiarray`
+[includes](#includes)          | `{{#if (includes user users)}}`              | if `users` includes `user`
+[intersect](#intersect)        | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
+[join](#join)                  | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
+[map](#map)                    | `{{#each (map (action 'check') users)}}`     | first of `users` where `check` action is truthy
+[map-by](#map-by)              | `{{#each (map-by "isAdult" users)}}`         | first of `users` where `isAdult` is truthy
+[object-at](#object-at)        | `{{object-at i users}}`                      | item at position `i` in `users`
+[objects-at](#objects-at)      | `{{objects-at i j ... users}}`               | items at position `i j ...` in `users`
+[omit](#omit)                  | `{{#each (omit 3 users)}}`                   | `users` with first `3` models omitted
+[prepend](#prepend)            | `{{#each (prepend users user)}}`             | `users` array with `user` prepended
+[range](#range)                | `{{#each (range 1 5)}}`                      | `[1, 2, 3, 4, 5]`
+[reject](#reject)              | `{{#each (reject (action 'check') users)}}`  | `users` where `check` action is falsy
+[reject-by](#reject-by)        | `{{#each (reject-by "isAdult" users)}}`      | `users` where `isAdult` is falsy
+[reverse](#reverse)            | `{{#each (reverse users)}}`                  | `users` in reverse order
+[slice](#slice)                | `{{#each (slice 0 5 users)}}`                | items `0` through `4` from `users`
+[search-by](#search-by)        | `{{#each (search-by "name" search users)}}`  | `users` where `name` contains `search`
+[sort-by](#sort-by)            | `{{#each (sort-by "name:desc" users)}}`      | `users` sorted by `name` descending
+[split](#split)                | `{{#each (split "/" "app/css/app.less")}}`   | `["app", "css", "app.less"]`
+[take](#take)                  | `{{#each (take 3 users)}}`                   | first `3` models from `users`
+[union](#union)                | `{{#each (union admins users)}}`             | union of `admins` and `users`
+[uniq](#uniq)                  | `{{#each (uniq users)}}`                     | unique items from `users`
+[uniq-by](#uniq-by)            | `{{#each (uniq-by "email" users)}}`          | unique items by `email` in `users`
+[w](#w)                        | `{{#each (w "One Two Three" "Four")}}`       | `["One", "Two", "Three", "Four"]`
+[without](#without)            | `{{#each (without user users)}}`             | `users` array with `user` removed
+
+### Format helpers
+
+The format helpers enable easy formatting of different units.
+
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+bytes                          | `{{bytes 134186)}}`                          | 1.34MB
+country                        | `{{country "GBR"}}`                          | United Kingdom
+convert                        | `{{convert 1 from="GBP" to="EUR"}}`          | 1.1861095104682045
+currency                       | `{{currency "GBP"}}`                         | £
+duration                       | `{{duration 1283719281 exact=false}}`        | 1.283719281s
+linkify                        | `{{linkify "Click https://abcum.com"}}`      | Click <a href="https://abcum.com">https://abcum.com</a>
+md5                            | `{{md5 "info@abcum.com"}}`                   | 2a14a47beb82beba88c705145d572702
+money                          | `{{money 10000 symbol="GBP"}}`               | £10,000.00
+number                         | `{{number 134153 decimals=0}}`               | 13,415,53
+uuid                           | `{{uuid}}`                                   | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
+
+### Text helpers
+
+The text helpers enable easy formatting of strings and text.
+
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+camelize                       | `{{camelize "this Is some TEXT"}}`           | thisIsSomeTEXT
+capitalize                     | `{{capitalize "this Is some TEXT"}}`         | This Is some TEXT
+classify                       | `{{classify "this Is some TEXT"}}`           | ThisIsSomeTEXT
+dasherize                      | `{{dasherize "this Is some TEXT"}}`          | this-is-some-text
+lcwords                        | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
+lowercase                      | `{{lowercase "this Is some TEXT"}}`          | this is some text
+slug                           | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
+swapcase                       | `{{swapcase "this Is some TEXT"}}`           | tHIS iS SOME text
+titleize                       | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
+truncate                       | `{{truncate "this Is some TEXT", 10}}`       | this Is so...
+ucwords                        | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT
+underscore                     | `{{underscore "this Is some TEXT"}}`         | this_is_some_text
+uppercase                      | `{{uppercase "this Is some TEXT"}}`          | THIS IS SOME TEXT
+
+### Logic helpers
+
+The logic helpers enable logic operations in handlebars statements.
+
+Helper                         | HTMLBars                                     | JavaScript equivalent             
+:------------------------------|:---------------------------------------------|:----------------------------
+and                            | `{{if (and a b ...)}}`                       | `if (a && b && ...)`                   
+eq                             | `{{if (eq a b)}}`                            | `if (a == b)`                    
+gt                             | `{{if (gt a b)}}`                            | `if (a > b)`                  
+gte                            | `{{if (gte a b)}}`                           | `if (a >= b)`                   
+inside                         | `{{if (inside a b)}}`                        | `if (a.indexOf(b)) > -1`        
+is                             | `{{if (is a ...)}}`                          | `if (a === true ...)`               
+isnt                           | `{{if (isnt a ...)}}`                        | `if (a !== true ...)`                 
+ix                             | `{{if (ix a ...)}}`                          | `if (a !== true ...)`                
+lt                             | `{{if (lt a b)}}`                            | `if (a < b)`                     
+lte                            | `{{if (lte a b)}}`                           | `if (a <= b)`                     
+ne                             | `{{if (ne a b))}}`                           | `if (a !== b)`                    
+or                             | `{{if (or a b ...)}}`                        | `if (a || b || ...)`                    
+xor                            | `{{if (xor a b)}}`                           | `if (a && !b || !a && b)`        
+
+### Math helpers
+
+The math helpers enable maths calculations in handlebars statements.
+
+Helper                         | HTMLBars                                     | JavaScript equivalent        
+:------------------------------|:---------------------------------------------|:----------------------------
+add                            | `{{add a b ...}}`                            | `a + b + ...`                       
+ceil                           | `{{ceil a}}`                                 | `Math.ceil(a)`                
+dec                            | `{{dec a}}`                                  | `a - b ? b : 1`
+div                            | `{{div a b ...}}`                            | `a / b / ...`                        
+floor                          | `{{floor a}}`                                | `Math.floor(a)`                 
+inc                            | `{{inc a}}`                                  | `a + b ? b : 1`
+max                            | `{{max a b c ...}}`                          | `Math.max([a, b, c, ...])`            
+min                            | `{{min a b c ...}}`                          | `Math.min([a, b, c, ...])`             
+mod                            | `{{mod a b ...}}`                            | `a % b % ...`                         
+mult                           | `{{mult a b ...}}`                           | `a * b * ...`                         
+percent                        | `{{percent a b}}`                            | `a / b * 100`                   
+random                         | `{{random a b}}`                             | `Math.random(a, b)`             
+round                          | `{{round a}}`                                | `Math.round(a)`                  
+sqrt                           | `{{sqrt a}}`                                 | `Math.sqrt(a)`                 
+sub                            | `{{sub a b ...}}`                            | `a - b - ...`                         
+
+
+### Examples
+
+#### Action helpers
+
+##### route
+
+Allows the route to be changed from an action on a component, similar to `link-to`.
 
 ```handlebars
 {{#my-component onclick=(route "basket" sort=true)}}
@@ -22,43 +174,25 @@ The `route` helper works in the same way as `link-to` but allows the route to be
 {{/my-component}}
 ```
 
-#### debounce
+##### open
 
-The `debounce` helper ensures an action is triggered once during the specified time.
-```handlebars
-{{#my-component onclick=(debounce (action 'increment') 1000)}}
-	+1
-{{/my-component}}
-```
-
-#### throttle
-
-The `throttle` helper waits for the specified time before running an action, discarding all events in the meantime.
-```handlebars
-{{#my-component onclick=(throttle (action 'increment') 1000)}}
-	+1
-{{/my-component}}
-```
-
-#### open
-
-The `open` helper runs `window.open()` enabling opening a new browser tab or browser window from an action on a component.
+Calls `window.open()` enabling opening a new browser tab or window from an action on a component.
 
 ```handlebars
 {{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
 ```
 
-#### reload
+##### reload
 
-The `reload` helper runs `window.location.reload()` enabling reloading the page, or changing the location from an action on a component.
+Calls `window.location.reload()` enabling reloading the page, or changing the url from an action on a component.
 
 ```handlebars
 {{my-component onkeypress=(reload)}}
 ```
 
-#### notify
+##### notify
 
-The `notify` helper adds functionality to display os notifications as a result of an action on a component.
+Displays a notification as a result of an action on a component.
 
 ```handlebars
 {{#my-component onsave=(notify "Thanks" "The blog post data has been saved.")}}
@@ -66,9 +200,9 @@ The `notify` helper adds functionality to display os notifications as a result o
 {{/my-component}}
 ```
 
-#### alert
+##### alert
 
-The `alert` helper adds functionality to display an alert message as a result of an action on a component.
+Displays an alert message as a result of an action on a component.
 
 ```handlebars
 {{#my-component onsave=(alert "The blog post" blog.title "has been saved.")}}
@@ -76,68 +210,496 @@ The `alert` helper adds functionality to display an alert message as a result of
 {{/my-component}}
 ```
 
-### Text helpers
+##### debounce
 
-The text helpers enable easy formatting of text, numbers, and currencies.
+Ensures an action is triggered only once during the specified time.
 
-Helper     | HTMLBars                                | Result
-:----------|:----------------------------------------|:----------------------------
-bytes      | `{{bytes 134186)}}`                     | 1.34MB
-country    | `{{country "GBR"}}`                     | United Kingdom
-convert    | `{{convert 1 from="GBP" to="EUR"}}`     | 1.1861095104682045
-currency   | `{{currency "GBP"}}`                    | £
-lcwords    | `{{lcwords "some TEXT"}}`               | some tEXT
-linkify    | `{{linkify "Click: https://abcum.com}}` | Click <a href="https://abcum.com">https://abcum.com</a>
-lowercase  | `{{lowercase "some TEXT"}}`             | some text
-md5        | `{{md5 "info@abcum.com"}}`              | 2a14a47beb82beba88c705145d572702
-money      | `{{money 10000 symbol="GBP"}}`          | £10,000.00
-number     | `{{number 134153 decimals=0}}`          | 13,415,53
-slug       | `{{slug "This is some TEXT"}}`          | this-is-some-text
-swapcase   | `{{swapcase "some TEXT"}}`              | SOME text
-ucwords    | `{{ucwords "some TEXT"}}`               | Some TEXT
-uppercase  | `{{uppercase "some TEXT"}}`             | SOME TEXT
-uuid       | `{{uuid}}`                              | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
+```handlebars
+{{#my-component onclick=(debounce (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
 
-### Truth helpers
+##### throttle
 
-The truth helpers enable advanced logic in handlebars statements.
+Waits for the specified time before running an action, discarding all events in the meantime.
 
-Helper     | HTMLBars                                | JavaScript equivalent             
-:----------|:----------------------------------------|:----------------------------
-and        | `{{if (and a b ...)}}`                  | `if (a && b && ...)`                   
-contains   | `{{if (contains a b}}`                  | `if (a.indexOf(b)) > -1`        
-eq         | `{{if (eq a b)}}`                       | `if (a == b)`                    
-gt         | `{{if (gt a b)}}`                       | `if (a > b)`                  
-gte        | `{{if (gte a b)}}`                      | `if (a >= b)`                   
-is         | `{{if (is a ...)}}`                     | `if (a === true ...)`               
-isnt       | `{{if (isnt a ...)}}`                   | `if (a !== true ...)`                 
-ix         | `{{if (ix a ...)}}`                     | `if (a !== true ...)`                
-lt         | `{{if (lt a b)}}`                       | `if (a < b)`                     
-lte        | `{{if (lte a b)}}`                      | `if (a <= b)`                     
-ne         | `{{if (ne a b))}}`                      | `if (a !== b)`                    
-nontains   | `{{if (nontains a b)}}`                 | `if (a.indexOf(b)) === -1`         
-or         | `{{if (or a b ...)}}`                   | `if (a || b || ...)`                    
-xor        | `{{if (xor a b)}}`                      | `if (a && !b || !a && b)`        
+```handlebars
+{{#my-component onclick=(throttle (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
 
-### Math helpers
+##### toggle
 
-The math helpers enable maths operations in handlebars statements.
+Toggles the primary argument as a boolean value.
 
-Helper     | HTMLBars                                | JavaScript equivalent        
-:----------|:----------------------------------------|:----------------------------
-add        | `{{add a b ...}}`                       | `a + b + ...`                       
-ceil       | `{{ceil a}}`                            | `Math.ceil(a)`                
-div        | `{{div a b ...}}`                       | `a / b / ...`                        
-floor      | `{{floor a}}`                           | `Math.floor(a)`                 
-max        | `{{max a b c ...}}`                     | `Math.max([a, b, c, ...])`            
-min        | `{{min a b c ...}}`                     | `Math.min([a, b, c, ...])`             
-mod        | `{{mod a b ...}}`                       | `a % b % ...`                         
-mult       | `{{mult a b ...}}`                      | `a * b * ...`                         
-percent    | `{{percent a b}}`                       | `a / b * 100`                   
-random     | `{{random a b}}`                        | `Math.random(a, b)`             
-round      | `{{round a}}`                           | `Math.round(a)`                  
-sqrt       | `{{sqrt a}}`                            | `Math.sqrt(a)`                 
-sub        | `{{sub a b ...}}`                       | `a - b - ...`                         
+```handlebars
+{{#my-component onclick=(toggle 'isEnabled' this)}}
+	{{#if isEnabled}}Disable{{else}}Enable{{/if}}
+{{/my-component}}
+```
+
+Or you can toggle between specific values the primary argument as a boolean value.
+
+```handlebars
+{{#my-component onclick=(toggle 'view' this "landscape" "portrait")}}
+	{{#if (eq view "landscape")}}Switch to portrait{{else}}Switch to landscape{{/if}}
+{{/my-component}}
+```
+
+#### Object helpers
+
+##### group-by
+
+Groups items in a given array by the given path.
+
+```handlebars
+{{#each-in (group-by "category" products) as |category products|}}
+	- {{category}}
+	{{#each products as |product|}}
+		{{!-- Products grouped by category--}}
+	{{/each}}
+{{/each-in}}
+```
+
+##### object-key
+
+Extracts the property from the given object.
+
+```handlebars
+{{object-key "name" person}}
+```
+
+#### Array helpers
+
+##### any-by
+
+Checks whether the given property is `true` on any item in a given array.
+
+```handlebars
+{{#if (any-by "isAdult" people)}}
+	{{!-- At least one of people has isAdult === true --}}
+{{/if}}
+```
+
+Or if given property is equal to the given value on any item in a given array.
+
+```handlebars
+{{#if (any-by "isChild" false people)}}
+	{{!-- At least one of people has isChild === false --}}
+{{/if}}
+```
+
+##### append
+
+Appends each given array to the previous given arrays, resulting in a single flat array.
+
+```handlebars
+{{#each (append user users) as |person|}}
+	{{!-- Flat array of user and users --}}
+{{/each}}
+```
+
+##### array
+
+Lets you create arrays directly in the template.
+
+```handlebars
+{{#each (array 1 2 3 4 5) as |step|}}
+	- Step {{step}} is ...
+{{/each}}
+```
+
+##### compact
+
+Removes empty values from the given array.
+
+```handlebars
+{{#each (compact people) as |person|}}
+	{{!-- All with no null or undefined items --}}
+{{/each}}
+```
+
+##### contains
+
+Checks to see if an array contains an object.
+
+```handlebars
+{{#if (contains people selectedPerson)}}
+	selectedPerson exists within people...
+{{/if}}
+```
+
+Or if an array contains an array of objects.
+
+```handlebars
+{{#if (contains people selectedPeople)}}
+	selectedPeople exist within people...
+{{/if}}
+```
+
+##### empty
+
+Checks to see if an array is empty.
+
+```handlebars
+{{#if (empty people)}}
+	No people exists...
+{{/if}}
+```
+
+##### every-by
+
+Checks whether the given property is `true` on every item in a given array.
+
+```handlebars
+{{#if (every-by "isAdult" people)}}
+	{{!-- All people have isAdult === true --}}
+{{/if}}
+```
+
+Or if given property is equal to the given value on every item in a given array.
+
+```handlebars
+{{#if (every-by "isChild" false people)}}
+	{{!-- All people have isChild === false --}}
+{{/if}}
+```
+
+##### filter
+
+Returns the given array filtered by a callback.
+
+```handlebars
+{{#each (filter (action "checkAdult") people) as |adult|}}
+	{{!-- All where checkAdult action is truthy --}}
+{{/each}}
+```
+
+##### filter-by
+
+Returns the given array filtered by a property.
+
+```handlebars
+{{#each (filter-by "isAdult" people) as |adult|}}
+	{{!-- All where isAdult is truthy --}}
+{{/each}}
+```
+
+Returns the given array filtered by a property.
+
+```handlebars
+{{#each (filter-by "isChild" false people) as |adult|}}
+	{{!-- All where isChild is false --}}
+{{/each}}
+```
+
+You can also pass an action as second argument.
+
+```handlebars
+{{#each (filter-by (gt 18 (object-key "age")) people) as |adult|}}
+	{{!-- All where age is greater than 18 --}}
+{{/each}}
+```
+
+##### find
+
+Returns the first entry matching the given callback from the given array.
+
+```handlebars
+{{#with (find (action "checkAdult") people) as |adult|}}
+	{{!-- The first item where isAdult is truthy. --}}
+{{/with}}
+```
+
+##### find-by
+
+Returns the first entry matching the given value from the given array.
+
+```handlebars
+{{#with (find-by "isAdult" people) as |adult|}}
+	{{!-- The first item where isAdult is truthy. --}}
+{{/with}}
+```
+
+Returns the first entry matching the given value from the given array.
+
+```handlebars
+{{#with (find-by "isChild" false people) as |adult|}}
+	{{!-- The first item where isChild is false. --}}
+{{/with}}
+```
+
+You can also pass an action as second argument.
+
+```handlebars
+{{#with (find-by (gt 18 (object-key "age")) people) as |adult|}}
+	{{!-- The first item where age is greater than 18 --}}
+{{/with}}
+```
+
+##### flatten
+
+Returns a flattened array from the given array.
+
+```js
+let array = [ [1], [2], [3] ];
+```
+
+```handlebars
+{{#each (flatten array) as |step|}}
+	- Step {{step}} is ...
+{{/each}}
+```
+
+##### intersect
+
+Returns an array of unique items which are present in all given arrays.
+
+```handlebars
+{{#each (intersect users admins) as |testers|}}
+	{{!-- All who are in both users and admins --}}
+{{/each}}
+```
+
+##### join
+
+Concatenates the given array with an optional separator.
+
+```handlebars
+{{join (array "tag1" "tag2" "tag3")}} {{!-- "tag1 tag2 tag3" --}}
+```
+
+You can use an optional separator.
+
+```handlebars
+{{join ", " (array "tag1" "tag2" "tag3")}} {{!-- "tag1, tag2, tag3" --}}
+```
+
+##### object-at
+
+Returns the object at the given `index` of an array.
+
+```handlebars
+{{#with (object-at 1 people) as |person|}}
+	{{!-- The 1st person --}}
+{{/with}}
+```
+
+##### objects-at
+
+Returns the object at the given `indexes` of an array.
+
+```handlebars
+{{#each (objects-at 1 3 5 people) as |person|}}
+	{{!-- The 1st, 3rd, 5th people --}}
+{{/each}}
+```
+
+##### omit
+
+Returns the given array with the first `count` items omitted.
+
+```handlebars
+{{#each (omit 3 people) as |person|}}
+	{{!-- All except the first 3 people --}}
+{{/each}}
+```
+
+##### prepend
+
+Prepends each given array to the previous given arrays, resulting in a single flat array.
+
+```handlebars
+{{#each (prepend user users) as |person|}}
+	{{!-- Flat array of users and user --}}
+{{/each}}
+```
+
+##### range
+
+Creates an array whose contents is a range of numbers between min and max.
+
+```handlebars
+{{#each (range 10 20) as |step|}}
+	...
+{{/each}}
+```
+
+##### reject
+
+Returns the given array filtered by a callback.
+
+```handlebars
+{{#each (reject (action "checkAdult") people) as |child|}}
+	{{!-- All except where checkAdult action is truthy --}}
+{{/each}}
+```
+
+##### reject-by
+
+Returns the given array omitting those matching the property.
+
+```handlebars
+{{#each (reject-by "isAdult" people) as |child|}}
+	{{!-- All except where isAdult is truthy --}}
+{{/each}}
+```
+
+Returns the given array omitting those matching the property.
+
+```handlebars
+{{#each (reject-by "isChild" false people) as |child|}}
+	{{!-- All except where isChild is false --}}
+{{/each}}
+```
+
+You can also pass an action as second argument.
+
+```handlebars
+{{#each (reject-by (gt person.age 18) people) as |child|}}
+	{{!-- All except where age is greater than 18 --}}
+{{/each}}
+```
+
+##### reverse
+
+Rearranges the array in reverse order.
+
+```handlebars
+{{#each (reverse users) as |user|}}
+	{{!-- All in reverse order --}}
+{{/each}}
+```
+
+##### slice
+
+Returns a slice of the given array.
+
+```handlebars
+{{#each (slice 0 5 people) as |person|}}
+	{{!-- Only the first 5 people --}}
+{{/each}}
+```
+
+##### search-by
+
+Returns the given array where the given properties contain the given value.
+
+```handlebars
+{{input type="text" value=search}}
+```
+
+```handlebars
+{{#each (search-by "firstname" "lastname" search people) as |person|}}
+	{{!-- All where firstname or lastname contains search --}}
+{{/each}}
+```
+
+You can also use an array containing the properties to search.
+
+```handlebars
+{{input type="text" value=search}}
+```
+
+```handlebars
+{{input-select value=fields options=(array "firstname" "lastname")}}
+```
+
+```handlebars
+{{#each (search-by fields search people) as |person|}}
+	{{!-- All where firstname or lastname contains search --}}
+{{/each}}
+```
+
+##### sort-by
+
+Returns the given array sorted by the defined properties.
+
+```handlebars
+{{#each (sort-by "age:asc" people) as |person|}}
+	{{!-- All people sorted by age ascending --}}
+{{/each}}
+```
+
+You can also pass an action as second argument.
+
+```handlebars
+{{#each (sort-by (action "mySortAction") people) as |person|}}
+	{{!-- All people sorted by the custom sorting action --}}
+{{/each}}
+```
+
+##### split
+
+Splits a string/strings on a character and returns an array.
+
+```handlebars
+{{#each (split "/" "app/styles/sub/main.js") as |directory|}}
+	{{!-- Array of directories without / character --}}
+{{/each}}
+```
+
+##### take
+
+Returns the given array with the first `count` items only.
+
+```handlebars
+{{#each (take 3 people) as |person|}}
+	{{!-- Only the first 3 people --}}
+{{/each}}
+```
+
+##### union
+
+Returns an array of unique items from all of the given arrays.
+
+```handlebars
+{{#each (union users admins) as |person|}}
+	{{!-- Unique users and admins --}}
+{{/each}}
+```
+
+##### uniq
+
+Returns an array of unique items from all of the given arrays.
+
+```handlebars
+{{#each (uniq users admins) as |person|}}
+	{{!-- Unique users and admins --}}
+{{/each}}
+```
+
+##### uniq-by
+
+Returns an array of unique items, compared using the given property, from the given array.
+
+```handlebars
+{{#each (uniq-by "email" users) as |person|}}
+	{{!-- Unique users by email --}}
+{{/each}}
+```
+
+##### w
+
+Splits a string/strings on whitespace or turns multiple words into an array.
+
+```handlebars
+{{#each (w "First Second" "Third") as |step|}}
+	- Step {{step}} is ...
+{{/each}}
+```
+
+##### without
+
+Returns the given array without the given item or items.
+
+```handlebars
+{{#each (without selectedusers users) as |user|}}
+	{{!-- All users who are not in selectedusers --}}
+{{/each}}
+```
 
 ## Development
 
