@@ -1,4 +1,5 @@
 import Ember from "ember";
+import format from 'ember-helpers/utils/format';
 
 let units = [];
 units[0] = { symbol:"ns", value: 1 };
@@ -10,7 +11,7 @@ units[5] = { symbol:"h",  value: 60   * units[4].value };
 units[6] = { symbol:"d",  value: 24   * units[5].value };
 units[7] = { symbol:"w",  value: 7    * units[6].value };
 
-export function duration([val], { exact = false }) {
+export function duration([val], { exact = false, decimals=0 }) {
 
 	let amnt = parseFloat(val) || 0;
 
@@ -23,10 +24,13 @@ export function duration([val], { exact = false }) {
 
 			amnt -= val * unit.value;
 
+			let cnt = div % 1 ? div.toString().split('.')[1].length : 0;
+			let fmt = format(div, decimals || cnt);
+
 			if (exact === true) {
 				return str += val.toString() + unit.symbol + ' ';
 			} else {
-				return str ? str : div.toString() + unit.symbol;
+				return str ? str : fmt.toString() + unit.symbol;
 			}
 
 		}
