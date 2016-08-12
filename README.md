@@ -330,24 +330,6 @@ Removes empty values from the given array.
 {{/each}}
 ```
 
-##### contains
-
-Checks to see if an array contains an object.
-
-```handlebars
-{{#if (contains people selectedPerson)}}
-	selectedPerson exists within people...
-{{/if}}
-```
-
-Or if an array contains an array of objects.
-
-```handlebars
-{{#if (contains people selectedPeople)}}
-	selectedPeople exist within people...
-{{/if}}
-```
-
 ##### empty
 
 Checks to see if an array is empty.
@@ -460,6 +442,24 @@ let array = [ [1], [2], [3] ];
 {{#each (flatten array) as |step|}}
 	- Step {{step}} is ...
 {{/each}}
+```
+
+##### includes
+
+Checks to see if an array includes an object.
+
+```handlebars
+{{#if (includes selectedPerson people)}}
+	selectedPerson exists within people...
+{{/if}}
+```
+
+Or if an array includes an array of objects.
+
+```handlebars
+{{#if (includes selectedPeople people)}}
+	selectedPeople exist within people...
+{{/if}}
 ```
 
 ##### intersect
