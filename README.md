@@ -126,10 +126,12 @@ The logic helpers enable logic operations in handlebars statements.
 Helper                         | HTMLBars                                     | JavaScript equivalent             
 :------------------------------|:---------------------------------------------|:----------------------------
 and                            | `{{if (and a b ...)}}`                       | `if (a && b && ...)`                   
+begs-with                      | `{{if (begs-with a b)}}`                     | `if (a.indexOf(b) === 0)`
+ends-with                      | `{{if (ends-with a b)}}`                     | `if (a.indexOf(b, a.length - b.length) !== -1)`
 eq                             | `{{if (eq a b)}}`                            | `if (a == b)`                    
 gt                             | `{{if (gt a b)}}`                            | `if (a > b)`                  
 gte                            | `{{if (gte a b)}}`                           | `if (a >= b)`                   
-inside                         | `{{if (inside a b)}}`                        | `if (a.indexOf(b)) > -1`        
+inside                         | `{{if (inside a b)}}`                        | `if (a.indexOf(b) > -1)`        
 is                             | `{{if (is a ...)}}`                          | `if (a === true ...)`               
 isnt                           | `{{if (isnt a ...)}}`                        | `if (a !== true ...)`                 
 ix                             | `{{if (ix a ...)}}`                          | `if (a !== true ...)`                
