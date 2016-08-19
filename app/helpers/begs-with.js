@@ -1,1 +1,1 @@
-export { default, endsWith } from 'ember-helpers/helpers/ends-with';
+export { default, begsWith } from 'ember-helpers/helpers/begs-with';
