@@ -1,6 +1,8 @@
 import Ember from "ember";
 import format from 'ember-helpers/utils/format';
 
+let valid = ['ns','µs','ms','s','m','h','d','w'];
+
 let units = [];
 units[0] = { symbol:"ns", value: 1 };
 units[1] = { symbol:"μs", value: 1000 * units[0].value };
@@ -11,9 +13,13 @@ units[5] = { symbol:"h",  value: 60   * units[4].value };
 units[6] = { symbol:"d",  value: 24   * units[5].value };
 units[7] = { symbol:"w",  value: 7    * units[6].value };
 
-export function duration([val], { exact = false, decimals=0 }) {
+export function duration([val], { input='ns', exact = false, decimals=0 }) {
+
+	Ember.assert('Must specify a valid unit (ns, µs, ms, s, m, h, d, w)', valid.indexOf(input) !== -1);
 
 	let amnt = parseFloat(val) || 0;
+
+	amnt = amnt * ( Ember.A(units).find(unit => unit.symbol === input) ).value;
 
 	return units.slice(0).reverse().reduce( (str, unit) => {
 
