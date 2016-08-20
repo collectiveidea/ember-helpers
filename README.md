@@ -592,7 +592,7 @@ Returns the given array omitting those matching the property.
 You can also pass an action as second argument.
 
 ```handlebars
-{{#each (reject-by (gt person.age 18) people) as |child|}}
+{{#each (reject-by (gt 18 (object-key "age")) people) as |child|}}
 	{{!-- All except where age is greater than 18 --}}
 {{/each}}
 ```
