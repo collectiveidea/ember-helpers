@@ -62,8 +62,8 @@ Helper                         | HTMLBars                                     | 
 [intersect](#intersect)        | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
 [join](#join)                  | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
 [last](#last)                  | `{{last users)}}`                            | last item of `users`
-[map](#map)                    | `{{#each (map (action 'check') users)}}`     | first of `users` where `check` action is truthy
-[map-by](#map-by)              | `{{#each (map-by "isAdult" users)}}`         | first of `users` where `isAdult` is truthy
+[map](#map)                    | `{{#each (map (action 'getName') users)}}`   | `users` mapped to the `getName` callback
+[map-by](#map-by)              | `{{#each (map-by "name" users)}}`            | `users` mapped to the `name` property
 [object-at](#object-at)        | `{{object-at i users}}`                      | item at position `i` in `users`
 [objects-at](#objects-at)      | `{{objects-at i j ... users}}`               | items at position `i j ...` in `users`
 [omit](#omit)                  | `{{#each (omit 3 users)}}`                   | `users` with first `3` models omitted
@@ -509,6 +509,26 @@ Returns the last object of the given array.
 {{#with (last people) as |person|}}
 	{{!-- The last person --}}
 {{/with}}
+```
+
+##### map
+
+Returns the given array mapped to the given callback.
+
+```handlebars
+{{#each (map (action "getName") users) as |name|}}
+	{{name}}
+{{/each}}
+```
+
+##### map-by
+
+Returns the given array mapped to the given property.
+
+```handlebars
+{{#each (map-by "name" users) as |name|}}
+	{{name}}
+{{/each}}
 ```
 
 ##### object-at
