@@ -56,10 +56,12 @@ Helper                         | HTMLBars                                     | 
 [filter-by](#filter-by)        | `{{#each (filter-by "isAdult" users)}}`      | `users` where `isAdult` is truthy
 [find](#find)                  | `{{#each (find (action 'check') users)}}`    | first of `users` where `check` action is truthy
 [find-by](#find-by)            | `{{#each (find-by "isAdult" users)}}`        | first of `users` where `isAdult` is truthy
+[first](#first)                | `{{first users)}}`                           | first item of `users`
 [flatten](#flatten)            | `{{#each (flatten multiarray)}}`             | flattened array of `multiarray`
 [includes](#includes)          | `{{#if (includes user users)}}`              | if `users` includes `user`
 [intersect](#intersect)        | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
 [join](#join)                  | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
+[last](#last)                  | `{{last users)}}`                            | last item of `users`
 [map](#map)                    | `{{#each (map (action 'check') users)}}`     | first of `users` where `check` action is truthy
 [map-by](#map-by)              | `{{#each (map-by "isAdult" users)}}`         | first of `users` where `isAdult` is truthy
 [object-at](#object-at)        | `{{object-at i users}}`                      | item at position `i` in `users`
@@ -433,6 +435,16 @@ You can also pass an action as second argument.
 {{/with}}
 ```
 
+##### first
+
+Returns the first object of the given array.
+
+```handlebars
+{{#with (first people) as |person|}}
+	{{!-- The first person --}}
+{{/with}}
+```
+
 ##### flatten
 
 Returns a flattened array from the given array.
@@ -487,6 +499,16 @@ You can use an optional separator.
 
 ```handlebars
 {{join ", " (array "tag1" "tag2" "tag3")}} {{!-- "tag1, tag2, tag3" --}}
+```
+
+##### last
+
+Returns the last object of the given array.
+
+```handlebars
+{{#with (last people) as |person|}}
+	{{!-- The last person --}}
+{{/with}}
 ```
 
 ##### object-at
