@@ -116,7 +116,7 @@ lowercase                      | `{{lowercase "this Is some TEXT"}}`          | 
 slug                           | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
 swapcase                       | `{{swapcase "this Is some TEXT"}}`           | tHIS iS SOME text
 titleize                       | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
-truncate                       | `{{truncate "this Is some TEXT", 10}}`       | this Is so...
+truncate                       | `{{truncate "this Is some TEXT" 10}}`       | this Is so...
 ucwords                        | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT
 underscore                     | `{{underscore "this Is some TEXT"}}`         | this_is_some_text
 uppercase                      | `{{uppercase "this Is some TEXT"}}`          | THIS IS SOME TEXT
