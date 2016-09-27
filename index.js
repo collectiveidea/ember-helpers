@@ -2,5 +2,8 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-helpers'
+  name: 'ember-helpers',
+  isDevelopingAddon: function() {
+  	return true;
+  }
 };
