@@ -13,7 +13,6 @@
 # limitations under the License.
 
 GO ?= go
-LDF :=
 
 # The `make default` command cleans
 # the go build and test files and
@@ -23,6 +22,15 @@ LDF :=
 default:
 	@echo "Choose a Makefile target:"
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print "  - " $$1}}' | sort
+
+# The `make test` command runs the
+# preconfigured tests found in the
+# prject directory.
+
+.PHONY: tests
+tests:
+	@echo "Tests..."
+	npm test
 
 # The `make setup` command installs
 # the 3rd party dependencies needed
