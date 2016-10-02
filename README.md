@@ -760,4 +760,4 @@ Returns the given array without the given item or items.
 - `make setup` (install bower and ember-cli)
 - `make install` (install bower and ember-cli dependencies)
 - `make upgrade` (upgrade ember-cli to the specified version)
-- `npm test` (run all tests defined in the package)
+- `make tests` (run all tests defined in the package)
