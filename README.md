@@ -10,9 +10,17 @@ A collection of helpers for Ember.js enabling advanced templating logic.
 
 `ember install @abcum/ember-helpers`
 
-### Prommise helpers
+### Promise helpers
 
 Coming soon ...
+
+### Callback helpers
+
+The action helpers enable a variety of advanced actions.
+
+Helper                         | HTMLBars                                     | Result
+:------------------------------|:---------------------------------------------|:----------------------------
+[invoke](#invoke)              | `{{#link-to 'index' invoke(action 'save')}}` | Changes route and invokes action
 
 ### Action helpers
 
@@ -116,7 +124,7 @@ lowercase                      | `{{lowercase "this Is some TEXT"}}`          | 
 slug                           | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
 swapcase                       | `{{swapcase "this Is some TEXT"}}`           | tHIS iS SOME text
 titleize                       | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
-truncate                       | `{{truncate "this Is some TEXT" 10}}`       | this Is so...
+truncate                       | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
 ucwords                        | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT
 underscore                     | `{{underscore "this Is some TEXT"}}`         | this_is_some_text
 uppercase                      | `{{uppercase "this Is some TEXT"}}`          | THIS IS SOME TEXT
@@ -167,6 +175,34 @@ sub                            | `{{sub a b ...}}`                            | 
 
 
 ### Examples
+
+#### Callback helpers
+
+##### invoke
+
+Allows an action to be called while transitioning to another route with `link-to`.
+
+```handlebars
+{{#link-to "index" invoke="save"}}
+	Save and go back
+{{/link-to}}
+```
+
+Or you can use a closure action instead of a action name.
+
+```handlebars
+{{#link-to "index" invoke=(action "save")}}
+	Save and go back
+{{/link-to}}
+```
+
+Or you can add action parameters to be passed to the invoked action.
+
+```handlebars
+{{#link-to "index" invoke=(action "save" firstname lastname)}}
+	Save and go back
+{{/link-to}}
+```
 
 #### Action helpers
 
