@@ -20,7 +20,7 @@ The action helpers enable a variety of advanced actions.
 
 Helper                         | HTMLBars                                     | Result
 :------------------------------|:---------------------------------------------|:----------------------------
-[invoke](#invoke)              | `{{#link-to 'index' invoke(action 'save')}}` | Changes route and invokes action
+[invoke](#link-invoke)         | `{{#link-to 'index' invoke=(action 'save')}}` | Changes route and invokes action
 
 ### Action helpers
 
@@ -45,6 +45,7 @@ The array helpers enable advanced array logic and manipulation.
 Helper                         | HTMLBars                                     | Result
 :------------------------------|:---------------------------------------------|:----------------------------
 [group-by](#group-by)          | `{{group-by "category" products}}`           | `products` grouped by unique `category`
+[invoke](#invoke)              | `{{invoke "save" user}}`                     | `save` action called on `user` model
 [object-key](#object-key)      | `{{object-key "name" person}}`               | name property of `person` object
 
 ### Array helpers
@@ -68,6 +69,7 @@ Helper                         | HTMLBars                                     | 
 [flatten](#flatten)            | `{{#each (flatten multiarray)}}`             | flattened array of `multiarray`
 [includes](#includes)          | `{{#if (includes user users)}}`              | if `users` includes `user`
 [intersect](#intersect)        | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
+[invoke](#invoke)              | `{{invoke "save" users}}`                    | `save` action called on each model in `users`
 [join](#join)                  | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
 [last](#last)                  | `{{last users)}}`                            | last item of `users`
 [map](#map)                    | `{{#each (map (action 'getName') users)}}`   | `users` mapped to the `getName` callback
@@ -178,7 +180,7 @@ sub                            | `{{sub a b ...}}`                            | 
 
 #### Callback helpers
 
-##### invoke
+##### link-invoke
 
 Allows an action to be called while transitioning to another route with `link-to`.
 
@@ -511,6 +513,22 @@ Or if an array includes an array of objects.
 {{#if (includes selectedPeople people)}}
 	selectedPeople exist within people...
 {{/if}}
+```
+
+##### invoke
+
+Calls a method on an object.
+
+```handlebars
+{{#each users as |user|}}
+	<button {{action (invoke "save" user)}}>Save</button>
+{{/each}}
+```
+
+Or on each item in an array.
+
+```handlebars
+<button {{action (invoke "save" users)}}>Save</button>
 ```
 
 ##### intersect
