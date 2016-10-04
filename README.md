@@ -186,7 +186,7 @@ sub                            | `{{sub a b ...}}`                            | 
 Allows a method on the route to be called from a component.
 
 ```handlebars
-{{#some-button clicked=(action "log" "Website")}}
+{{#some-button clicked=(call "log" "Website")}}
 	Log this error
 {{/some-button}}
 ```
