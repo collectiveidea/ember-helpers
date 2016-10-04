@@ -20,7 +20,8 @@ The action helpers enable a variety of advanced actions.
 
 Helper                         | HTMLBars                                     | Result
 :------------------------------|:---------------------------------------------|:----------------------------
-[invoke](#link-invoke)         | `{{#link-to 'index' invoke=(action 'save')}}` | Changes route and invokes action
+[call](#call)                  | `{{#some-component clicked=(call "log")}}`   | Calls method on route, and bubbles up
+[invoke](#link-invoke)         | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
 
 ### Action helpers
 
@@ -179,6 +180,16 @@ sub                            | `{{sub a b ...}}`                            | 
 ### Examples
 
 #### Callback helpers
+
+##### call
+
+Allows a method on the route to be called from a component.
+
+```handlebars
+{{#some-button clicked=(action "log" "Website")}}
+	Log this error
+{{/some-button}}
+```
 
 ##### link-invoke
 
