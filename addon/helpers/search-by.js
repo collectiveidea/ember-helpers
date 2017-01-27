@@ -3,10 +3,11 @@ import search from 'ember-helpers/utils/search';
 
 export default Ember.Helper.extend({
 
-	compute([...props]) {
+	compute([...params]) {
 
-		let array = props.pop();
-		let value = props.pop();
+		let props = params.slice(0, -2);
+		let array = params.slice(-1)[0];
+		let value = params.slice(-2)[0];
 
 		this.set('props', props);
 		this.set('value', value);

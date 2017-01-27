@@ -2,9 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Helper.extend({
 
-	compute([...sort]) {
+	compute([...props]) {
 
-		let array = sort.pop();
+		let sort = props.slice(0, -1);
+		let array = props.slice().pop();
 
 		if ( Ember.isArray(sort[0]) || Ember.typeOf(sort[0]) === 'function') {
 			sort = sort[0];

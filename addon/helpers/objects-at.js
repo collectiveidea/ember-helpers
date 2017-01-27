@@ -8,7 +8,8 @@ export default Ember.Helper.extend({
 
 	compute([...params]) {
 
-		let array = params.pop();
+		let items = params.slice(0, -1);
+		let array = params.slice().pop();
 
 		if ( !Ember.isArray(array) ) {
 			return undefined;
@@ -16,7 +17,7 @@ export default Ember.Helper.extend({
 
 		this.set('array', array);
 
-		return Ember.A(array).objectsAt(params);
+		return Ember.A(array).objectsAt(items);
 
 	},
 
