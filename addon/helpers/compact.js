@@ -10,7 +10,7 @@ export default Ember.Helper.extend({
 
 		if ( !Ember.isArray(array) ) {
 			return undefined;
-    	}
+		}
 
 		this.set('array', array);
 
