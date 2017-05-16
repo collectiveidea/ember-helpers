@@ -183,7 +183,6 @@ export default function country2(code) {
 		case 'RU': return 'Russia';
 		case 'RW': return 'Rwanda';
 		case 'RE': return 'Réunion';
-		case 'BQ': return 'Saba';
 		case 'BL': return 'Saint Barthélemy';
 		case 'KN': return 'Saint Christopher & Nevis';
 		case 'SH': return 'Saint Helena';
@@ -200,13 +199,11 @@ export default function country2(code) {
 		case 'SC': return 'Seychelles';
 		case 'SL': return 'Sierra Leone';
 		case 'SG': return 'Singapore';
-		case 'BQ': return 'Sint Eustatius';
 		case 'SX': return 'Sint Maarten';
 		case 'SK': return 'Slovakia';
 		case 'SI': return 'Slovenia';
 		case 'SB': return 'Solomon Islands';
 		case 'SO': return 'Somalia';
-		case 'SO': return 'Somaliland';
 		case 'ZA': return 'South Africa';
 		case 'GS': return 'South Georgia & The South Sandwish Islands';
 		case 'KR': return 'South Korea';
