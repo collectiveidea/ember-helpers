@@ -13,7 +13,7 @@ export default Ember.Helper.extend({
 				return;
 			}
 
-			if (window.Notification.permission === 'deined') {
+			if (window.Notification.permission === 'denied') {
 				return;
 			}
 
