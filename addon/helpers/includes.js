@@ -22,9 +22,9 @@ export default Ember.Helper.extend({
 		}
 
 		if ( Ember.isArray(needle) && Ember.get(needle, 'length') ) {
-			return needle.every( item => Ember.A(haystack).contains(item) );
+			return needle.every( item => Ember.A(haystack).includes(item) );
 		} else {
-			return Ember.A(haystack).contains(needle);
+			return Ember.A(haystack).includes(needle);
 		}
 
 	}).readOnly(),
