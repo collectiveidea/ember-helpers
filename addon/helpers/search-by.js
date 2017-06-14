@@ -45,7 +45,7 @@ export default Ember.Helper.extend({
 		Ember.defineProperty(this, 'content', Ember.computed.filter('array', item => {
 			return props.any(prop => {
 				let value = String( item.get(prop) ).toLowerCase();
-				return found.any(i => value.contains(i) );
+				return found.any(i => value.includes(i) );
 			});
 		}));
 
