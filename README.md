@@ -47,6 +47,7 @@ Helper                         | HTMLBars                                     | 
 :------------------------------|:---------------------------------------------|:----------------------------
 [group-by](#group-by)          | `{{group-by "category" products}}`           | `products` grouped by unique `category`
 [invoke](#invoke)              | `{{invoke "save" user}}`                     | `save` action called on `user` model
+[match-by](#match-by)          | `{{match-by "name" "email" search person}}`  | true if `name`, or `email` contains `search`
 [object-key](#object-key)      | `{{object-key "name" person}}`               | name property of `person` object
 
 ### Array helpers
@@ -324,6 +325,36 @@ Groups items in a given array by the given path.
 		{{!-- Products grouped by category--}}
 	{{/each}}
 {{/each-in}}
+```
+
+##### match-by
+
+Returns true if the given properties contain the given value.
+
+```handlebars
+{{input type="text" value=search}}
+```
+
+```handlebars
+{{#if (match-by "firstname" "lastname" search person)}}
+	{{!-- The firstname or lastname field contains search --}}
+{{/if}}
+```
+
+You can also use an array containing the properties to search.
+
+```handlebars
+{{input type="text" value=search}}
+```
+
+```handlebars
+{{input-select value=fields options=(array "firstname" "lastname")}}
+```
+
+```handlebars
+{{#if (match-by fields search person)}}
+	{{!-- The firstname or lastname field contains search --}}
+{{/if}}
 ```
 
 ##### object-key
