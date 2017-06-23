@@ -6,12 +6,15 @@
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Tobie Morgan Hitchcock",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ember-helpers.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
