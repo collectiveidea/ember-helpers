@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-export function uppercase(params) {
-	return (params[0] + '').toUpperCase();
+export function uppercase([value='']) {
+	return String(value).toUpperCase();
 }
 
 export default Ember.Helper.helper(uppercase);
