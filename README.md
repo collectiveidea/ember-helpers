@@ -125,7 +125,7 @@ dasherize                      | `{{dasherize "this Is some TEXT"}}`          | 
 lcwords                        | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
 lowercase                      | `{{lowercase "this Is some TEXT"}}`          | this is some text
 slug                           | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
-swapcase                       | `{{swapcase "this Is some TEXT"}}`           | tHIS iS SOME text
+swapcase                       | `{{swapcase "this Is some TEXT"}}`           | THIS iS SOME text
 titleize                       | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
 truncate                       | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
 ucwords                        | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT

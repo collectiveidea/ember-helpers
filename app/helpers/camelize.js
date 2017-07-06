@@ -1,1 +1,1 @@
-export { default, capitalize } from 'ember-helpers/helpers/capitalize';
+export { default, camelize } from 'ember-helpers/helpers/camelize';

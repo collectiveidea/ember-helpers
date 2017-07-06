@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export function or(params) {
-	return params.any(p => !!p);
+	return params.some(p => !!p);
 }
 
 export default Ember.Helper.helper(or);
