@@ -121,7 +121,6 @@ Helper                         | HTMLBars                                     | 
 camelize                       | `{{camelize "this Is some TEXT"}}`           | thisIsSomeTEXT
 capitalize                     | `{{capitalize "this Is some TEXT"}}`         | This Is some TEXT
 classify                       | `{{classify "this Is some TEXT"}}`           | ThisIsSomeTEXT
-concat                         | `{{concat "this" "Is" "some" TEXT"}}`        | thisIssomeTEXT
 dasherize                      | `{{dasherize "this Is some TEXT"}}`          | this-is-some-text
 lcwords                        | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
 lowercase                      | `{{lowercase "this Is some TEXT"}}`          | this is some text
