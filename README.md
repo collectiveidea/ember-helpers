@@ -106,6 +106,7 @@ country                        | `{{country "GBR"}}`                          | 
 convert                        | `{{convert 1 from="GBP" to="EUR"}}`          | 1.1861095104682045
 currency                       | `{{currency "GBP"}}`                         | £
 duration                       | `{{duration 1283719281 exact=false}}`        | 1.283719281s
+email                          | `{{email "info@abcum.com"}}`                 | mailto:info@abcum.com
 linkify                        | `{{linkify "Click https://abcum.com"}}`      | Click <a href="https://abcum.com">https://abcum.com</a>
 md5                            | `{{md5 "info@abcum.com"}}`                   | 2a14a47beb82beba88c705145d572702
 money                          | `{{money 10000 symbol="GBP"}}`               | £10,000.00
