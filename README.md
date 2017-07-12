@@ -18,165 +18,190 @@ Coming soon ...
 
 The action helpers enable a variety of advanced actions.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-[call](#call)                  | `{{#some-component clicked=(call "log")}}`   | Calls method on route, and bubbles up
-[invoke](#link-invoke)         | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[call](#call)                         | `{{some-component clicked=(call "log")}}`    | Calls method on route, and bubbles up
+[invoke](#link-invoke)                | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
 
 ### Action helpers
 
 The action helpers enable a variety of advanced actions.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-[alert](#alert)                | `{{alert "Well hello" "there")}}`            | `alert("Well hello there")`
-[debounce](#debounce)          | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
-[define](#define)              | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
-[notify](#notify)              | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
-[open](#open)                  | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
-[reload](#reload)              | `{{reload}}`                                 | `window.location.reload(...)`
-[route](#route)                | `{{route 'post' post.id}}`                   | `this.transitionTo('post', post.id)`
-[toggle](#toggle)              | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
-[throttle](#throttle)          | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[alert](#alert)                       | `{{alert "Well hello" "there")}}`            | `alert("Well hello there")`
+[chain](#chain)                       | `{{chain (action 'one') (action 'two')}}`    | `one(args).then(two)`
+[debounce](#debounce)                 | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
+[define](#define)                     | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
+[notify](#notify)                     | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
+[open](#open)                         | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
+[queue](#queue)                       | `{{queue (action 'one') (action 'two')}}`    | `one(args).then(() => two(args))`
+[reload](#reload)                     | `{{reload}}`                                 | `window.location.reload(...)`
+[toggle](#toggle)                     | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
+[throttle](#throttle)                 | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
+
+### Event helpers
+
+The event helpers enable manipulation of browser events.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[drag-get](#drag-get)                 | `{{drag-get 'text'}}`                        | `event.dataTransfer.getData('text')`
+[drag-set](#drag-set)                 | `{{drag-set 'text' data}}`                   | `event.dataTransfer.setData('text', data)`
+[drop-effect](#drop-effect)           | `{{drop-effect 'move'}}`                     | `event.dataTransfer.dropEffect = 'move'`
+[effect-allowed](#effect-allowed)     | `{{effect-allowed 'move'}}`                  | `event.dataTransfer.effectAllowed = 'move'`
+[prevent-default](#prevent-default)   | `{{prevent-default}}`                        | `event.preventDefault()`
+[stop-propagation](#stop-propagation) | `{{stop-propagation}}`                       | `event.stopPropagation()`
+
+### Router helpers
+
+The router helpers enable a selection of router methods.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[is-active](#is-active)               | `{{if (is-active 'post')}}`                  | `if (this.get('router').isActive('post'))`
+[transition-to](#transition-to)       | `{{transition-to 'post' post.id}}`           | `this.transitionTo('post', post.id)`
 
 ### Object helpers
 
 The array helpers enable advanced array logic and manipulation.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-[group-by](#group-by)          | `{{group-by "category" products}}`           | `products` grouped by unique `category`
-[invoke](#invoke)              | `{{invoke "save" user}}`                     | `save` action called on `user` model
-[match-by](#match-by)          | `{{match-by "name" "email" search person}}`  | true if `name`, or `email` contains `search`
-[object-key](#object-key)      | `{{object-key "name" person}}`               | name property of `person` object
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[group-by](#group-by)                 | `{{group-by "category" products}}`           | `products` grouped by unique `category`
+[invoke](#invoke)                     | `{{invoke "save" user}}`                     | `save` action called on `user` model
+[match-by](#match-by)                 | `{{match-by "name" "email" search person}}`  | true if `name`, or `email` contains `search`
+[object-key](#object-key)             | `{{object-key "name" person}}`               | name property of `person` object
 
 ### Array helpers
 
 The array helpers enable advanced array logic and manipulation.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-[any-by](#any-by)              | `{{#if (any-by "isAdult" users)}}`           | if `isAdult` is truthy on any one of `users`
-[append](#append)              | `{{#each (append users user)}}`              | `users` array with `user` appended
-[array](#array)                | `{{#each (array 1 2 3 4 5)}}`                | `[1, 2, 3, 4, 5]`
-[compact](#compact)            | `{{#each (compact users)}}`                  | `users` with `null` or `undefined` items removed
-[contains](#contains)          | `{{#if (contains user users)}}`              | if `users` contains `user`
-[empty](#empty)                | `{{#if (empty users)}}`                      | if `users` is an empty array
-[every-by](#every-by)          | `{{#if (every-by "isAdult" users)}}`         | if `isAdult` is truthy on every one of `users`
-[filter](#filter)              | `{{#each (filter (action 'check') users)}}`  | `users` where `check` action is truthy
-[filter-by](#filter-by)        | `{{#each (filter-by "isAdult" users)}}`      | `users` where `isAdult` is truthy
-[find](#find)                  | `{{#each (find (action 'check') users)}}`    | first of `users` where `check` action is truthy
-[find-by](#find-by)            | `{{#each (find-by "isAdult" users)}}`        | first of `users` where `isAdult` is truthy
-[first](#first)                | `{{first users)}}`                           | first item of `users`
-[flatten](#flatten)            | `{{#each (flatten multiarray)}}`             | flattened array of `multiarray`
-[includes](#includes)          | `{{#if (includes user users)}}`              | if `users` includes `user`
-[intersect](#intersect)        | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
-[invoke](#invoke)              | `{{invoke "save" users}}`                    | `save` action called on each model in `users`
-[join](#join)                  | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
-[last](#last)                  | `{{last users)}}`                            | last item of `users`
-[map](#map)                    | `{{#each (map (action 'getName') users)}}`   | `users` mapped to the `getName` callback
-[map-by](#map-by)              | `{{#each (map-by "name" users)}}`            | `users` mapped to the `name` property
-[object-at](#object-at)        | `{{object-at i users}}`                      | item at position `i` in `users`
-[objects-at](#objects-at)      | `{{objects-at i j ... users}}`               | items at position `i j ...` in `users`
-[omit](#omit)                  | `{{#each (omit 3 users)}}`                   | `users` with first `3` models omitted
-[prepend](#prepend)            | `{{#each (prepend users user)}}`             | `users` array with `user` prepended
-[range](#range)                | `{{#each (range 1 5)}}`                      | `[1, 2, 3, 4, 5]`
-[reject](#reject)              | `{{#each (reject (action 'check') users)}}`  | `users` where `check` action is falsy
-[reject-by](#reject-by)        | `{{#each (reject-by "isAdult" users)}}`      | `users` where `isAdult` is falsy
-[reverse](#reverse)            | `{{#each (reverse users)}}`                  | `users` in reverse order
-[slice](#slice)                | `{{#each (slice 0 5 users)}}`                | items `0` through `4` from `users`
-[search-by](#search-by)        | `{{#each (search-by "name" search users)}}`  | `users` where `name` contains `search`
-[sort-by](#sort-by)            | `{{#each (sort-by "name:desc" users)}}`      | `users` sorted by `name` descending
-[split](#split)                | `{{#each (split "/" "app/css/app.less")}}`   | `["app", "css", "app.less"]`
-[take](#take)                  | `{{#each (take 3 users)}}`                   | first `3` models from `users`
-[union](#union)                | `{{#each (union admins users)}}`             | union of `admins` and `users`
-[uniq](#uniq)                  | `{{#each (uniq users)}}`                     | unique items from `users`
-[uniq-by](#uniq-by)            | `{{#each (uniq-by "email" users)}}`          | unique items by `email` in `users`
-[w](#w)                        | `{{#each (w "One Two Three" "Four")}}`       | `["One", "Two", "Three", "Four"]`
-[without](#without)            | `{{#each (without user users)}}`             | `users` array with `user` removed
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[any-by](#any-by)                     | `{{#if (any-by "isAdult" users)}}`           | if `isAdult` is truthy on any one of `users`
+[append](#append)                     | `{{#each (append users user)}}`              | `users` array with `user` appended
+[array](#array)                       | `{{#each (array 1 2 3 4 5)}}`                | `[1, 2, 3, 4, 5]`
+[compact](#compact)                   | `{{#each (compact users)}}`                  | `users` with `null` or `undefined` items removed
+[contains](#contains)                 | `{{#if (contains user users)}}`              | if `users` contains `user`
+[empty](#empty)                       | `{{#if (empty users)}}`                      | if `users` is an empty array
+[every-by](#every-by)                 | `{{#if (every-by "isAdult" users)}}`         | if `isAdult` is truthy on every one of `users`
+[filter](#filter)                     | `{{#each (filter (action 'check') users)}}`  | `users` where `check` action is truthy
+[filter-by](#filter-by)               | `{{#each (filter-by "isAdult" users)}}`      | `users` where `isAdult` is truthy
+[find](#find)                         | `{{#each (find (action 'check') users)}}`    | first of `users` where `check` action is truthy
+[find-by](#find-by)                   | `{{#each (find-by "isAdult" users)}}`        | first of `users` where `isAdult` is truthy
+[first](#first)                       | `{{first users)}}`                           | first item of `users`
+[flatten](#flatten)                   | `{{#each (flatten multiarray)}}`             | flattened array of `multiarray`
+[includes](#includes)                 | `{{#if (includes user users)}}`              | if `users` includes `user`
+[intersect](#intersect)               | `{{#each (intersect admins users)}}`         | intersection of `admins` and `users`
+[invoke](#invoke)                     | `{{invoke "save" users}}`                    | `save` action called on each model in `users`
+[join](#join)                         | `{{#each (join ", " tags)}}`                 | Concatenates `tags` with the separator `, `
+[last](#last)                         | `{{last users)}}`                            | last item of `users`
+[map](#map)                           | `{{#each (map (action 'getName') users)}}`   | `users` mapped to the `getName` callback
+[map-by](#map-by)                     | `{{#each (map-by "name" users)}}`            | `users` mapped to the `name` property
+[object-at](#object-at)               | `{{object-at i users}}`                      | item at position `i` in `users`
+[objects-at](#objects-at)             | `{{objects-at i j ... users}}`               | items at position `i j ...` in `users`
+[omit](#omit)                         | `{{#each (omit 3 users)}}`                   | `users` with first `3` models omitted
+[prepend](#prepend)                   | `{{#each (prepend users user)}}`             | `users` array with `user` prepended
+[range](#range)                       | `{{#each (range 1 5)}}`                      | `[1, 2, 3, 4, 5]`
+[reject](#reject)                     | `{{#each (reject (action 'check') users)}}`  | `users` where `check` action is falsy
+[reject-by](#reject-by)               | `{{#each (reject-by "isAdult" users)}}`      | `users` where `isAdult` is falsy
+[reverse](#reverse)                   | `{{#each (reverse users)}}`                  | `users` in reverse order
+[slice](#slice)                       | `{{#each (slice 0 5 users)}}`                | items `0` through `4` from `users`
+[search-by](#search-by)               | `{{#each (search-by "name" search users)}}`  | `users` where `name` contains `search`
+[sort-by](#sort-by)                   | `{{#each (sort-by "name:desc" users)}}`      | `users` sorted by `name` descending
+[split](#split)                       | `{{#each (split "/" "app/css/app.less")}}`   | `["app", "css", "app.less"]`
+[take](#take)                         | `{{#each (take 3 users)}}`                   | first `3` models from `users`
+[union](#union)                       | `{{#each (union admins users)}}`             | union of `admins` and `users`
+[uniq](#uniq)                         | `{{#each (uniq users)}}`                     | unique items from `users`
+[uniq-by](#uniq-by)                   | `{{#each (uniq-by "email" users)}}`          | unique items by `email` in `users`
+[w](#w)                               | `{{#each (w "One Two Three" "Four")}}`       | `["One", "Two", "Three", "Four"]`
+[without](#without)                   | `{{#each (without user users)}}`             | `users` array with `user` removed
 
 ### Format helpers
 
 The format helpers enable easy formatting of different units.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-bytes                          | `{{bytes 134186)}}`                          | 1.34MB
-country                        | `{{country "GBR"}}`                          | United Kingdom
-convert                        | `{{convert 1 from="GBP" to="EUR"}}`          | 1.1861095104682045
-currency                       | `{{currency "GBP"}}`                         | £
-duration                       | `{{duration 1283719281 exact=false}}`        | 1.283719281s
-email                          | `{{email "info@abcum.com"}}`                 | mailto:info@abcum.com
-linkify                        | `{{linkify "Click https://abcum.com"}}`      | Click <a href="https://abcum.com">https://abcum.com</a>
-md5                            | `{{md5 "info@abcum.com"}}`                   | 2a14a47beb82beba88c705145d572702
-money                          | `{{money 10000 symbol="GBP"}}`               | £10,000.00
-number                         | `{{number 134153 decimals=0}}`               | 13,415,53
-uuid                           | `{{uuid}}`                                   | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+bytes                                 | `{{bytes 134186)}}`                          | 1.34MB
+country                               | `{{country "GBR"}}`                          | United Kingdom
+convert                               | `{{convert 1 from="GBP" to="EUR"}}`          | 1.1861095104682045
+currency                              | `{{currency "GBP"}}`                         | £
+duration                              | `{{duration 1283719281 exact=false}}`        | 1.283719281s
+email                                 | `{{email "info@abcum.com"}}`                 | mailto:info@abcum.com
+linkify                               | `{{linkify "Click https://abcum.com"}}`      | Click <a href="https://abcum.com">https://abcum.com</a>
+md5                                   | `{{md5 "info@abcum.com"}}`                   | 2a14a47beb82beba88c705145d572702
+money                                 | `{{money 10000 symbol="GBP"}}`               | £10,000.00
+number                                | `{{number 134153 decimals=0}}`               | 13,415,53
+regexp                                | `{{regexp "[a-zA-Z]*" "ig"}}`                | `new RegExp('[a-zA-Z]*', 'ig')`
+uuid                                  | `{{uuid}}`                                   | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
 
 ### Text helpers
 
 The text helpers enable easy formatting of strings and text.
 
-Helper                         | HTMLBars                                     | Result
-:------------------------------|:---------------------------------------------|:----------------------------
-camelize                       | `{{camelize "this Is some TEXT"}}`           | thisIsSomeTEXT
-capitalize                     | `{{capitalize "this Is some TEXT"}}`         | This Is some TEXT
-classify                       | `{{classify "this Is some TEXT"}}`           | ThisIsSomeTEXT
-dasherize                      | `{{dasherize "this Is some TEXT"}}`          | this-is-some-text
-lcwords                        | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
-lowercase                      | `{{lowercase "this Is some TEXT"}}`          | this is some text
-replace                        | `{{replace "this Is some TEXT" "Is" "Was"}}` | this Was some TEXT
-slug                           | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
-swapcase                       | `{{swapcase "this Is some TEXT"}}`           | THIS iS SOME text
-titleize                       | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
-truncate                       | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
-ucwords                        | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT
-underscore                     | `{{underscore "this Is some TEXT"}}`         | this_is_some_text
-uppercase                      | `{{uppercase "this Is some TEXT"}}`          | THIS IS SOME TEXT
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+camelize                              | `{{camelize "this Is some TEXT"}}`           | thisIsSomeTEXT
+capitalize                            | `{{capitalize "this Is some TEXT"}}`         | This Is some TEXT
+classify                              | `{{classify "this Is some TEXT"}}`           | ThisIsSomeTEXT
+dasherize                             | `{{dasherize "this Is some TEXT"}}`          | this-is-some-text
+lcwords                               | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
+lowercase                             | `{{lowercase "this Is some TEXT"}}`          | this is some text
+replace                               | `{{replace "this Is some TEXT" "Is" "Was"}}` | this Was some TEXT
+slug                                  | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
+swapcase                              | `{{swapcase "this Is some TEXT"}}`           | THIS iS SOME text
+titleize                              | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
+truncate                              | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
+ucwords                               | `{{ucwords "this Is some TEXT"}}`            | This Is Some TEXT
+underscore                            | `{{underscore "this Is some TEXT"}}`         | this_is_some_text
+uppercase                             | `{{uppercase "this Is some TEXT"}}`          | THIS IS SOME TEXT
 
 ### Logic helpers
 
 The logic helpers enable logic operations in handlebars statements.
 
-Helper                         | HTMLBars                                     | JavaScript equivalent             
-:------------------------------|:---------------------------------------------|:----------------------------
-and                            | `{{if (and a b ...)}}`                       | `if (a && b && ...)`                   
-begs-with                      | `{{if (begs-with a b)}}`                     | `if (a.indexOf(b) === 0)`
-ends-with                      | `{{if (ends-with a b)}}`                     | `if (a.indexOf(b, a.length - b.length) !== -1)`
-eq                             | `{{if (eq a b)}}`                            | `if (a == b)`                    
-gt                             | `{{if (gt a b)}}`                            | `if (a > b)`                  
-gte                            | `{{if (gte a b)}}`                           | `if (a >= b)`                   
-inside                         | `{{if (inside a b)}}`                        | `if (a.indexOf(b) > -1)`        
-is                             | `{{if (is a ...)}}`                          | `if (a === true ...)`               
-isnt                           | `{{if (isnt a ...)}}`                        | `if (a !== true ...)`                 
-ix                             | `{{if (ix a ...)}}`                          | `if (a !== true ...)`                
-lt                             | `{{if (lt a b)}}`                            | `if (a < b)`                     
-lte                            | `{{if (lte a b)}}`                           | `if (a <= b)`                     
-ne                             | `{{if (ne a b))}}`                           | `if (a !== b)`                    
-or                             | `{{if (or a b ...)}}`                        | `if (a || b || ...)`                    
-xor                            | `{{if (xor a b)}}`                           | `if (a && !b || !a && b)`        
+Helper                                | HTMLBars                                     | JavaScript equivalent             
+:-------------------------------------|:---------------------------------------------|:----------------------------
+and                                   | `{{if (and a b ...)}}`                       | `if (a && b && ...)`                   
+begs-with                             | `{{if (begs-with a b)}}`                     | `if (a.indexOf(b) === 0)`
+ends-with                             | `{{if (ends-with a b)}}`                     | `if (a.indexOf(b, a.length - b.length) !== -1)`
+eq                                    | `{{if (eq a b)}}`                            | `if (a == b)`                    
+gt                                    | `{{if (gt a b)}}`                            | `if (a > b)`                  
+gte                                   | `{{if (gte a b)}}`                           | `if (a >= b)`                   
+inside                                | `{{if (inside a b)}}`                        | `if (a.indexOf(b) > -1)`        
+is                                    | `{{if (is a ...)}}`                          | `if (a === true ...)`               
+isnt                                  | `{{if (isnt a ...)}}`                        | `if (a !== true ...)`                 
+ix                                    | `{{if (ix a ...)}}`                          | `if (a !== true ...)`                
+lt                                    | `{{if (lt a b)}}`                            | `if (a < b)`                     
+lte                                   | `{{if (lte a b)}}`                           | `if (a <= b)`                     
+ne                                    | `{{if (ne a b))}}`                           | `if (a !== b)`                    
+or                                    | `{{if (or a b ...)}}`                        | `if (a || b || ...)`                    
+present                               | `{{if (present a ...)}}`                     | `if (Ember.isPresent(a) ...)`                    
+xor                                   | `{{if (xor a b)}}`                           | `if (a && !b || !a && b)`        
 
 ### Math helpers
 
 The math helpers enable maths calculations in handlebars statements.
 
-Helper                         | HTMLBars                                     | JavaScript equivalent        
-:------------------------------|:---------------------------------------------|:----------------------------
-add                            | `{{add a b ...}}`                            | `a + b + ...`                       
-ceil                           | `{{ceil a}}`                                 | `Math.ceil(a)`                
-dec                            | `{{dec a}}`                                  | `a - b ? b : 1`
-div                            | `{{div a b ...}}`                            | `a / b / ...`                        
-floor                          | `{{floor a}}`                                | `Math.floor(a)`                 
-inc                            | `{{inc a}}`                                  | `a + b ? b : 1`
-max                            | `{{max a b c ...}}`                          | `Math.max([a, b, c, ...])`            
-min                            | `{{min a b c ...}}`                          | `Math.min([a, b, c, ...])`             
-mod                            | `{{mod a b ...}}`                            | `a % b % ...`                         
-mult                           | `{{mult a b ...}}`                           | `a * b * ...`                         
-percent                        | `{{percent a b}}`                            | `a / b * 100`                   
-random                         | `{{random a b}}`                             | `Math.random(a, b)`             
-round                          | `{{round a}}`                                | `Math.round(a)`                  
-sqrt                           | `{{sqrt a}}`                                 | `Math.sqrt(a)`                 
-sub                            | `{{sub a b ...}}`                            | `a - b - ...`                         
+Helper                                | HTMLBars                                     | JavaScript equivalent        
+:-------------------------------------|:---------------------------------------------|:----------------------------
+add                                   | `{{add a b ...}}`                            | `a + b + ...`                       
+ceil                                  | `{{ceil a}}`                                 | `Math.ceil(a)`                
+dec                                   | `{{dec a}}`                                  | `a - b ? b : 1`
+div                                   | `{{div a b ...}}`                            | `a / b / ...`                        
+floor                                 | `{{floor a}}`                                | `Math.floor(a)`                 
+inc                                   | `{{inc a}}`                                  | `a + b ? b : 1`
+max                                   | `{{max a b c ...}}`                          | `Math.max([a, b, c, ...])`            
+min                                   | `{{min a b c ...}}`                          | `Math.min([a, b, c, ...])`             
+mod                                   | `{{mod a b ...}}`                            | `a % b % ...`                         
+mult                                  | `{{mult a b ...}}`                           | `a * b * ...`                         
+percent                               | `{{percent a b}}`                            | `a / b * 100`                   
+random                                | `{{random a b}}`                             | `Math.random(a, b)`             
+round                                 | `{{round a}}`                                | `Math.round(a)`                  
+sqrt                                  | `{{sqrt a}}`                                 | `Math.sqrt(a)`                 
+sub                                   | `{{sub a b ...}}`                            | `a - b - ...`                         
 
 
 ### Examples
@@ -221,30 +246,44 @@ Or you can add action parameters to be passed to the invoked action.
 
 #### Action helpers
 
-##### route
+##### alert
 
-Allows the route to be changed from an action on a component, similar to `link-to`.
+Displays an alert message as a result of an action on a component.
 
 ```handlebars
-{{#my-component onclick=(route "basket" sort=true)}}
-	Go to basket
+{{#my-component onsave=(alert "The blog post" blog.title "has been saved.")}}
+	Save
 {{/my-component}}
 ```
 
-##### open
+##### chain
 
-Calls `window.open()` enabling opening a new browser tab or window from an action on a component.
+Enables chaining of a sequence of actions together to form a larger action, passing the result of each action to the next action.
 
 ```handlebars
-{{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
+{{#my-component onclick=(action (chain (action 'addBasket') (action 'goToPayment')) model)}}
+	Add to basket and pay
+{{/my-component}}
 ```
 
-##### reload
+If any action in the chain returns a promise, then the chain will wait for the promise to return, and the return value will be piped into the next action. If the Promise rejects, the rest of the chain will be aborted.
 
-Calls `window.location.reload()` enabling reloading the page, or changing the url from an action on a component.
+##### debounce
+
+Ensures an action is triggered only once during the specified time.
 
 ```handlebars
-{{my-component onkeypress=(reload)}}
+{{#my-component onclick=(debounce (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
+
+##### define
+
+Defines the given property on the given object.
+
+```handlebars
+{{define this 'reversed' (reverse users)}}
 ```
 
 ##### notify
@@ -257,42 +296,32 @@ Displays a notification as a result of an action on a component.
 {{/my-component}}
 ```
 
-##### alert
+##### open
 
-Displays an alert message as a result of an action on a component.
+Calls `window.open()` enabling opening a new browser tab or window from an action on a component.
 
 ```handlebars
-{{#my-component onsave=(alert "The blog post" blog.title "has been saved.")}}
-	Save
+{{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
+```
+
+##### queue
+
+Enables queuing of a sequence of actions together to form a larger action, passing the original arguments to each action.
+
+```handlebars
+{{#my-component onclick=(action (queue (action 'addBasket') (action 'goToPayment')) model)}}
+	Add to basket and pay
 {{/my-component}}
 ```
 
-##### debounce
+If any action in the queue returns a promise, then the queue will wait for the promise to return, before moving onto the next action. If the Promise rejects, the rest of the queue will be aborted.
 
-Ensures an action is triggered only once during the specified time.
+##### reload
 
-```handlebars
-{{#my-component onclick=(debounce (action 'increment') 1000)}}
-	+1
-{{/my-component}}
-```
-
-##### throttle
-
-Waits for the specified time before running an action, discarding all events in the meantime.
+Calls `window.location.reload()` enabling reloading the page, or changing the url from an action on a component.
 
 ```handlebars
-{{#my-component onclick=(throttle (action 'increment') 1000)}}
-	+1
-{{/my-component}}
-```
-
-##### define
-
-Defines the given property on the given object.
-
-```handlebars
-{{define this 'reversed' (reverse users)}}
+{{my-component onkeypress=(reload)}}
 ```
 
 ##### toggle
@@ -310,6 +339,137 @@ Or you can toggle between specific values the primary argument as a boolean valu
 ```handlebars
 {{#my-component onclick=(toggle 'view' this "landscape" "portrait")}}
 	{{#if (eq view "landscape")}}Switch to portrait{{else}}Switch to landscape{{/if}}
+{{/my-component}}
+```
+
+##### throttle
+
+Waits for the specified time before running an action, discarding all events in the meantime.
+
+```handlebars
+{{#my-component onclick=(throttle (action 'increment') 1000)}}
+	+1
+{{/my-component}}
+```
+
+#### Action helpers
+
+##### drag-get
+
+Gets metadata from the browser event dataTransfer object.
+
+```handlebars
+{{#my-component ondrop=(drag-get 'plain/text')}}
+	Droppable Area
+{{/my-component}}
+```
+
+Or you can use the `application/json` mime-type to get the data as an object.
+
+```handlebars
+{{#my-component ondrop=(drag-get 'application/json')}}
+	Droppable Area
+{{/my-component}}
+```
+
+Or use the `chain` helper to chain multiple actions together to complete the drag-and-drop functionality.
+
+```handlebars
+{{#my-component ondrop=(chain (prevent-default) (drag-get 'plain/text') (action 'droppedItem'))}}
+	Droppable Area
+{{/my-component}}
+```
+
+##### drag-set
+
+Set custom metadata on the browser event dataTransfer object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(drag-set 'plain/text' 'text data')}}
+	Draggable Item
+{{/my-component}}
+```
+
+Or you can use the `application/json` mime-type to set the data as an object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(drag-set 'application/json' (hash id=1 type='card'))}}
+	Draggable Item
+{{/my-component}}
+```
+
+Or use the `chain` helper to chain multiple actions together to complete the drag-and-drop functionality.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(chain (drop-effect 'move') (effect-allowed 'move') (drag-set 'plain/text' 'text data'))}}
+	Draggable Item
+{{/my-component}}
+```
+
+##### drop-effect
+
+Specifies the `dropEffect` property on the event dataTransfer object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(drop-effect 'move')}}
+	Draggable Item
+{{/my-component}}
+```
+
+##### effect-allowed
+
+Specifies the `effectAllowed` property on the event dataTransfer object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(effect-allowed 'move')}}
+	Draggable Item
+{{/my-component}}
+```
+
+##### prevent-default
+
+Runs the `preventDefault` method on the event handler object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(prevent-default)}}
+	Draggable Item
+{{/my-component}}
+```
+
+##### stop-propagation
+
+Runs the `stopPropagation` method on the event handler object.
+
+```handlebars
+{{#my-component draggable="true" ondragstart=(stop-propagation)}}
+	Draggable Item
+{{/my-component}}
+```
+
+
+
+
+
+
+#### Router helpers
+
+##### is-active
+
+Detects whether a specific route is active or not.
+
+```handlebars
+{{#if (is-active 'basket')}}
+	My Basket
+{{/if}}
+```
+
+##### transition-to
+
+Allows the route to be changed from an action on a component, similar to `link-to`.
+
+```handlebars
+{{#my-component onclick=(transition-to "basket" sort=true)}}
+	Go to basket
 {{/my-component}}
 ```
 
