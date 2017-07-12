@@ -7,7 +7,7 @@ export default Ember.Helper.extend({
 	}).readOnly(),
 
 	compute([route, ...params], hash) {
-		let router = Ember.get(this, 'router');
+		let router = this.get('router');
 		return function(...passed) {
 			router.transitionTo.apply(router, [route, ...params, ...passed, { queryParams: hash }]);
 			return params.concat(passed);
