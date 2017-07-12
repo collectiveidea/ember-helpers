@@ -4,7 +4,7 @@ export default Ember.Helper.extend({
 
 	compute([obj, key, val]) {
 		this.set('val', val);
-		return Ember.set(obj, key, val);
+		Ember.set(obj, key, val);
 	},
 
 	changed: Ember.observer('val', function() {
