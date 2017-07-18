@@ -22,6 +22,7 @@ Helper                                | HTMLBars                                
 :-------------------------------------|:---------------------------------------------|:----------------------------
 [call](#call)                         | `{{some-component clicked=(call "log")}}`    | Calls method on route, and bubbles up
 [invoke](#link-invoke)                | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
+[run](#run)                           | `{{run (transition-to 'route') post}}`       | Runs an action with ability to uncurry arguments
 
 ### Action helpers
 
@@ -242,6 +243,24 @@ Or you can add action parameters to be passed to the invoked action.
 {{#link-to "index" invoke=(action "save" firstname lastname)}}
 	Save and go back
 {{/link-to}}
+```
+
+##### run
+
+Allows an action to be called with specified arguments.
+
+```handlebars
+{{#my-component onclick=(run (transition-to 'posts.post' post))}}
+	View all posts
+{{/my-component}}
+```
+
+Or you can specify that no any additional curried arguments will be ignored.
+
+```handlebars
+{{#my-component onclick=(run (transition-to 'posts.post' post) curry=false)}}
+	View all posts
+{{/my-component}}
 ```
 
 #### Action helpers
