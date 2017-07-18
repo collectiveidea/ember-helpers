@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: abcum/circle-node:latest
-    working_directory: /js/src/github.com/abcum/ember-appupdate
+    working_directory: /js/src/github.com/abcum/ember-helpers
     steps:
       - checkout
       - run:
