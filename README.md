@@ -35,9 +35,7 @@ Helper                                | HTMLBars                                
 [debounce](#debounce)                 | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
 [define](#define)                     | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
 [notify](#notify)                     | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
-[open](#open)                         | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
 [queue](#queue)                       | `{{queue (action 'one') (action 'two')}}`    | `one(args).then(() => two(args))`
-[reload](#reload)                     | `{{reload}}`                                 | `window.location.reload(...)`
 [toggle](#toggle)                     | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
 [throttle](#throttle)                 | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
 
@@ -61,6 +59,10 @@ The router helpers enable a selection of router methods.
 Helper                                | HTMLBars                                     | Result
 :-------------------------------------|:---------------------------------------------|:----------------------------
 [is-active](#is-active)               | `{{if (is-active 'post')}}`                  | `if (this.get('router').isActive('post'))`
+[history-back](#history-back)         | `{{history-back}}`                           | `window.history.back()`
+[history-forward](#history-forward)   | `{{history-forward}}`                        | `window.history.forward()`
+[open](#open)                         | `{{open "https://abcum.com"}}`               | `window.location.open(...)`
+[reload](#reload)                     | `{{reload}}`                                 | `window.location.reload(...)`
 [transition-to](#transition-to)       | `{{transition-to 'post' post.id}}`           | `this.transitionTo('post', post.id)`
 
 ### Object helpers
@@ -315,14 +317,6 @@ Displays a notification as a result of an action on a component.
 {{/my-component}}
 ```
 
-##### open
-
-Calls `window.open()` enabling opening a new browser tab or window from an action on a component.
-
-```handlebars
-{{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
-```
-
 ##### queue
 
 Enables queuing of a sequence of actions together to form a larger action, passing the original arguments to each action.
@@ -334,14 +328,6 @@ Enables queuing of a sequence of actions together to form a larger action, passi
 ```
 
 If any action in the queue returns a promise, then the queue will wait for the promise to return, before moving onto the next action. If the Promise rejects, the rest of the queue will be aborted.
-
-##### reload
-
-Calls `window.location.reload()` enabling reloading the page, or changing the url from an action on a component.
-
-```handlebars
-{{my-component onkeypress=(reload)}}
-```
 
 ##### toggle
 
@@ -465,11 +451,6 @@ Runs the `stopPropagation` method on the event handler object.
 {{/my-component}}
 ```
 
-
-
-
-
-
 #### Router helpers
 
 ##### is-active
@@ -480,6 +461,38 @@ Detects whether a specific route is active or not.
 {{#if (is-active 'basket')}}
 	My Basket
 {{/if}}
+```
+
+##### history-back
+
+Calls `window.history.back()` to reverse one position in the browser history.
+
+```handlebars
+{{my-component onkeypress=(history-back)}}
+```
+
+##### history-forward
+
+Calls `window.history.forward()` to advance one position in the browser history.
+
+```handlebars
+{{my-component onkeypress=(history-forward)}}
+```
+
+##### open
+
+Calls `window.open()` enabling opening a new browser tab or window from an action on a component.
+
+```handlebars
+{{my-component onkeypress=(open "https://github.com/" "abcum/ember-helpers" width=1200 height=600 center=true)}}
+```
+
+##### reload
+
+Calls `window.location.reload()` enabling reloading the page, or changing the url from an action on a component.
+
+```handlebars
+{{my-component onkeypress=(reload)}}
 ```
 
 ##### transition-to
