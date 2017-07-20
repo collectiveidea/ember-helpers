@@ -34,6 +34,7 @@ Helper                                | HTMLBars                                
 [chain](#chain)                       | `{{chain (action 'one') (action 'two')}}`    | `one(args).then(two)`
 [debounce](#debounce)                 | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
 [define](#define)                     | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
+[modify](#modify)                     | `{{modify model item}}`                      | `model.set('selected', item)`
 [notify](#notify)                     | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
 [queue](#queue)                       | `{{queue (action 'one') (action 'two')}}`    | `one(args).then(() => two(args))`
 [toggle](#toggle)                     | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
@@ -257,7 +258,7 @@ Allows an action to be called with specified arguments.
 {{/my-component}}
 ```
 
-Or you can specify that no any additional curried arguments will be ignored.
+Or you can specify that any additional curried arguments will be ignored.
 
 ```handlebars
 {{#my-component onclick=(run (transition-to 'posts.post' post) curry=false)}}
@@ -305,6 +306,44 @@ Defines the given property on the given object.
 
 ```handlebars
 {{define this 'reversed' (reverse users)}}
+```
+
+##### modify
+
+Modifies the current selection of the given array with the curried item object.
+
+```handlebars
+{{#my-component onselect=(modify model)}}
+	Select
+{{/my-component}}
+```
+
+```javascript
+export default Ember.Component.extend({
+	click() {
+		this.sendAction('onselect', model);
+	}
+});
+```
+
+Or toggle a selected item by passing the selected object and a `toggle` option.
+
+```javascript
+export default Ember.Component.extend({
+	click() {
+		this.sendAction('onselect', model, { toggle:true, retain: true });
+	}
+});
+```
+
+Or select a range of items by passing the selected object and a `range` option.
+
+```javascript
+export default Ember.Component.extend({
+	click() {
+		this.sendAction('onselect', model, { range:true, retain: true });
+	}
+});
 ```
 
 ##### notify
