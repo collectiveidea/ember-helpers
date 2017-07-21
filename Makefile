@@ -25,13 +25,13 @@ tests:
 .PHONY: install
 install:
 	@echo "Installing..."
-	rm -rf node_modules bower_components dist tmp
-	npm install && bower install
+	rm -rf node_modules dist tmp
+	npm install
 
 .PHONY: upgrade
 upgrade:
 	@echo "Upgrading..."
-	rm -rf node_modules bower_components dist tmp
+	rm -rf node_modules dist tmp
 	npm install --save-dev ember-cli@2.13.2
-	npm install && bower install
+	npm install
 	ember init
