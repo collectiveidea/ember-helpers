@@ -1085,7 +1085,6 @@ Returns the given array without the given item or items.
 
 ## Development
 
-- `make setup` (install bower and ember-cli)
 - `make install` (install bower and ember-cli dependencies)
 - `make upgrade` (upgrade ember-cli to the specified version)
 - `make tests` (run all tests defined in the package)
