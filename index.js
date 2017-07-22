@@ -2,5 +2,8 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-helpers'
+  name: 'ember-helpers',
+  included: function(app) {
+    this._super.included(app);
+  },
 };
