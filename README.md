@@ -160,20 +160,20 @@ browser-is-safari                     | `{{if (browser-is-safari)}}`            
 
 ### Input helpers
 
-The input helpers special easy detection of the consuming browser, or fastboot.
+The input helpers enable complex regular expressions for easy input box validity checking.
 
 Helper                                | HTMLBars                                     | Result
 :-------------------------------------|:---------------------------------------------|:----------------------------
 input-stars                           | `{{input-stars min=1 max=5 value=3}}`        | A star rating input field
-pattern-alphanum                      | `{{input pattern=(pattern-alphanum)}}`       | Allows `[a-zA-Z0-9-+]` values
+pattern-alphanum                      | `{{input pattern=(pattern-alphanum)}}`       | Allows `a-zA-Z0-9-+` values
 pattern-country                       | `{{input pattern=(pattern-country)}}`        | Allows `ISO 3166` country codes
 pattern-currency                      | `{{input pattern=(pattern-currency)}}`       | Allows `ISO 4217` currency codes
-pattern-decimal                       | `{{input pattern=(pattern-decimal)}}`        | Allows `[0-9.-+]` values
+pattern-decimal                       | `{{input pattern=(pattern-decimal)}}`        | Allows positive or negative decimals
 pattern-email                         | `{{input pattern=(pattern-email)}}`          | Allows email addresses
 pattern-facebook                      | `{{input pattern=(pattern-facebook)}}`       | Allows facebook usernames
-pattern-integer                       | `{{input pattern=(pattern-integer)}}`        | Allows `[0-9-+]` values
-pattern-letters                       | `{{input pattern=(pattern-letters)}}`        | Allows `[a-zA-Z]` values
-pattern-numbers                       | `{{input pattern=(pattern-numbers)}}`        | Allows `[0-9]` values
+pattern-integer                       | `{{input pattern=(pattern-integer)}}`        | Allows positive or negative integers
+pattern-letters                       | `{{input pattern=(pattern-letters)}}`        | Allows only letter characters
+pattern-numbers                       | `{{input pattern=(pattern-numbers)}}`        | Allows only numeric values
 pattern-phone                         | `{{input pattern=(pattern-phone)}}`          | Allows phone numbers
 pattern-twitter                       | `{{input pattern=(pattern-twitter)}}`        | Allows twitter handles
 pattern-url                           | `{{input pattern=(pattern-url)}}`            | Allows urls
