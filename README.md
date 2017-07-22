@@ -141,6 +141,23 @@ number                                | `{{number 134153 decimals=0}}`          
 regexp                                | `{{regexp "[a-zA-Z]*" "ig"}}`                | `new RegExp('[a-zA-Z]*', 'ig')`
 uuid                                  | `{{uuid}}`                                   | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
 
+### Browser helpers
+
+The browser helpers enable easy detection of the consuming browser, or fastboot.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+browser-name                          | `{{browser-name}}`                           | The browser name in lowercase
+browser-is-blink                      | `{{if (browser-is-blink)}}`                  | True if running in Blink
+browser-is-chrome                     | `{{if (browser-is-chrome)}}`                 | True if running in Google Chrome
+browser-is-edge                       | `{{if (browser-is-edge)}}`                   | True if running in Microsoft Edge
+browser-is-electron                   | `{{if (browser-is-electron)}}`               | True if running in Electron
+browser-is-explorer                   | `{{if (browser-is-explorer)}}`               | True if running in Microsoft Explorer
+browser-is-fastboot                   | `{{if (browser-is-fastboot)}}`               | True if running in Ember Fastboot
+browser-is-firefox                    | `{{if (browser-is-firefox)}}`                | True if running in Firefox
+browser-is-opera                      | `{{if (browser-is-opera)}}`                  | True if running in Opera
+browser-is-safari                     | `{{if (browser-is-safari)}}`                 | True if running in Safari
+
 ### Text helpers
 
 The text helpers enable easy formatting of strings and text.
