@@ -8,6 +8,10 @@ moduleForComponent('browser-is-chrome', 'helper:browser-is-chrome', {
 test('It returns whether the browser is chrome', function(assert) {
 	assert.expect(1);
 	this.render(hbs`{{#if (browser-is-chrome)}}YES{{else}}NO{{/if}}`);
-	assert.equal(this.$().text().trim(), 'YES');
+	if (window.chrome && window.chrome.webstore) {
+		assert.equal(this.$().text().trim(), 'YES');
+	} else {
+		assert.equal(this.$().text().trim(), 'NO');
+	}
 });
 

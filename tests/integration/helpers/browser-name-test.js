@@ -8,6 +8,10 @@ moduleForComponent('browser-name', 'helper:browser-name', {
 test('It returns the browser name', function(assert) {
 	assert.expect(1);
 	this.render(hbs`{{browser-name}}`);
-	assert.equal(this.$().text().trim(), 'chrome');
+	if (window.chrome && window.chrome.webstore) {
+		assert.equal(this.$().text().trim(), 'chrome');
+	} else {
+		assert.equal(this.$().text().trim(), 'unknown');
+	}
 });
 
