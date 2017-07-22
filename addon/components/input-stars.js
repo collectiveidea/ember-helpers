@@ -18,18 +18,10 @@ export default Ember.Component.extend({
 	tagName: 'input-stars',
 
 	stars: Ember.computed('min', 'max', function() {
-		let stars = Ember.A();
-		for ( var i = this.get('min'); i<= this.get('max'); i++ ) {
-			stars.pushObject( Ember.Object.create({ value: i }) );
-		}
-		return stars;
+		let b = this.get('min');
+		let e = this.get('max');
+		return Array.apply(null, Array(e-b+1)).map( (_, n) => n + b );
 	}),
-
-	fills: Ember.on('init', Ember.observer('value', function() {
-		this.get('stars').forEach( (star) => {
-			star.set('selected', this.get('value') >= star.value);
-		});
-	})),
 
 	actions: {
 
