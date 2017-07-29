@@ -192,6 +192,7 @@ lcwords                               | `{{lcwords "this Is some TEXT"}}`       
 lowercase                             | `{{lowercase "this Is some TEXT"}}`          | this is some text
 replace                               | `{{replace "this Is some TEXT" "Is" "Was"}}` | this Was some TEXT
 slug                                  | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
+sanitize                              | `{{sanitize "this Is some TEXT"}}`           | Ember.String.htmlSafe('...')
 swapcase                              | `{{swapcase "this Is some TEXT"}}`           | THIS iS SOME text
 titleize                              | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
 truncate                              | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
