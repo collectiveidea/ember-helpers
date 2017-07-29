@@ -40,6 +40,16 @@ Helper                                | HTMLBars                                
 [toggle](#toggle)                     | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
 [throttle](#throttle)                 | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
 
+### Scroll helpers
+
+The scroll helpers enable advanced document and block scroll positioning.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[remember-scroll](#remember-scroll)   | `{{remember-scroll key='home'}}`             | Stores and sets the document body scroll position
+[scroll-block](#scroll-block)         | `{{scroll-block key='posts'}}`               | Creates a `div` which remembers it's scroll position
+[scroll-to](#scroll-to)               | `{{scroll-to 1400}}`                         | Scrolls to the specified position after an action
+
 ### Event helpers
 
 The event helpers enable manipulation of browser events.
@@ -439,6 +449,58 @@ Waits for the specified time before running an action, discarding all events in 
 ```handlebars
 {{#my-component onclick=(throttle (action 'increment') 1000)}}
 	+1
+{{/my-component}}
+```
+
+#### Scroll helpers
+
+##### remember-scroll
+
+Stores and sets the page scroll position of the page.
+
+```handlebars
+{{remember-scroll}}
+```
+
+Or remember the scroll position of individual pages with named keys.
+
+```handlebars
+{{remember-scroll key=(concat 'posts-' model.id)}}
+```
+
+##### scroll-block
+
+Specify a scrollable area, and remember the scroll position across routes with named keys.
+
+```handlebars
+{{#scroll-block key=(concat 'post-comments-' model.id)}}
+	Scrollable Area
+{{/scroll-block}}
+```
+
+##### scroll-to
+
+Scroll to a specified position from the top of the page.
+
+```handlebars
+{{#my-component onclick=(scroll-to position=1600)}}
+	Scroll down
+{{/my-component}}
+```
+
+Or scroll to a specific element on the page.
+
+```handlebars
+{{#my-component onclick=(scroll-to element='#footer')}}
+	Scroll to footer
+{{/my-component}}
+```
+
+Or animate the scrolling by specifying the number of milliseconds.
+
+```handlebars
+{{#my-component onclick=(scroll-to element='#footer' duration=2000)}}
+	Scroll to footer slowly
 {{/my-component}}
 ```
 
