@@ -351,7 +351,7 @@ Defines the given property on the given object.
 Modifies the current selection of the given array with the curried item object.
 
 ```handlebars
-{{#my-component onselect=(modify model)}}
+{{#my-component onselect=(modify this model)}}
 	Select
 {{/my-component}}
 ```
@@ -359,7 +359,7 @@ Modifies the current selection of the given array with the curried item object.
 ```javascript
 export default Ember.Component.extend({
 	click() {
-		this.sendAction('onselect', model);
+		this.sendAction('onselect', item);
 	}
 });
 ```
@@ -369,7 +369,7 @@ Or toggle a selected item by passing the selected object and a `toggle` option.
 ```javascript
 export default Ember.Component.extend({
 	click() {
-		this.sendAction('onselect', model, { toggle:true, retain: true });
+		this.sendAction('onselect', item, { toggle:true, retain: true });
 	}
 });
 ```
@@ -379,9 +379,17 @@ Or select a range of items by passing the selected object and a `range` option.
 ```javascript
 export default Ember.Component.extend({
 	click() {
-		this.sendAction('onselect', model, { range:true, retain: true });
+		this.sendAction('onselect', item, { range:true, retain: true });
 	}
 });
+```
+
+Or to use a specific key on the controller within which the selection will be stored.
+
+```handlebars
+{{#my-component onselect=(modify this model key='selected')}}
+	Select
+{{/my-component}}
 ```
 
 ##### notify
