@@ -10,10 +10,6 @@ A collection of helpers for Ember.js enabling advanced templating logic.
 
 `ember install @abcum/ember-helpers`
 
-### Promise helpers
-
-Coming soon ...
-
 ### Callback helpers
 
 The action helpers enable a variety of advanced actions.
@@ -131,6 +127,22 @@ Helper                                | HTMLBars                                
 [uniq-by](#uniq-by)                   | `{{#each (uniq-by "email" users)}}`          | unique items by `email` in `users`
 [w](#w)                               | `{{#each (w "One Two Three" "Four")}}`       | `["One", "Two", "Three", "Four"]`
 [without](#without)                   | `{{#each (without user users)}}`             | `users` array with `user` removed
+
+### Promise helpers
+
+The promise helpers enable working with models and promises.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[await](#await)                       | `{{#if (await promise)}}`                    | Waits for a promise to resolve
+[is-fulfilled](#is-fulfilled)         | `{{#if (is-fulfilled promise)}}`             | Returns true when a promise is fulfilled
+[is-loaded](#is-loaded)               | `{{#if (is-loaded model)}}`                  | Returns true if the model is currently loaded
+[is-pending](#is-pending)             | `{{#if (is-pending promise)}}`               | Returns true if a promise is pending
+[is-rejected](#is-rejected)           | `{{#if (is-rejected promise)}}`              | Returns true when a promise is rejected
+[is-updating](#is-updating)           | `{{#if (is-updating model)}}`                | Returns true if the model is currently updating
+[rsvp-all](#rsvp-all)                 | `{{#if (await (rsvp-all tags places))}}`     | `Promise` which waits for all promises to resolve
+[rsvp-hash](#rsvp-hash)               | `{{#if (await (rsvp-hash tags=tags))}}`      | `Promise` which waits for all promises to resolve
+[rsvp-race](#rsvp-race)               | `{{#if (await (rsvp-race tags places))}}`    | `Promise` which resolves with the fastest promise
 
 ### Format helpers
 
@@ -1189,6 +1201,102 @@ Returns the given array without the given item or items.
 {{#each (without selectedusers users) as |user|}}
 	{{!-- All users who are not in selectedusers --}}
 {{/each}}
+```
+
+#### Promise helpers
+
+##### await
+
+Waits for a promise to resolve, and passes the promise contents to the helper.
+
+If the `author` exists, but the promise has not yet been loaded, then the template will render anyway.
+
+```handlebars
+{{#if (await post.author)}}
+	{{get (await post.author) 'fullname'}}
+{{else}}
+	This post has no author.
+{{/if}}
+```
+
+##### is-fulfilled
+
+Returns true when a promise is fulfilled.
+
+```handlebars
+{{#if (is-fulfilled post.author)}}
+	The relationship promise has been fulfilled.
+{{/if}}
+```
+
+##### is-loaded
+
+Returns true if the `ember-data` model is currently loading.
+
+```handlebars
+{{#if (is-loaded posts)}}
+	The route model has loaded.
+{{/if}}
+```
+
+##### is-pending
+
+Returns true if a promise is pending.
+
+```handlebars
+{{#if (is-pending post.author)}}
+	The relationship promise is still pending.
+{{/if}}
+```
+
+##### is-rejected
+
+Returns true when a promise is rejected.
+
+```handlebars
+{{#if (is-rejected post.author)}}
+	The relationship promise has been rejected.
+{{/if}}
+```
+
+##### is-updating
+
+Returns true if the `ember-data` model is currently updating.
+
+```handlebars
+{{#if (is-updating posts)}}
+	The route model is currently updating.
+{{/if}}
+```
+
+##### rsvp-all
+
+Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned value is an array of fulfillment values for the passed in promises.
+
+```handlebars
+{{#if (is-pending (rsvp-all model.tags model.comments))}}
+	Tags and comments are loading...
+{{/if}}
+```
+
+##### rsvp-hash
+
+Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned promise is fulfilled with a hash that has the same key names as the promises object argument.
+
+```handlebars
+{{#with (await (rsvp-hash tags=model.tags comments=model.comments)) as |data|}}
+	There are {{data.tags.length}} tags and {{data.comments.length}} comments.
+{{/with}}
+```
+
+##### rsvp-race
+
+Returns a new promise which is fulfilled when the first promise to be fulfilled is resolved. The returned value is the value of the first fulfilled promise.
+
+```handlebars
+{{#with (await (rsvp-race model.tags model.comments)) as |data|}}
+	We are displaying the data which resolved fastest.
+{{/with}}
 ```
 
 ## Development
