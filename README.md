@@ -48,7 +48,7 @@ Helper                                | HTMLBars                                
 :-------------------------------------|:---------------------------------------------|:----------------------------
 [remember-scroll](#remember-scroll)   | `{{remember-scroll key='home'}}`             | Stores and sets the document body scroll position
 [scroll-block](#scroll-block)         | `{{scroll-block key='posts'}}`               | Creates a `div` which remembers it's scroll position
-[scroll-to](#scroll-to)               | `{{scroll-to 1400}}`                         | Scrolls to the specified position after an action
+[scroll-to](#scroll-to)               | `{{scroll-to position=1400}}`                | Scrolls to the specified position after an action
 
 ### Event helpers
 
