@@ -26,6 +26,7 @@ Helper                                | HTMLBars                                
 [alert](#alert)                       | `{{alert "Well hello" "there")}}`            | `window.alert("Well hello there")`
 [call](#call)                         | `{{some-component clicked=(call "log")}}`    | Calls method on route, and bubbles up
 [chain](#chain)                       | `{{chain (action 'one') (action 'two')}}`    | `one(args).then(two)`
+[check](#check)                       | `{{check (action 'delete')}}`                | `if (val) delete();`
 [confirm](#confirm)                   | `{{confirm "Are you sure?")}}`               | `window.confirm("Are you sure?")`
 [console](#console)                   | `{{console 'event-name' type='log'}}`        | `console.log('event-name', ...)`
 [debounce](#debounce)                 | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
@@ -333,6 +334,18 @@ Enables chaining of a sequence of actions together to form a larger action, pass
 ```
 
 If any action in the chain returns a promise, then the chain will wait for the promise to return, and the return value will be piped into the next action. If the Promise rejects, the rest of the chain will be aborted.
+
+##### check
+
+Checks if a value (as a result of an action) is truthy before running the defined action.
+
+Useful when chaining actions together to prevent an action from running if the previous action returned false.
+
+```handlebars
+{{#my-component onclick=(action (chain (confirm 'Are you sure?') (check (action 'delete' model))))}}
+	Delete this item
+{{/my-component}}
+```
 
 ##### confirm
 
