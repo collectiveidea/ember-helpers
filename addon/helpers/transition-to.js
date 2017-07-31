@@ -6,11 +6,10 @@ export default Ember.Helper.extend({
 		return Ember.getOwner(this).lookup('router:main');
 	}).readOnly(),
 
-	compute([route, ...params], hash) {
+	compute(params, hash) {
 		let router = this.get('router');
 		return function(...passed) {
-			router.transitionTo.apply(router, [route, ...params, ...passed, { queryParams: hash }]);
-			return params.concat(passed);
+			return router.transitionTo(...params, ...passed, { queryParams: hash });
 		};
 	}
 

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function toggle([prop, obj, ...values]) {
+export function toggle([obj, prop, ...values]) {
 	return function() {
 
 		if ( Ember.isPresent(values) ) {

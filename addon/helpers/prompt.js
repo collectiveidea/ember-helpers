@@ -4,7 +4,7 @@ export default Ember.Helper.extend({
 
 	compute([...params]) {
 		return (...passed) => {
-			return window.alert( params.concat(passed).join(' ') );
+			return window.prompt( params.concat(passed).join(' ') );
 		};
 	}
 

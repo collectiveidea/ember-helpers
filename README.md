@@ -10,14 +10,11 @@ A collection of helpers for Ember.js enabling advanced templating logic.
 
 `ember install @abcum/ember-helpers`
 
-### Callback helpers
-
-The action helpers enable a variety of advanced actions.
+### Static helpers
 
 Helper                                | HTMLBars                                     | Result
 :-------------------------------------|:---------------------------------------------|:----------------------------
-[call](#call)                         | `{{some-component clicked=(call "log")}}`    | Calls method on route, and bubbles up
-[invoke](#link-invoke)                | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
+[define](#define)                     | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
 [run](#run)                           | `{{run (transition-to 'route') post}}`       | Runs an action with ability to uncurry arguments
 
 ### Action helpers
@@ -26,15 +23,20 @@ The action helpers enable a variety of advanced actions.
 
 Helper                                | HTMLBars                                     | Result
 :-------------------------------------|:---------------------------------------------|:----------------------------
-[alert](#alert)                       | `{{alert "Well hello" "there")}}`            | `alert("Well hello there")`
+[alert](#alert)                       | `{{alert "Well hello" "there")}}`            | `window.alert("Well hello there")`
+[call](#call)                         | `{{some-component clicked=(call "log")}}`    | Calls method on route, and bubbles up
 [chain](#chain)                       | `{{chain (action 'one') (action 'two')}}`    | `one(args).then(two)`
+[confirm](#confirm)                   | `{{confirm "Are you sure?")}}`               | `window.confirm("Are you sure?")`
+[console](#console)                   | `{{console 'event-name' type='log'}}`        | `console.log('event-name', ...)`
 [debounce](#debounce)                 | `{{debounce (action 'increment') 500}}`      | `Ember.run.debounce(...)`
-[define](#define)                     | `{{define this 'items' (reverse users)}}`    | `this.set('items', ...)`
+[invoke](#link-invoke)                | `{{#link-to 'index' invoke=(action 'save')}}`| Changes route and invokes action
 [modify](#modify)                     | `{{modify model item}}`                      | `model.set('selected', item)`
 [notify](#notify)                     | `{{notify "Title" "Body text"}}`             | `new Notification(...)`
+[prompt](#prompt)                     | `{{prompt "What is your name?")}}`           | `window.prompt("What is your name?")`
 [queue](#queue)                       | `{{queue (action 'one') (action 'two')}}`    | `one(args).then(() => two(args))`
-[toggle](#toggle)                     | `{{toggle 'active' this}}`                   | `this.toggleProperty('active')`
+[toggle](#toggle)                     | `{{toggle this 'active'}}`                   | `this.toggleProperty('active')`
 [throttle](#throttle)                 | `{{throttle (action 'increment') 500}}`      | `Ember.run.throttle(...)`
+[uncurry](#uncurry)                   | `{{uncurry (transition-to 'route') post}}`   | Uncurries extra paramaters passed to the action
 
 ### Scroll helpers
 
@@ -272,6 +274,44 @@ sub                                   | `{{sub a b ...}}`                       
 
 #### Callback helpers
 
+##### define
+
+Defines the given property on the given object.
+
+```handlebars
+{{define this 'reversed' (reverse users)}}
+```
+
+##### run
+
+Allows an action to be called with specified arguments.
+
+```handlebars
+{{#my-component onclick=(run (transition-to 'posts.post' post))}}
+	View all posts
+{{/my-component}}
+```
+
+Or you can specify that any additional curried arguments will be ignored.
+
+```handlebars
+{{#my-component onclick=(run (transition-to 'posts.post' post) curry=false)}}
+	View all posts
+{{/my-component}}
+```
+
+#### Action helpers
+
+##### alert
+
+Displays a `window.alert` message as a result of an action on a component.
+
+```handlebars
+{{#my-component onsave=(alert 'The blog post' blog.title 'has been saved.')}}
+	Save
+{{/my-component}}
+```
+
 ##### call
 
 Allows a method on the route to be called from a component.
@@ -280,6 +320,56 @@ Allows a method on the route to be called from a component.
 {{#some-button clicked=(call "log" "Website")}}
 	Log this error
 {{/some-button}}
+```
+
+##### chain
+
+Enables chaining of a sequence of actions together to form a larger action, passing the result of each action to the next action.
+
+```handlebars
+{{#my-component onclick=(action (chain (action 'addBasket') (action 'goToPayment')) model)}}
+	Add to basket and pay
+{{/my-component}}
+```
+
+If any action in the chain returns a promise, then the chain will wait for the promise to return, and the return value will be piped into the next action. If the Promise rejects, the rest of the chain will be aborted.
+
+##### confirm
+
+Displays a `window.confirm` message as a result of an action on a component.
+
+```handlebars
+{{#my-component onclick=(confirm 'Are you sure you want to delete the blog post' blog.title '?')}}
+	Delete
+{{/my-component}}
+```
+
+##### console
+
+Enables logging any passed or curried paramaters to the `console`, as a result of an action on a component.
+
+```handlebars
+{{#my-component onclick=(console 'clicked')}}
+	Add to basket and pay
+{{/my-component}}
+```
+
+Or you can specify which `console` logging type should be used to display the message. The different possible types are `trace`, `debug`, `info`, `log`, `warn`, `error`.
+
+```handlebars
+{{#my-component onclick=(console 'clicked' type='warn')}}
+	Add to basket and pay
+{{/my-component}}
+```
+
+##### debounce
+
+Ensures an action is triggered only once during the specified time.
+
+```handlebars
+{{#my-component onclick=(debounce (action 'increment') 1000)}}
+	+1
+{{/my-component}}
 ```
 
 ##### link-invoke
@@ -306,66 +396,6 @@ Or you can add action parameters to be passed to the invoked action.
 {{#link-to "index" invoke=(action "save" firstname lastname)}}
 	Save and go back
 {{/link-to}}
-```
-
-##### run
-
-Allows an action to be called with specified arguments.
-
-```handlebars
-{{#my-component onclick=(run (transition-to 'posts.post' post))}}
-	View all posts
-{{/my-component}}
-```
-
-Or you can specify that any additional curried arguments will be ignored.
-
-```handlebars
-{{#my-component onclick=(run (transition-to 'posts.post' post) curry=false)}}
-	View all posts
-{{/my-component}}
-```
-
-#### Action helpers
-
-##### alert
-
-Displays an alert message as a result of an action on a component.
-
-```handlebars
-{{#my-component onsave=(alert "The blog post" blog.title "has been saved.")}}
-	Save
-{{/my-component}}
-```
-
-##### chain
-
-Enables chaining of a sequence of actions together to form a larger action, passing the result of each action to the next action.
-
-```handlebars
-{{#my-component onclick=(action (chain (action 'addBasket') (action 'goToPayment')) model)}}
-	Add to basket and pay
-{{/my-component}}
-```
-
-If any action in the chain returns a promise, then the chain will wait for the promise to return, and the return value will be piped into the next action. If the Promise rejects, the rest of the chain will be aborted.
-
-##### debounce
-
-Ensures an action is triggered only once during the specified time.
-
-```handlebars
-{{#my-component onclick=(debounce (action 'increment') 1000)}}
-	+1
-{{/my-component}}
-```
-
-##### define
-
-Defines the given property on the given object.
-
-```handlebars
-{{define this 'reversed' (reverse users)}}
 ```
 
 ##### modify
@@ -424,6 +454,14 @@ Displays a notification as a result of an action on a component.
 {{/my-component}}
 ```
 
+##### prompt
+
+Displays a `window.prompt` message as a result of an action on a component.
+
+```handlebars
+{{#my-component ask-name=(prompt 'What is your name?')}}
+```
+
 ##### queue
 
 Enables queuing of a sequence of actions together to form a larger action, passing the original arguments to each action.
@@ -441,7 +479,7 @@ If any action in the queue returns a promise, then the queue will wait for the p
 Toggles the primary argument as a boolean value.
 
 ```handlebars
-{{#my-component onclick=(toggle 'isEnabled' this)}}
+{{#my-component onclick=(toggle this 'isEnabled')}}
 	{{#if isEnabled}}Disable{{else}}Enable{{/if}}
 {{/my-component}}
 ```
@@ -449,7 +487,7 @@ Toggles the primary argument as a boolean value.
 Or you can toggle between specific values the primary argument as a boolean value.
 
 ```handlebars
-{{#my-component onclick=(toggle 'view' this "landscape" "portrait")}}
+{{#my-component onclick=(toggle this 'view' 'landscape' 'portrait')}}
 	{{#if (eq view "landscape")}}Switch to portrait{{else}}Switch to landscape{{/if}}
 {{/my-component}}
 ```
@@ -461,6 +499,16 @@ Waits for the specified time before running an action, discarding all events in 
 ```handlebars
 {{#my-component onclick=(throttle (action 'increment') 1000)}}
 	+1
+{{/my-component}}
+```
+
+##### uncurry
+
+Allows an action to be called with specified arguments, whilst ignoring any curried arguments.
+
+```handlebars
+{{#my-component onclick=(uncurry (transition-to 'posts.post' post))}}
+	View all posts
 {{/my-component}}
 ```
 

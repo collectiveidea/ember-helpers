@@ -8,9 +8,8 @@ export default Ember.Helper.extend({
 
 	compute([method, ...params]) {
 		let router = Ember.get(this, 'router');
-		return function(...passed) {
-			let args = params.concat(passed);
-			router.send(method, ...args);
+		return (...passed) => {
+			return router.send(method, ...params, ...passed);
 		};
 	}
 
