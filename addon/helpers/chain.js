@@ -7,14 +7,21 @@ export function chain(actions = []) {
 		return actions.reduce((val, fnc, idx) => {
 
 			if (idx === 0) {
-				return fnc(...args);
+				if (typeof fnc === 'function') {
+					return fnc(...args);
+				}
+				return fnc;
 			}
 
 			if (isPromise(val)) {
 				return val.then(fnc);
 			}
 
-			return fnc(val);
+			if (typeof fnc === 'function') {
+				return fnc(val);
+			}
+
+			return fnc;
 
 		}, undefined);
 

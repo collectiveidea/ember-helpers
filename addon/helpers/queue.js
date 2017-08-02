@@ -7,6 +7,9 @@ export function queue(actions = []) {
 		return actions.reduce((val, fnc, idx) => {
 
 			if (idx === 0) {
+				if (typeof fnc === 'function') {
+					return fnc(...args);
+				}
 				return fnc(...args);
 			}
 
@@ -14,7 +17,11 @@ export function queue(actions = []) {
 				return val.then(() => fnc(...args));
 			}
 
-			return fnc(...args);
+			if (typeof fnc === 'function') {
+				return fnc(...args);
+			}
+
+			return fnc;
 
 		}, undefined);
 
