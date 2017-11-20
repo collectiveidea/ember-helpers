@@ -1,4 +1,4 @@
-export default function(val) {
+export default function(val='') {
 
 	var add32 = function(a, b) {
 		return (a + b) & 0xFFFFFFFF;
