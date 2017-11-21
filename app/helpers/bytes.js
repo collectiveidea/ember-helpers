@@ -1,1 +1,1 @@
-export { default, bytes } from 'ember-helpers/helpers/bytes';
+export { default, bytes } from '@abcum/ember-helpers/helpers/bytes';

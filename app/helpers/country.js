@@ -1,1 +1,1 @@
-export { default, country } from 'ember-helpers/helpers/country';
+export { default, country } from '@abcum/ember-helpers/helpers/country';

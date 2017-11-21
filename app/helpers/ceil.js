@@ -1,1 +1,1 @@
-export { default, ceil } from 'ember-helpers/helpers/ceil';
+export { default, ceil } from '@abcum/ember-helpers/helpers/ceil';

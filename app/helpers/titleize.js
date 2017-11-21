@@ -1,1 +1,1 @@
-export { default, titleize } from 'ember-helpers/helpers/titleize';
+export { default, titleize } from '@abcum/ember-helpers/helpers/titleize';

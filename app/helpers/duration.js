@@ -1,1 +1,1 @@
-export { default, duration } from 'ember-helpers/helpers/duration';
+export { default, duration } from '@abcum/ember-helpers/helpers/duration';

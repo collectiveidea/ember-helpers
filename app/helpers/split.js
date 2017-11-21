@@ -1,1 +1,1 @@
-export { default, split } from 'ember-helpers/helpers/split';
+export { default, split } from '@abcum/ember-helpers/helpers/split';

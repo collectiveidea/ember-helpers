@@ -1,1 +1,1 @@
-export { default, rsvpHash } from 'ember-helpers/helpers/rsvp-hash';
+export { default, rsvpHash } from '@abcum/ember-helpers/helpers/rsvp-hash';

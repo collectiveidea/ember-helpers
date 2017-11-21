@@ -1,1 +1,1 @@
-export { default, prompt } from 'ember-helpers/helpers/prompt';
+export { default, prompt } from '@abcum/ember-helpers/helpers/prompt';

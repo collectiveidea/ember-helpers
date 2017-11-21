@@ -1,1 +1,1 @@
-export { default, patternEmail } from 'ember-helpers/helpers/pattern-email';
+export { default, patternEmail } from '@abcum/ember-helpers/helpers/pattern-email';

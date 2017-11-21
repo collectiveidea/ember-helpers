@@ -1,1 +1,1 @@
-export { default, underscore } from 'ember-helpers/helpers/underscore';
+export { default, underscore } from '@abcum/ember-helpers/helpers/underscore';

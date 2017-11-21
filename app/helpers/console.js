@@ -1,1 +1,1 @@
-export { default, console } from 'ember-helpers/helpers/console';
+export { default, console } from '@abcum/ember-helpers/helpers/console';

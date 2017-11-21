@@ -1,1 +1,1 @@
-export { default, xor } from 'ember-helpers/helpers/xor';
+export { default, xor } from '@abcum/ember-helpers/helpers/xor';

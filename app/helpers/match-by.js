@@ -1,1 +1,1 @@
-export { default, matchBy } from 'ember-helpers/helpers/match-by';
+export { default, matchBy } from '@abcum/ember-helpers/helpers/match-by';

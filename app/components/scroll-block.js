@@ -1,1 +1,1 @@
-export { default } from 'ember-helpers/components/scroll-block';
+export { default } from '@abcum/ember-helpers/components/scroll-block';

@@ -1,1 +1,1 @@
-export { default, convert } from 'ember-helpers/helpers/convert';
+export { default, convert } from '@abcum/ember-helpers/helpers/convert';

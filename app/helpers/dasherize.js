@@ -1,1 +1,1 @@
-export { default, dasherize } from 'ember-helpers/helpers/dasherize';
+export { default, dasherize } from '@abcum/ember-helpers/helpers/dasherize';

@@ -1,1 +1,1 @@
-export { default, find } from 'ember-helpers/helpers/find';
+export { default, find } from '@abcum/ember-helpers/helpers/find';

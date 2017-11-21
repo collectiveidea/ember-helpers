@@ -1,1 +1,1 @@
-export { default, classify } from 'ember-helpers/helpers/classify';
+export { default, classify } from '@abcum/ember-helpers/helpers/classify';

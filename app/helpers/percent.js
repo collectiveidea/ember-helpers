@@ -1,1 +1,1 @@
-export { default, percent } from 'ember-helpers/helpers/percent';
+export { default, percent } from '@abcum/ember-helpers/helpers/percent';

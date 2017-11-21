@@ -1,1 +1,1 @@
-export { default, max } from 'ember-helpers/helpers/max';
+export { default, max } from '@abcum/ember-helpers/helpers/max';

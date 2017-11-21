@@ -1,1 +1,1 @@
-export { default, groupBy } from 'ember-helpers/helpers/group-by';
+export { default, groupBy } from '@abcum/ember-helpers/helpers/group-by';

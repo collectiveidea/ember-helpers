@@ -1,1 +1,1 @@
-export { default, patternPhone } from 'ember-helpers/helpers/pattern-phone';
+export { default, patternPhone } from '@abcum/ember-helpers/helpers/pattern-phone';

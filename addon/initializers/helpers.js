@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Mixin from 'ember-helpers/mixins/invoke-action';
+import Mixin from '@abcum/ember-helpers/mixins/invoke-action';
 
 export default function() {
 

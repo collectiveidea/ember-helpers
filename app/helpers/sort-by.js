@@ -1,1 +1,1 @@
-export { default, sortBy } from 'ember-helpers/helpers/sort-by';
+export { default, sortBy } from '@abcum/ember-helpers/helpers/sort-by';

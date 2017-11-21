@@ -1,1 +1,1 @@
-export { default, preventDefault } from 'ember-helpers/helpers/prevent-default';
+export { default, preventDefault } from '@abcum/ember-helpers/helpers/prevent-default';

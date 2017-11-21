@@ -1,1 +1,1 @@
-export { default, browserIsEdge } from 'ember-helpers/helpers/browser-is-edge';
+export { default, browserIsEdge } from '@abcum/ember-helpers/helpers/browser-is-edge';

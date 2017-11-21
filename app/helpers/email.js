@@ -1,1 +1,1 @@
-export { default, email } from 'ember-helpers/helpers/email';
+export { default, email } from '@abcum/ember-helpers/helpers/email';

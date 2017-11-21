@@ -1,1 +1,1 @@
-export { default, scrollTo } from 'ember-helpers/helpers/scroll-to';
+export { default, scrollTo } from '@abcum/ember-helpers/helpers/scroll-to';

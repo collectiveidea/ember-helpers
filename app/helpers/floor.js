@@ -1,1 +1,1 @@
-export { default, floor } from 'ember-helpers/helpers/floor';
+export { default, floor } from '@abcum/ember-helpers/helpers/floor';

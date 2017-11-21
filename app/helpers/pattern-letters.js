@@ -1,1 +1,1 @@
-export { default, patternLetters } from 'ember-helpers/helpers/pattern-letters';
+export { default, patternLetters } from '@abcum/ember-helpers/helpers/pattern-letters';

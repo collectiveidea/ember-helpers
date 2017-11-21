@@ -1,1 +1,1 @@
-export { default, patternCurrency } from 'ember-helpers/helpers/pattern-currency';
+export { default, patternCurrency } from '@abcum/ember-helpers/helpers/pattern-currency';

@@ -1,1 +1,1 @@
-export { default, patternTwitter } from 'ember-helpers/helpers/pattern-twitter';
+export { default, patternTwitter } from '@abcum/ember-helpers/helpers/pattern-twitter';

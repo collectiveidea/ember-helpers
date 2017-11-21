@@ -1,1 +1,1 @@
-export { default } from 'ember-helpers/components/remember-scroll';
+export { default } from '@abcum/ember-helpers/components/remember-scroll';

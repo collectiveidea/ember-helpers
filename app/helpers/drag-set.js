@@ -1,1 +1,1 @@
-export { default, dragSet } from 'ember-helpers/helpers/drag-set';
+export { default, dragSet } from '@abcum/ember-helpers/helpers/drag-set';

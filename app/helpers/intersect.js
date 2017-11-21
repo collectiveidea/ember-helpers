@@ -1,1 +1,1 @@
-export { default, intersect } from 'ember-helpers/helpers/intersect';
+export { default, intersect } from '@abcum/ember-helpers/helpers/intersect';

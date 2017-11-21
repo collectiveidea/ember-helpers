@@ -1,1 +1,1 @@
-export { default, join } from 'ember-helpers/helpers/join';
+export { default, join } from '@abcum/ember-helpers/helpers/join';

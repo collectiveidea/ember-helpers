@@ -1,1 +1,1 @@
-export { default, length } from 'ember-helpers/helpers/length';
+export { default, length } from '@abcum/ember-helpers/helpers/length';

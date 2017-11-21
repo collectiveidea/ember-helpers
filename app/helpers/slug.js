@@ -1,1 +1,1 @@
-export { default, slug } from 'ember-helpers/helpers/slug';
+export { default, slug } from '@abcum/ember-helpers/helpers/slug';

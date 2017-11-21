@@ -1,1 +1,1 @@
-export { default, money } from 'ember-helpers/helpers/money';
+export { default, money } from '@abcum/ember-helpers/helpers/money';

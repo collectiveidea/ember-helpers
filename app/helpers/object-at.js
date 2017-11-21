@@ -1,1 +1,1 @@
-export { default, objectAt } from 'ember-helpers/helpers/object-at';
+export { default, objectAt } from '@abcum/ember-helpers/helpers/object-at';

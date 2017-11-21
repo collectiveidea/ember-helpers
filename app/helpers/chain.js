@@ -1,1 +1,1 @@
-export { default, chain } from 'ember-helpers/helpers/chain';
+export { default, chain } from '@abcum/ember-helpers/helpers/chain';

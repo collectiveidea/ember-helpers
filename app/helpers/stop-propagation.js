@@ -1,1 +1,1 @@
-export { default, stopPropagation } from 'ember-helpers/helpers/stop-propagation';
+export { default, stopPropagation } from '@abcum/ember-helpers/helpers/stop-propagation';

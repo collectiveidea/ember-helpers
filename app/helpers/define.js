@@ -1,1 +1,1 @@
-export { default, define } from 'ember-helpers/helpers/define';
+export { default, define } from '@abcum/ember-helpers/helpers/define';

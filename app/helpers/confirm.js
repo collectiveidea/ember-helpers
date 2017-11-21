@@ -1,1 +1,1 @@
-export { default, confirm } from 'ember-helpers/helpers/confirm';
+export { default, confirm } from '@abcum/ember-helpers/helpers/confirm';

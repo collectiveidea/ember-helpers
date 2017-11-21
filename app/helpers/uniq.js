@@ -1,1 +1,1 @@
-export { default, uniq } from 'ember-helpers/helpers/uniq';
+export { default, uniq } from '@abcum/ember-helpers/helpers/uniq';

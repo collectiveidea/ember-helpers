@@ -1,1 +1,1 @@
-export { default, append } from 'ember-helpers/helpers/append';
+export { default, append } from '@abcum/ember-helpers/helpers/append';

@@ -1,1 +1,1 @@
-export { default, searchBy } from 'ember-helpers/helpers/search-by';
+export { default, searchBy } from '@abcum/ember-helpers/helpers/search-by';

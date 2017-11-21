@@ -1,1 +1,1 @@
-export { default, transitionTo } from 'ember-helpers/helpers/transition-to';
+export { default, transitionTo } from '@abcum/ember-helpers/helpers/transition-to';

@@ -1,1 +1,1 @@
-export { default, run } from 'ember-helpers/helpers/run';
+export { default, run } from '@abcum/ember-helpers/helpers/run';

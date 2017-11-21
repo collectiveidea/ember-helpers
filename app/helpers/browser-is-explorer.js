@@ -1,1 +1,1 @@
-export { default, browserIsExplorer } from 'ember-helpers/helpers/browser-is-explorer';
+export { default, browserIsExplorer } from '@abcum/ember-helpers/helpers/browser-is-explorer';

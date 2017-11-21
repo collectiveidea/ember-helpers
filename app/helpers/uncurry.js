@@ -1,1 +1,1 @@
-export { default, uncurry } from 'ember-helpers/helpers/uncurry';
+export { default, uncurry } from '@abcum/ember-helpers/helpers/uncurry';

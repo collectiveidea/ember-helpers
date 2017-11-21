@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-helpers'
+  name: '@abcum/ember-helpers'
 };

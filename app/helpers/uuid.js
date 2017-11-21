@@ -1,1 +1,1 @@
-export { default, uuid } from 'ember-helpers/helpers/uuid';
+export { default, uuid } from '@abcum/ember-helpers/helpers/uuid';

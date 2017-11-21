@@ -1,1 +1,1 @@
-export { default, w } from 'ember-helpers/helpers/w';
+export { default, w } from '@abcum/ember-helpers/helpers/w';

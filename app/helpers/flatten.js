@@ -1,1 +1,1 @@
-export { default, flatten } from 'ember-helpers/helpers/flatten';
+export { default, flatten } from '@abcum/ember-helpers/helpers/flatten';

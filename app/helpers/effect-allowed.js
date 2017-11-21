@@ -1,1 +1,1 @@
-export { default, effectAllowed } from 'ember-helpers/helpers/effect-allowed';
+export { default, effectAllowed } from '@abcum/ember-helpers/helpers/effect-allowed';

@@ -1,1 +1,1 @@
-export { default, swapcase } from 'ember-helpers/helpers/swapcase';
+export { default, swapcase } from '@abcum/ember-helpers/helpers/swapcase';

@@ -1,1 +1,1 @@
-export { default, anyBy } from 'ember-helpers/helpers/any-by';
+export { default, anyBy } from '@abcum/ember-helpers/helpers/any-by';

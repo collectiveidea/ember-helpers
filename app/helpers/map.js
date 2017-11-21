@@ -1,1 +1,1 @@
-export { default, map } from 'ember-helpers/helpers/map';
+export { default, map } from '@abcum/ember-helpers/helpers/map';

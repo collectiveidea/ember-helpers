@@ -1,1 +1,1 @@
-export { default, lte } from 'ember-helpers/helpers/lte';
+export { default, lte } from '@abcum/ember-helpers/helpers/lte';

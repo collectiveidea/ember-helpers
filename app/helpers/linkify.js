@@ -1,1 +1,1 @@
-export { default, linkify } from 'ember-helpers/helpers/linkify';
+export { default, linkify } from '@abcum/ember-helpers/helpers/linkify';

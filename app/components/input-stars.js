@@ -1,1 +1,1 @@
-export { default } from 'ember-helpers/components/input-stars';
+export { default } from '@abcum/ember-helpers/components/input-stars';

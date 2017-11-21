@@ -1,1 +1,1 @@
-export { default, filterBy } from 'ember-helpers/helpers/filter-by';
+export { default, filterBy } from '@abcum/ember-helpers/helpers/filter-by';

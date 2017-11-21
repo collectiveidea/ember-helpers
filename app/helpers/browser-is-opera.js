@@ -1,1 +1,1 @@
-export { default, browserIsOpera } from 'ember-helpers/helpers/browser-is-opera';
+export { default, browserIsOpera } from '@abcum/ember-helpers/helpers/browser-is-opera';

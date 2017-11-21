@@ -1,1 +1,1 @@
-export { default, browserIsElectron } from 'ember-helpers/helpers/browser-is-electron';
+export { default, browserIsElectron } from '@abcum/ember-helpers/helpers/browser-is-electron';

@@ -1,1 +1,1 @@
-export { default, debounce } from 'ember-helpers/helpers/debounce';
+export { default, debounce } from '@abcum/ember-helpers/helpers/debounce';

@@ -1,1 +1,1 @@
-export { default, browserIsSafari } from 'ember-helpers/helpers/browser-is-safari';
+export { default, browserIsSafari } from '@abcum/ember-helpers/helpers/browser-is-safari';

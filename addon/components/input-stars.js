@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from 'ember-helpers/templates/components/input-stars';
+import layout from '../templates/components/input-stars';
 
 export default Ember.Component.extend({
 

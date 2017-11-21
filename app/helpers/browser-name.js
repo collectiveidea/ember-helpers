@@ -1,1 +1,1 @@
-export { default, browserName } from 'ember-helpers/helpers/browser-name';
+export { default, browserName } from '@abcum/ember-helpers/helpers/browser-name';

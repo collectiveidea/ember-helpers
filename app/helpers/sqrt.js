@@ -1,1 +1,1 @@
-export { default, sqrt } from 'ember-helpers/helpers/sqrt';
+export { default, sqrt } from '@abcum/ember-helpers/helpers/sqrt';

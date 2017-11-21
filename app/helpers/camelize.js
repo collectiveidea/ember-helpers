@@ -1,1 +1,1 @@
-export { default, camelize } from 'ember-helpers/helpers/camelize';
+export { default, camelize } from '@abcum/ember-helpers/helpers/camelize';

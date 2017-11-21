@@ -1,1 +1,1 @@
-export { default, isUpdating } from 'ember-helpers/helpers/is-updating';
+export { default, isUpdating } from '@abcum/ember-helpers/helpers/is-updating';

@@ -1,1 +1,1 @@
-export { default, compact } from 'ember-helpers/helpers/compact';
+export { default, compact } from '@abcum/ember-helpers/helpers/compact';

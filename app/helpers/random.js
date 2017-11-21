@@ -1,1 +1,1 @@
-export { default, random } from 'ember-helpers/helpers/random';
+export { default, random } from '@abcum/ember-helpers/helpers/random';

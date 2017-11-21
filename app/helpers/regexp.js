@@ -1,1 +1,1 @@
-export { default, regexp } from 'ember-helpers/helpers/regexp';
+export { default, regexp } from '@abcum/ember-helpers/helpers/regexp';

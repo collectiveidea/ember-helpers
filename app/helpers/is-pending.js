@@ -1,1 +1,1 @@
-export { default, isPending } from 'ember-helpers/helpers/is-pending';
+export { default, isPending } from '@abcum/ember-helpers/helpers/is-pending';

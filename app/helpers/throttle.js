@@ -1,1 +1,1 @@
-export { default, throttle } from 'ember-helpers/helpers/throttle';
+export { default, throttle } from '@abcum/ember-helpers/helpers/throttle';

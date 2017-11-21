@@ -1,1 +1,1 @@
-export { default, truncate } from 'ember-helpers/helpers/truncate';
+export { default, truncate } from '@abcum/ember-helpers/helpers/truncate';

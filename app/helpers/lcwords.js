@@ -1,1 +1,1 @@
-export { default, lcwords } from 'ember-helpers/helpers/lcwords';
+export { default, lcwords } from '@abcum/ember-helpers/helpers/lcwords';

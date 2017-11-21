@@ -1,1 +1,1 @@
-export { default, ucwords } from 'ember-helpers/helpers/ucwords';
+export { default, ucwords } from '@abcum/ember-helpers/helpers/ucwords';

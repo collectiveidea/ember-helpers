@@ -1,1 +1,1 @@
-export { default, md5 } from 'ember-helpers/helpers/md5';
+export { default, md5 } from '@abcum/ember-helpers/helpers/md5';

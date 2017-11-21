@@ -1,1 +1,1 @@
-export { default, toggle } from 'ember-helpers/helpers/toggle';
+export { default, toggle } from '@abcum/ember-helpers/helpers/toggle';

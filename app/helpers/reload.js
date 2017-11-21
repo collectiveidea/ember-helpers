@@ -1,1 +1,1 @@
-export { default, reload } from 'ember-helpers/helpers/reload';
+export { default, reload } from '@abcum/ember-helpers/helpers/reload';

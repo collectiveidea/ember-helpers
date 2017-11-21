@@ -1,1 +1,1 @@
-export { default, currency } from 'ember-helpers/helpers/currency';
+export { default, currency } from '@abcum/ember-helpers/helpers/currency';

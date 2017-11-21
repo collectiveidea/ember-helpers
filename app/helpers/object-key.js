@@ -1,1 +1,1 @@
-export { default, objectKey } from 'ember-helpers/helpers/object-key';
+export { default, objectKey } from '@abcum/ember-helpers/helpers/object-key';

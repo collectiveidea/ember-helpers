@@ -1,1 +1,1 @@
-export { default, isLoaded } from 'ember-helpers/helpers/is-loaded';
+export { default, isLoaded } from '@abcum/ember-helpers/helpers/is-loaded';

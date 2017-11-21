@@ -1,1 +1,1 @@
-export { default, patternDecimal } from 'ember-helpers/helpers/pattern-decimal';
+export { default, patternDecimal } from '@abcum/ember-helpers/helpers/pattern-decimal';

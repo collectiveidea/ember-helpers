@@ -1,1 +1,1 @@
-export { default, capitalize } from 'ember-helpers/helpers/capitalize';
+export { default, capitalize } from '@abcum/ember-helpers/helpers/capitalize';

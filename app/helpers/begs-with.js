@@ -1,1 +1,1 @@
-export { default, begsWith } from 'ember-helpers/helpers/begs-with';
+export { default, begsWith } from '@abcum/ember-helpers/helpers/begs-with';

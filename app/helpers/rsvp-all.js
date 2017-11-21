@@ -1,1 +1,1 @@
-export { default, rsvpAll } from 'ember-helpers/helpers/rsvp-all';
+export { default, rsvpAll } from '@abcum/ember-helpers/helpers/rsvp-all';

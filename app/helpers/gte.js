@@ -1,1 +1,1 @@
-export { default, gte } from 'ember-helpers/helpers/gte';
+export { default, gte } from '@abcum/ember-helpers/helpers/gte';

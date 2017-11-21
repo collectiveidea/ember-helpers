@@ -1,1 +1,1 @@
-export { default, uppercase } from 'ember-helpers/helpers/uppercase';
+export { default, uppercase } from '@abcum/ember-helpers/helpers/uppercase';

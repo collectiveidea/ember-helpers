@@ -1,1 +1,1 @@
-export { default, dropEffect } from 'ember-helpers/helpers/drop-effect';
+export { default, dropEffect } from '@abcum/ember-helpers/helpers/drop-effect';

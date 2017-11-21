@@ -1,1 +1,1 @@
-export { default, historyForward } from 'ember-helpers/helpers/history-forward';
+export { default, historyForward } from '@abcum/ember-helpers/helpers/history-forward';

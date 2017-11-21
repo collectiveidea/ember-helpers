@@ -1,1 +1,1 @@
-export { default, sanitize } from 'ember-helpers/helpers/sanitize';
+export { default, sanitize } from '@abcum/ember-helpers/helpers/sanitize';

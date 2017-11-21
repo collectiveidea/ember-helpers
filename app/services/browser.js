@@ -1,3 +1,3 @@
-import service from 'ember-helpers/services/browser';
+import service from '@abcum/ember-helpers/services/browser';
 
 export default service;
