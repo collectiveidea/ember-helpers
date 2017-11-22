@@ -12,10 +12,12 @@ module.exports = {
     Chrome: {
       mode: 'ci',
       args: [
-        '--disable-gpu',
         '--headless',
+        '--no-sandbox',
+        '--disable-gpu',
+        '--window-size=1440,900',
         '--remote-debugging-port=9222',
-        '--window-size=1440,900'
+        '--remote-debugging-address=0.0.0.0'
       ]
     },
   }
