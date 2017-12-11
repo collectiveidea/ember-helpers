@@ -17,7 +17,7 @@ export default Helper.extend({
 			}
 
 			if (duration > 0) {
-				container.aniate({ scrollTop: position }, duration);
+				container.animate({ scrollTop: position }, duration);
 			} else {
 				container.scrollTop(position);
 			}
