@@ -244,6 +244,7 @@ ix                                    | `{{if (ix a ...)}}`                     
 lt                                    | `{{if (lt a b)}}`                            | `if (a < b)`                     
 lte                                   | `{{if (lte a b)}}`                           | `if (a <= b)`                     
 ne                                    | `{{if (ne a b))}}`                           | `if (a !== b)`                    
+not                                   | `{{if (not a b))}}`                          | `if (!a && !b && ...)`                    
 or                                    | `{{if (or a b ...)}}`                        | `if (a || b || ...)`                    
 present                               | `{{if (present a ...)}}`                     | `if (Ember.isPresent(a) ...)`                    
 xor                                   | `{{if (xor a b)}}`                           | `if (a && !b || !a && b)`        
