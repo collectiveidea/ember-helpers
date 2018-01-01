@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { isArray, A } from '@ember/array';
+import { observer } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	changed: Ember.observer('array.[]', function() {
+	changed: observer('array.[]', function() {
 		this.recompute();
 	}),
 
@@ -11,13 +13,13 @@ export default Ember.Helper.extend({
 		let items = params.slice(0, -1);
 		let array = params.slice().pop();
 
-		if ( !Ember.isArray(array) ) {
+		if ( !isArray(array) ) {
 			return undefined;
 		}
 
 		this.set('array', array);
 
-		return Ember.A(array).objectsAt(items);
+		return A(array).objectsAt(items);
 
 	},
 

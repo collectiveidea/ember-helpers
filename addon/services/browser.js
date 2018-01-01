@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 
 const enabled = window && window.$;
 
-export default Ember.Service.extend({
+export default Service.extend({
 
 	init() {
 
@@ -68,7 +68,7 @@ export default Ember.Service.extend({
 	},
 
 	isExplorer() {
-		return enabled && ( /*@cc_on!@*/false || !!document.documentMode );
+		return enabled && ( /*@cc_on!@*/(false || !!document.documentMode) );
 	},
 
 	isFastboot() {

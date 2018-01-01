@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([fnc, ...params]) {
 		return () => fnc.call(this, ...params);

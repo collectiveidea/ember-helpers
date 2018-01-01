@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { dasherize as f } from '@ember/string';
 
 export function dasherize([value='']) {
-	return Ember.String.dasherize( String(value) );
+	return f( String(value) );
 }
 
-export default Ember.Helper.helper(dasherize);
+export default helper(dasherize);

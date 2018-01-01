@@ -1,10 +1,18 @@
-import Ember from 'ember';
+import { isEmpty, isPresent } from '@ember/utils';
+import {
+  observer,
+  get,
+  defineProperty,
+  computed
+} from '@ember/object';
+import { isArray, A } from '@ember/array';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([path, value, array]) {
 
-		if ( !Ember.isArray(array) && Ember.isArray(value) ) {
+		if ( !isArray(array) && isArray(value) ) {
 			array = value;
 			value = undefined;
 		}
@@ -17,33 +25,33 @@ export default Ember.Helper.extend({
 
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	pathDidChange: Ember.observer('path', 'value', function() {
+	pathDidChange: observer('path', 'value', function() {
 
 		let func = () => null;
-		let path = Ember.get(this, 'path');
-		let value = Ember.get(this, 'value');
+		let path = get(this, 'path');
+		let value = get(this, 'value');
 
-		if ( Ember.isEmpty(path) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(path) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
-		if ( Ember.isPresent(value) ) {
+		if ( isPresent(value) ) {
 			if (typeof value === 'function') {
-				func = (item) => value( Ember.get(item, path) );
+				func = (item) => value( get(item, path) );
 			} else {
-				func = (item) => Ember.get(item, path) === value;
+				func = (item) => get(item, path) === value;
 			}
 		} else {
-			func = (item) => Ember.isPresent( Ember.get(item, path) );
+			func = (item) => isPresent( get(item, path) );
 		}
 
-		Ember.defineProperty(this, 'content', Ember.computed(`array.@each.${path}`, function() {
-			return Ember.A( Ember.get(this, 'array') ).find(func);
+		defineProperty(this, 'content', computed(`array.@each.${path}`, function() {
+			return A( get(this, 'array') ).find(func);
 		}));
 
 	}),

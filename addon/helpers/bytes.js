@@ -1,4 +1,4 @@
-import Ember from "ember";
+import { helper } from '@ember/component/helper';
 
 export function bytes([val]) {
 	let amnt = parseFloat(val) || 0;
@@ -7,4 +7,4 @@ export function bytes([val]) {
 	return Math.round( amnt / Math.pow(1024, size), 2) + ' ' + unit[size];
 }
 
-export default Ember.Helper.helper(bytes);
+export default helper(bytes);

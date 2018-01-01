@@ -1,14 +1,15 @@
-import Ember from 'ember';
+import { isArray } from '@ember/array';
+import Helper from '@ember/component/helper';
 import range from 'ember-helpers/utils/int-range';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([object, items], { key = 'selected' }) {
 		return function(item, options = {}) {
 
 			let selected = object.get(key);
 
-			if (!Ember.isArray(selected)) {
+			if (!isArray(selected)) {
 				selected = object.set(key, []);
 			}
 

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function isnt(params) {
 	return params.every(p => p !== true);
 }
 
-export default Ember.Helper.helper(isnt);
+export default helper(isnt);

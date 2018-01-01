@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { get, set } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 export function toggle([obj, prop, ...values]) {
 	return function() {
 
-		if ( Ember.isPresent(values) ) {
-			let idx = values.indexOf( Ember.get(obj, prop) );
+		if ( isPresent(values) ) {
+			let idx = values.indexOf( get(obj, prop) );
 			let nxt = values[idx+1] || values[0];
-			return Ember.set(obj, prop, nxt);
+			return set(obj, prop, nxt);
 		}
 
-		return Ember.set(obj, prop, !Ember.get(obj, prop));
+		return set(obj, prop, !get(obj, prop));
 
 	};
 }
 
-export default Ember.Helper.helper(toggle);
+export default helper(toggle);

@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { observer } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	changed: Ember.observer('array.[]', function() {
+	changed: observer('array.[]', function() {
 		this.recompute();
 	}),
 
 	compute([separator, ...array]) {
 		this.set('array', array);
-		return Ember.A(array).reduce( (words, other) => words.concat(other) ).join(separator);
+		return A(array).reduce( (words, other) => words.concat(other) ).join(separator);
 	},
 
 });

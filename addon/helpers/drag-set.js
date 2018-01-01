@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function dragSet([type, value]) {
 	return function(event) {
@@ -10,4 +10,4 @@ export function dragSet([type, value]) {
 	};
 }
 
-export default Ember.Helper.helper(dragSet);
+export default helper(dragSet);

@@ -1,19 +1,22 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { tryInvoke } from '@ember/utils';
+import { all } from 'rsvp';
+import { isArray } from '@ember/array';
 
 export function invoke([method, object, ...args]) {
 
-	if ( Ember.isArray(object) ) {
+	if ( isArray(object) ) {
 		return function() {
-			return Ember.RSVP.all(
-				object.map(i => Ember.tryInvoke(i, method, args))
+			return all(
+				object.map(i => tryInvoke(i, method, args))
 			);
 		};
 	}
 
 	return function() {
-		return Ember.tryInvoke(object, method, args);
+		return tryInvoke(object, method, args);
 	};
 
 }
 
-export default Ember.Helper.helper(invoke);
+export default helper(invoke);

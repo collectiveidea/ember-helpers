@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function dropEffect(effect = 'move') {
 	return function(event) {
@@ -7,4 +7,4 @@ export function dropEffect(effect = 'move') {
 	};
 }
 
-export default Ember.Helper.helper(dropEffect);
+export default helper(dropEffect);

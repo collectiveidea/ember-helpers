@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function preventDefault() {
 	return function(event) {
@@ -7,4 +7,4 @@ export function preventDefault() {
 	};
 }
 
-export default Ember.Helper.helper(preventDefault);
+export default helper(preventDefault);

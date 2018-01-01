@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
+import { computed } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	router: Ember.computed(function() {
-		return Ember.getOwner(this).lookup('router:main');
+	router: computed(function() {
+		return getOwner(this).lookup('router:main');
 	}).readOnly(),
 
 	compute([...params]) {

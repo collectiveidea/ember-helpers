@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { camelize as f } from '@ember/string';
 
 export function camelize([value='']) {
-	return Ember.String.camelize( String(value) );
+	return f( String(value) );
 }
 
-export default Ember.Helper.helper(camelize);
+export default helper(camelize);

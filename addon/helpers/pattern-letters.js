@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function patternLetters() {
 	return '[a-zA-Z]+';
 }
 
-export default Ember.Helper.helper(patternLetters);
+export default helper(patternLetters);

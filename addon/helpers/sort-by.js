@@ -1,40 +1,44 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { observer, get, defineProperty } from '@ember/object';
+import { typeOf, isEmpty } from '@ember/utils';
+import { isArray } from '@ember/array';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([...props]) {
 
-		let sort = props.slice(0, -1);
+		let param = props.slice(0, -1);
 		let array = props.slice().pop();
 
-		if ( Ember.isArray(sort[0]) || Ember.typeOf(sort[0]) === 'function') {
-			sort = sort[0];
+		if ( isArray(param[0]) || typeOf(param[0]) === 'function') {
+			param = param[0];
 		}
 
-		this.set('sort', sort);
+		this.set('param', param);
 		this.set('array', array);
 
 		return this.get('content');
 
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	sortDidChange: Ember.observer('sort', function() {
+	sortDidChange: observer('param', function() {
 
-		let sort = Ember.get(this, 'sort');
+		let param = get(this, 'param');
 
-		if ( Ember.isEmpty(sort) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(param) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
-		if (typeof sort === 'function') {
-			Ember.defineProperty(this, 'content', Ember.computed.sort('array', sort));
+		if (typeof param === 'function') {
+			defineProperty(this, 'content', sort('array', param));
 		} else {
-			Ember.defineProperty(this, 'content', Ember.computed.sort('array', 'sort'));
+			defineProperty(this, 'content', sort('array', 'param'));
 		}
 
 	}),

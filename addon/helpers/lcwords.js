@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function lcwords([value='']) {
 	return String(value).split(' ').map(word => {
@@ -6,4 +6,4 @@ export function lcwords([value='']) {
 	}).join(' ');
 }
 
-export default Ember.Helper.helper(lcwords);
+export default helper(lcwords);

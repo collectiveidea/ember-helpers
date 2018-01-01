@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/components/input-stars';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
 	layout,
 
@@ -17,7 +18,7 @@ export default Ember.Component.extend({
 
 	tagName: 'input-stars',
 
-	stars: Ember.computed('min', 'max', function() {
+	stars: computed('min', 'max', function() {
 		let b = this.get('min');
 		let e = this.get('max');
 		return Array.apply(null, Array(e-b+1)).map( (_, n) => n + b );

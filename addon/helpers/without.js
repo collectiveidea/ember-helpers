@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { isArray, A } from '@ember/array';
+import { observer, computed, get } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([needle, haystack]) {
 		this.set('needle', needle);
@@ -8,25 +10,25 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	content: Ember.computed('needle.[]', 'haystack.[]', function() {
+	content: computed('needle.[]', 'haystack.[]', function() {
 
-		let needle = Ember.get(this, 'needle');
-		let haystack = Ember.get(this, 'haystack');
+		let needle = get(this, 'needle');
+		let haystack = get(this, 'haystack');
 
-		if ( !Ember.isArray(haystack) ) {
+		if ( !isArray(haystack) ) {
 			return false;
 		}
 
-		if ( Ember.isArray(needle) && Ember.get(needle, 'length') ) {
+		if ( isArray(needle) && get(needle, 'length') ) {
 			return haystack.reduce( (prev, item) => {
-				return Ember.A(needle).contains(item) ? prev : prev.concat(item);
+				return A(needle).contains(item) ? prev : prev.concat(item);
 			}, []);
 		} else {
-			return Ember.A(haystack).without(needle);
+			return A(haystack).without(needle);
 		}
 
 	}).readOnly(),

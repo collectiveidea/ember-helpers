@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function effectAllowed(effect = 'move') {
 	return function(event) {
@@ -7,4 +7,4 @@ export function effectAllowed(effect = 'move') {
 	};
 }
 
-export default Ember.Helper.helper(effectAllowed);
+export default helper(effectAllowed);

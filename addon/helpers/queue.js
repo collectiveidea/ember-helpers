@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import isPromise from "ember-helpers/utils/is-promise";
 
 export function queue(actions = []) {
@@ -28,4 +28,4 @@ export function queue(actions = []) {
 	};
 }
 
-export default Ember.Helper.helper(queue);
+export default helper(queue);

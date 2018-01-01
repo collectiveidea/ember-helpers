@@ -1,3 +1,5 @@
+import { helper } from '@ember/component/helper';
+import { htmlSafe } from '@ember/string';
 import Ember from 'ember';
 
 export function linkify([value='']) {
@@ -16,8 +18,8 @@ export function linkify([value='']) {
 
 	});
 
-	return Ember.String.htmlSafe(text);
+	return htmlSafe(text);
 
 }
 
-export default Ember.Helper.helper(linkify);
+export default helper(linkify);

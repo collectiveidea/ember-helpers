@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { observer } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	changed: Ember.observer('object.isLoaded', function() {
+	changed: observer('object.isLoaded', function() {
 		this.recompute();
 	}),
 

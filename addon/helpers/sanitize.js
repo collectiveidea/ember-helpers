@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { htmlSafe } from '@ember/string';
 
 export function sanitize([value]) {
-	return Ember.String.htmlSafe(value);
+	return htmlSafe(value);
 }
 
-export default Ember.Helper.helper(sanitize);
+export default helper(sanitize);

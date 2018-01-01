@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function patternAlphanumeric() {
 	return '[a-zA-Z0-9-+]+';
 }
 
-export default Ember.Helper.helper(patternAlphanumeric);
+export default helper(patternAlphanumeric);

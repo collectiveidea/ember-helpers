@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import { isArray } from '@ember/array';
+import { isEmpty } from '@ember/utils';
+import { observer, get, set } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([...params]) {
 
@@ -16,39 +19,39 @@ export default Ember.Helper.extend({
 
 	},
 
-	changed: Ember.observer('match', function() {
+	changed: observer('match', function() {
 		this.recompute();
 	}),
 
-	searchDidChange: Ember.observer('props', 'value', 'model', function() {
+	searchDidChange: observer('props', 'value', 'model', function() {
 
-		let props = Ember.get(this, 'props');
-		let value = Ember.get(this, 'value');
-		let model = Ember.get(this, 'model');
+		let props = get(this, 'props');
+		let value = get(this, 'value');
+		let model = get(this, 'model');
 
-		if ( Ember.isEmpty(props) ) {
-			Ember.set(this, 'match', true);
+		if ( isEmpty(props) ) {
+			set(this, 'match', true);
 			return;
 		}
 
 		if (!value) {
-			Ember.set(this, 'match', true);
+			set(this, 'match', true);
 			return;
 		}
 
 		if (!model) {
-			Ember.set(this, 'match', true);
+			set(this, 'match', true);
 			return;
 		}
 
-		if (!Ember.isArray(props)) {
-			Ember.set(this, 'match', true);
+		if (!isArray(props)) {
+			set(this, 'match', true);
 			return;
 		}
 
 		let found = String(value).toLowerCase().split(' ');
 
-		Ember.set(this, 'match', props.any(prop => {
+		set(this, 'match', props.any(prop => {
 			let value = String( model.get(prop) ).toLowerCase();
 			return found.any(i => value.includes(i) );
 		}));

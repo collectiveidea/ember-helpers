@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { set, observer } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([obj, key, val]) {
 		this.set('val', val);
-		Ember.set(obj, key, val);
+		set(obj, key, val);
 	},
 
-	changed: Ember.observer('val', function() {
+	changed: observer('val', function() {
 		this.recompute();
 	}),
 

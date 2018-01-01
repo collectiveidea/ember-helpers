@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { A } from '@ember/array';
 
 export function array([...params]) {
-	return Ember.A(params);
+	return A(params);
 }
 
-export default Ember.Helper.helper(array);
+export default helper(array);

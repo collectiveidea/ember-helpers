@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import { typeOf } from '@ember/utils';
 
 export default function isPromise(val) {
-	return Ember.typeOf(val) === 'object' && Ember.typeOf(val.then) === 'function' && Ember.typeOf(val.catch) === 'function';
+	return typeOf(val) === 'object' && typeOf(val.then) === 'function' && typeOf(val.catch) === 'function';
 }

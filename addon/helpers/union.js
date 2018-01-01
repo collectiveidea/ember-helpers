@@ -1,34 +1,39 @@
-import Ember from 'ember';
+import { union } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
+import { observer, get, defineProperty, set } from '@ember/object';
+import { A } from '@ember/array';
+import Helper from '@ember/component/helper';
+import { guidFor } from '@ember/object/internals';
 
 const cp = (key) => `${key}.[]`;
-const id = (array) => `__array-${Ember.guidFor(array)}`;
+const id = (array) => `__array-${guidFor(array)}`;
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([...arrays]) {
 		this.set('arrays', arrays.map(array => {
-			return Ember.A(array).toArray();
+			return A(array).toArray();
 		}));
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content.[]', function() {
+	changed: observer('content.[]', function() {
 		this.recompute();
 	}),
 
-	arraysDidChange: Ember.observer('arrays.[]', function() {
+	arraysDidChange: observer('arrays.[]', function() {
 
-		let arrs = Ember.get(this, 'arrays');
+		let arrs = get(this, 'arrays');
 		let deps = arrs.map(id).map(cp);
 
-		if ( Ember.isEmpty(arrs) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(arrs) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
-		arrs.forEach(arr => Ember.set(this, id(arr), arr));
+		arrs.forEach(arr => set(this, id(arr), arr));
 
-		Ember.defineProperty(this, 'content', Ember.computed.union(...deps));
+		defineProperty(this, 'content', union(...deps));
 
 	}),
 

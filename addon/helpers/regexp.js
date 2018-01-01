@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function regexp([pattern='', flags='']) {
 	return new RegExp(pattern, flags);
 }
 
-export default Ember.Helper.helper(regexp);
+export default helper(regexp);

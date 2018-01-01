@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function mod(params) {
 	return params.reduce((a, b) => a % b);
 }
 
-export default Ember.Helper.helper(mod);
+export default helper(mod);

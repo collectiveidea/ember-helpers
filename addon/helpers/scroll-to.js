@@ -1,18 +1,19 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute(args, { position = 0, duration = 0, element, container }) {
 		return function() {
 
 			if (element) {
-				position = Ember.$(element).offset().top;
+				position = $(element).offset().top;
 			}
 
 			if (container) {
-				container = Ember.$(container);
+				container = $(container);
 			} else {
-				container = Ember.$(document);
+				container = $(document);
 			}
 
 			if (duration > 0) {

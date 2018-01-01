@@ -1,6 +1,14 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isEmpty } from '@ember/utils';
+import {
+  observer,
+  get,
+  defineProperty,
+  computed
+} from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([func, array]) {
 		this.set('func', func);
@@ -8,21 +16,21 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('array.[]', function() {
+	changed: observer('array.[]', function() {
 		this.recompute();
 	}),
 
-	funcDidChange: Ember.observer('func', function() {
+	funcDidChange: observer('func', function() {
 
-		let func = Ember.get(this, 'func');
+		let func = get(this, 'func');
 
-		if ( Ember.isEmpty(func) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(func) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
-		Ember.defineProperty(this, 'content', Ember.computed('array', function() {
-			return Ember.A( Ember.get(this, 'array') ).find(func);
+		defineProperty(this, 'content', computed('array', function() {
+			return A( get(this, 'array') ).find(func);
 		}));
 
 	}),

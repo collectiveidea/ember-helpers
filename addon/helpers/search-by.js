@@ -1,6 +1,10 @@
-import Ember from 'ember';
+import { isArray } from '@ember/array';
+import { uniq, filter } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
+import { observer, get, defineProperty } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([...params]) {
 
@@ -16,33 +20,33 @@ export default Ember.Helper.extend({
 
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	searchDidChange: Ember.observer('props', 'value', function() {
+	searchDidChange: observer('props', 'value', function() {
 
-		let props = Ember.get(this, 'props');
-		let value = Ember.get(this, 'value');
+		let props = get(this, 'props');
+		let value = get(this, 'value');
 
-		if ( Ember.isEmpty(props) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(props) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
 		if (!value) {
-			Ember.defineProperty(this, 'content', Ember.computed.uniq('array'));
+			defineProperty(this, 'content', uniq('array'));
 			return;
 		}
 
-		if (!Ember.isArray(props)) {
-			Ember.defineProperty(this, 'content', Ember.computed.filter('array'));
+		if (!isArray(props)) {
+			defineProperty(this, 'content', filter('array'));
 			return;
 		}
 
 		let found = String(value).toLowerCase().split(' ');
 
-		Ember.defineProperty(this, 'content', Ember.computed.filter('array', item => {
+		defineProperty(this, 'content', filter('array', item => {
 			return props.any(prop => {
 				let value = String( item.get(prop) ).toLowerCase();
 				return found.any(i => value.includes(i) );

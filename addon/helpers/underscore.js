@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { underscore as f } from '@ember/string';
 
 export function underscore([value='']) {
-	return Ember.String.underscore( String(value) );
+	return f( String(value) );
 }
 
-export default Ember.Helper.helper(underscore);
+export default helper(underscore);

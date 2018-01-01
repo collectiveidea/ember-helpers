@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import isPromise from "ember-helpers/utils/is-promise";
 
 export function chain(actions = []) {
@@ -28,4 +28,4 @@ export function chain(actions = []) {
 	};
 }
 
-export default Ember.Helper.helper(chain);
+export default helper(chain);

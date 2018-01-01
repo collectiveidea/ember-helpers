@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import currency from 'ember-helpers/utils/currency';
 
 export function convert(params, hash) {
@@ -19,4 +19,4 @@ export function convert(params, hash) {
 
 }
 
-export default Ember.Helper.helper(convert);
+export default helper(convert);

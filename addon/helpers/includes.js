@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { isArray, A } from '@ember/array';
+import { observer, computed, get } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([needle, haystack]) {
 		this.set('needle', needle);
@@ -8,23 +10,23 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	content: Ember.computed('needle.[]', 'haystack.[]', function() {
+	content: computed('needle.[]', 'haystack.[]', function() {
 
-		let needle = Ember.get(this, 'needle');
-		let haystack = Ember.get(this, 'haystack');
+		let needle = get(this, 'needle');
+		let haystack = get(this, 'haystack');
 
-		if ( !Ember.isArray(haystack) ) {
+		if ( !isArray(haystack) ) {
 			return false;
 		}
 
-		if ( Ember.isArray(needle) && Ember.get(needle, 'length') ) {
-			return needle.every( item => Ember.A(haystack).includes(item) );
+		if ( isArray(needle) && get(needle, 'length') ) {
+			return needle.every( item => A(haystack).includes(item) );
 		} else {
-			return Ember.A(haystack).includes(needle);
+			return A(haystack).includes(needle);
 		}
 
 	}).readOnly(),

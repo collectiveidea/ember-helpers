@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function inside([haystack, needle]) {
 	return haystack.indexOf(needle) > -1;
 }
 
-export default Ember.Helper.helper(inside);
+export default helper(inside);

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function swapcase([value='']) {
 	return String(value).replace(/([a-z]+)|([A-Z]+)/g, function($0, $1){
@@ -6,4 +6,4 @@ export function swapcase([value='']) {
 	});
 }
 
-export default Ember.Helper.helper(swapcase);
+export default helper(swapcase);

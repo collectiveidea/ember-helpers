@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import { oneWay } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
+import { observer, get, defineProperty } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([key, obj]) {
 		this.set('key', key);
@@ -8,20 +11,20 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	keyDidChange: Ember.observer('key', function() {
+	keyDidChange: observer('key', function() {
 
-		let key = Ember.get(this, 'key');
+		let key = get(this, 'key');
 
-		if ( Ember.isEmpty(key) ) {
-			Ember.defineProperty(this, 'content', null);
+		if ( isEmpty(key) ) {
+			defineProperty(this, 'content', null);
 			return;
 		}
 
-		Ember.defineProperty(this, 'content', Ember.computed.oneWay(`obj.${key}`));
+		defineProperty(this, 'content', oneWay(`obj.${key}`));
 
 	}),
 

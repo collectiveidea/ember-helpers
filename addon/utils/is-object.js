@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import { typeOf } from '@ember/utils';
 
 export default function isObject(val) {
-	return Ember.typeOf(val) === 'object' || Ember.typeOf(val) === 'instance';
+	return typeOf(val) === 'object' || typeOf(val) === 'instance';
 }

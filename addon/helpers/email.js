@@ -1,4 +1,4 @@
-import Ember from "ember";
+import { helper } from '@ember/component/helper';
 
 export function email([value]) {
 	return String('mailto:'+value).replace(/[\u00A0-\u9999<>&]/gim, (i) => {
@@ -6,4 +6,4 @@ export function email([value]) {
 	});
 }
 
-export default Ember.Helper.helper(email);
+export default helper(email);

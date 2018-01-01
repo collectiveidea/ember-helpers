@@ -1,20 +1,22 @@
-import Ember from "ember";
+import $ from 'jquery';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
-	scroller: Ember.inject.service(),
+	scroller: service(),
 
 	didInsertElement() {
 		this._super(...arguments);
 		let key = this.get('key');
 		let pos = this.get('scroller')[key] || 0;
-		Ember.$(document).scrollTop(pos);
+		$(document).scrollTop(pos);
 	},
 
 	willDestroyElement() {
 		this._super(...arguments);
 		let key = this.get('key');
-		let pos = Ember.$(document).scrollTop();
+		let pos = $(document).scrollTop();
 		this.get('scroller')[key] = pos;
 	},
 

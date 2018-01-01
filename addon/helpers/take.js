@@ -1,20 +1,22 @@
-import Ember from 'ember';
+import { isArray, A } from '@ember/array';
+import { observer } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	changed: Ember.observer('array.[]', function() {
+	changed: observer('array.[]', function() {
 		this.recompute();
 	}),
 
 	compute([count, array]) {
 
-		if ( !Ember.isArray(array) ) {
+		if ( !isArray(array) ) {
 			return undefined;
 		}
 
 		this.set('array', array);
 
-		return Ember.A(array).slice(0, count);
+		return A(array).slice(0, count);
 
 	},
 

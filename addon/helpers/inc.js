@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function inc([value, amount]) {
 	return parseFloat(value) + ( parseFloat(amount) || 1 );
 }
 
-export default Ember.Helper.helper(inc);
+export default helper(inc);

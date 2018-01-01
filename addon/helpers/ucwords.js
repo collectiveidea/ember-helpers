@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function ucwords([value='']) {
 	return String(value).split(' ').map(word => {
@@ -6,4 +6,4 @@ export function ucwords([value='']) {
 	}).join(' ');
 }
 
-export default Ember.Helper.helper(ucwords);
+export default helper(ucwords);

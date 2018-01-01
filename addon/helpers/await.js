@@ -1,14 +1,14 @@
-import Ember from 'ember';
+import { observer } from '@ember/object';
+import Helper from '@ember/component/helper';
+import { Promise } from 'rsvp';
 
-const { RSVP: { Promise } } = Ember;
-
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	value: null,
 
 	promise: null,
 
-	changed: Ember.observer('value', function() {
+	changed: observer('value', function() {
 		this.recompute();
 	}),
 

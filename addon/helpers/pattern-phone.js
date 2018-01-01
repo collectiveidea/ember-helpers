@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function patternPhone() {
 	return '([+])?([0-9() ]+)';
 }
 
-export default Ember.Helper.helper(patternPhone);
+export default helper(patternPhone);

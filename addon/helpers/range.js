@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function range([min, max]) {
 
@@ -20,4 +20,4 @@ export function range([min, max]) {
 
 }
 
-export default Ember.Helper.helper(range);
+export default helper(range);

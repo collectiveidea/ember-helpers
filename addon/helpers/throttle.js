@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { throttle as f } from '@ember/runloop';
 
 export function throttle([callback, wait], { immediate=false }) {
 	return function(value) {
-		return Ember.run.throttle(null, callback, value, wait, immediate);
+		return f(null, callback, value, wait, immediate);
 	};
 }
 
-export default Ember.Helper.helper(throttle);
+export default helper(throttle);

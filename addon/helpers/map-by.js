@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import { mapBy } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
+import { observer, get, defineProperty } from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([path, array]) {
 		this.set('path', path);
@@ -8,20 +11,20 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	pathDidChange: Ember.observer('path', function() {
+	pathDidChange: observer('path', function() {
 
-		let path = Ember.get(this, 'path');
+		let path = get(this, 'path');
 
-		if ( Ember.isEmpty(path) ) {
-			Ember.defineProperty(this, 'content', []);
+		if ( isEmpty(path) ) {
+			defineProperty(this, 'content', []);
 			return;
 		}
 
-		Ember.defineProperty(this, 'content', Ember.computed.mapBy('array', path));
+		defineProperty(this, 'content', mapBy('array', path));
 
 	}),
 

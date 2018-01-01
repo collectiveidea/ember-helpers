@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { isPresent } from '@ember/utils';
 
 export function present(params) {
-	return params.every(p => Ember.isPresent(p));
+	return params.every(p => isPresent(p));
 }
 
-export default Ember.Helper.helper(present);
+export default helper(present);

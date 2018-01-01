@@ -1,6 +1,15 @@
-import Ember from 'ember';
+import { isArray, A } from '@ember/array';
+import { isEmpty } from '@ember/utils';
+import EmberObject, {
+  observer,
+  get,
+  defineProperty,
+  computed,
+  set
+} from '@ember/object';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([path, array]) {
 		this.set('path', path);
@@ -8,33 +17,33 @@ export default Ember.Helper.extend({
 		return this.get('content');
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	pathDidChange: Ember.observer('path', 'value', function() {
+	pathDidChange: observer('path', 'value', function() {
 
-		let path = Ember.get(this, 'path');
+		let path = get(this, 'path');
 
-		if ( Ember.isEmpty(path) ) {
-			Ember.defineProperty(this, 'content', null);
+		if ( isEmpty(path) ) {
+			defineProperty(this, 'content', null);
 			return;
 		}
 
-		Ember.defineProperty(this, 'content', Ember.computed(`array.@each.${path}`, function() {
+		defineProperty(this, 'content', computed(`array.@each.${path}`, function() {
 
-			let path = Ember.get(this, 'path');
-			let array = Ember.get(this, 'array');
-			let groups = Ember.Object.create();
+			let path = get(this, 'path');
+			let array = get(this, 'array');
+			let groups = EmberObject.create();
 
 			array.forEach(item => {
 
-				let value = Ember.get(item, path);
-				let group = Ember.get(groups, value);
+				let value = get(item, path);
+				let group = get(groups, value);
 
-				if ( !Ember.isArray(group) ) {
-					group = Ember.A();
-					Ember.set(groups, value, group);
+				if ( !isArray(group) ) {
+					group = A();
+					set(groups, value, group);
 				}
 
 				group.push(item);

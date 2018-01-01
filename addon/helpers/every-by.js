@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { observer, computed, get } from '@ember/object';
+import { isArray, A } from '@ember/array';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
 	compute([path, value, array]) {
 
-		if ( !Ember.isArray(array) && Ember.isArray(value) ) {
+		if ( !isArray(array) && isArray(value) ) {
 			array = value;
 			value = true;
 		}
@@ -17,25 +20,25 @@ export default Ember.Helper.extend({
 
 	},
 
-	changed: Ember.observer('content', function() {
+	changed: observer('content', function() {
 		this.recompute();
 	}),
 
-	content: Ember.computed('path', 'array.[]', function() {
+	content: computed('path', 'array.[]', function() {
 
-		let path = Ember.get(this, 'path');
-		let value = Ember.get(this, 'value');
-		let array = Ember.get(this, 'array');
+		let path = get(this, 'path');
+		let value = get(this, 'value');
+		let array = get(this, 'array');
 
-		if ( Ember.isEmpty(path) ) {
+		if ( isEmpty(path) ) {
 			return false;
 		}
 
-		if ( !Ember.isArray(array) ) {
+		if ( !isArray(array) ) {
 			return false;
 		}
 
-		return Ember.A(array).isEvery(path, value);
+		return A(array).isEvery(path, value);
 
 	}).readOnly(),
 

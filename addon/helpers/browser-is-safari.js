@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
 
-	browser: Ember.inject.service(),
+	browser: service(),
 
 	compute() {
 		return this.get('browser.safari');

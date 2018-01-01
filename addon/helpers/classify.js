@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { classify as f } from '@ember/string';
 
 export function classify([value='']) {
-	return Ember.String.classify( String(value) );
+	return f( String(value) );
 }
 
-export default Ember.Helper.helper(classify);
+export default helper(classify);
