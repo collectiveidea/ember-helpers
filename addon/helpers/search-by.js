@@ -1,8 +1,12 @@
-import { isArray } from '@ember/array';
+import { A, isArray } from '@ember/array';
 import { uniq, filter } from '@ember/object/computed';
-import { isEmpty } from '@ember/utils';
+import { isEmpty, typeOf } from '@ember/utils';
 import { observer, get, defineProperty } from '@ember/object';
 import Helper from '@ember/component/helper';
+
+function isString(value) {
+	return typeOf(value) === 'string';
+}
 
 export default Helper.extend({
 
@@ -29,7 +33,11 @@ export default Helper.extend({
 		let props = get(this, 'props');
 		let value = get(this, 'value');
 
-		if ( isEmpty(props) ) {
+		if (typeOf(value) === 'string') {
+			value = value.toLowerCase().split(' ');
+		}
+
+		if (isEmpty(props)) {
 			defineProperty(this, 'content', []);
 			return;
 		}
@@ -44,12 +52,24 @@ export default Helper.extend({
 			return;
 		}
 
-		let found = String(value).toLowerCase().split(' ');
+		if (!isArray(value)) {
+			defineProperty(this, 'content', filter('array'));
+			return;
+		}
 
 		defineProperty(this, 'content', filter('array', item => {
-			return props.any(prop => {
-				let value = String( item.get(prop) ).toLowerCase();
-				return found.any(i => value.includes(i) );
+			return A(props).any(prop => {
+
+				let field = get(item, prop);
+
+				if (isString(field)) {
+					return A(value).any(i => field.toLowerCase().includes(i) );
+				}
+
+				if (isArray(field)) {
+					return A(value).any(i => A(field).any(f => f.toLowerCase().includes(i) ));
+				}
+
 			});
 		}));
 
