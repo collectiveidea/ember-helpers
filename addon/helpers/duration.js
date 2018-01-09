@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { A } from '@ember/array';
 import { assert } from '@ember/debug';
-import format from 'ember-helpers/utils/format';
+import format from '..utils/format';
 
 let valid = ['ns','µs','ms','s','m','h','d','w'];
 

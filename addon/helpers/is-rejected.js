@@ -1,4 +1,4 @@
-import Await from 'ember-helpers/helpers/await';
+import Await from './await';
 
 export default Await.extend({
 

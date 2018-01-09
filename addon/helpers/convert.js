@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import currency from 'ember-helpers/utils/currency';
+import currency from '../utils/currency';
 
 export function convert(params, hash) {
 
