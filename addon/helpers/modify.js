@@ -1,6 +1,6 @@
 import { isArray } from '@ember/array';
 import Helper from '@ember/component/helper';
-import range from '..utils/int-range';
+import range from '../utils/int-range';
 
 export default Helper.extend({
 
