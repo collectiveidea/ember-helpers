@@ -215,9 +215,10 @@ classify                              | `{{classify "this Is some TEXT"}}`      
 dasherize                             | `{{dasherize "this Is some TEXT"}}`          | this-is-some-text
 lcwords                               | `{{lcwords "this Is some TEXT"}}`            | this is some tEXT
 lowercase                             | `{{lowercase "this Is some TEXT"}}`          | this is some text
+nl2br                                 | `{{lowercase "this Is \n some TEXT"}}`       | `this Is <br> some TEXT`
 replace                               | `{{replace "this Is some TEXT" "Is" "Was"}}` | this Was some TEXT
 slug                                  | `{{slug "this Is some 'TEXT'"}}`             | this-is-some-text
-sanitize                              | `{{sanitize "this Is some TEXT"}}`           | Ember.String.htmlSafe('...')
+sanitize                              | `{{sanitize "this Is some TEXT"}}`           | `Ember.String.htmlSafe('...')`
 swapcase                              | `{{swapcase "this Is some TEXT"}}`           | THIS iS SOME text
 titleize                              | `{{titleize "this Is some TEXT"}}`           | This Is Some Text
 truncate                              | `{{truncate "this Is some TEXT" 10}}`        | this Is so...
