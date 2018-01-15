@@ -55,7 +55,7 @@ The sorter helpers enable advanced sorting logic to extend the `sort-by` helper.
 
 Helper                                | HTMLBars                                     | Result
 :-------------------------------------|:---------------------------------------------|:----------------------------
-[natural-sort](#natural-sort)         | `{{sort-by (natural-sort 'name') users}}`    | Sorts the given array naturally using the current locale
+[natural-sort](#natural-sort)         | `{{sort-by (natural-sort 'name') users}}`    | Uses current locale for natural sorting
 
 
 ### Event helpers
