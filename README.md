@@ -49,6 +49,15 @@ Helper                                | HTMLBars                                
 [scroll-block](#scroll-block)         | `{{scroll-block key='posts'}}`               | Creates a `div` which remembers it's scroll position
 [scroll-to](#scroll-to)               | `{{scroll-to position=1400}}`                | Scrolls to the specified position after an action
 
+### Sorter helpers
+
+The sorter helpers enable advanced sorting logic to extend the `sort-by` helper.
+
+Helper                                | HTMLBars                                     | Result
+:-------------------------------------|:---------------------------------------------|:----------------------------
+[natural-sort](#natural-sort)         | `{{sort-by (natural-sort 'name') users}}`    | Sorts the given array naturally using the current locale
+
+
 ### Event helpers
 
 The event helpers enable manipulation of browser events.
@@ -577,6 +586,60 @@ Or animate the scrolling by specifying the number of milliseconds.
 {{#my-component onclick=(scroll-to element='#footer' duration=2000)}}
 	Scroll to footer slowly
 {{/my-component}}
+```
+
+#### Sorter helpers
+
+##### natural-sort
+
+Sorts the given array using a natural sort order with the current locale.
+
+```handlebars
+{{#each (sort-by (natural-sort "name") people) as |person|}}
+	{{!-- All people sorted by name ascending --}}
+{{/each}}
+```
+
+You can also pass `asc` or `desc` suffixes to specify sort ordering.
+
+```handlebars
+{{#each (sort-by (natural-sort "name:desc") people) as |person|}}
+	{{!-- All people sorted by name descending --}}
+{{/each}}
+```
+
+Or you can specify that numeric collation should be used when sorting.
+
+```handlebars
+{{#each (sort-by (natural-sort "name" numeric=true) people) as |person|}}
+	{{!-- All people sorted by name with numbers sorting correctly --}}
+{{/each}}
+```
+
+Or you can specify that punctuation should be ignored when sorting.
+
+```handlebars
+{{#each (sort-by (natural-sort "name" ignorePunctuation=false) people) as |person|}}
+	{{!-- All people sorted by name with punctuation ignored --}}
+{{/each}}
+```
+
+Or you can specify which case should sort first. 
+Possible values are `lower`, `upper`, or `false` (default).
+
+```handlebars
+{{#each (sort-by (natural-sort "name" caseFirst='upper') people) as |person|}}
+	{{!-- All people sorted by name with upper case ordered first --}}
+{{/each}}
+```
+
+Or you can specify the sensitivity of the locale sort algorithm. 
+Possible values are `case`, `accent`, `variant`, or `base` (default).
+
+```handlebars
+{{#each (sort-by (natural-sort "name" sensitivity='case') people) as |person|}}
+	{{!-- All people sorted by name with specify sensitivity case ordering --}}
+{{/each}}
 ```
 
 #### Action helpers
