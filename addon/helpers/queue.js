@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import isPromise from "ember-helpers/utils/is-promise";
+import isPromise from "../utils/is-promise";
 
 export function queue(actions = []) {
 	return function(...args) {

@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import crypto from "ember-helpers/utils/md5";
+import crypto from "../utils/md5";
 
 export function md5(params) {
 	return crypto(params[0]);
