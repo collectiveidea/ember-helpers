@@ -84,7 +84,7 @@ export default Service.extend({
 	},
 
 	isSafari() {
-		return enabled && Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+		return enabled && !!window.safari;
 	},
 
 });

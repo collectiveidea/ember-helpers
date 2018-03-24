@@ -1,5 +1,6 @@
-import { computed } from '@ember/object';
 import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { typeOf } from '@ember/utils';
 import layout from '../templates/components/input-stars';
 
 export default Component.extend({
@@ -36,7 +37,11 @@ export default Component.extend({
 				this.set('value', value);
 			}
 
-			this.sendAction('change', this.get('value'));
+			let func = this.get('on-change');
+
+			if (typeOf(func) === 'function') {
+				func(this.get('value'));
+			}
 
 		}
 

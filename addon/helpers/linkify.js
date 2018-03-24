@@ -1,6 +1,6 @@
+import Ember from 'ember';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
-import Ember from 'ember';
 
 export function linkify([value='']) {
 

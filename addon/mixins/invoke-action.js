@@ -24,6 +24,7 @@ export default Mixin.create({
 
 	invoker() {
 
+		// eslint-disable-next-line ember/closure-actions
 		this.sendAction('invoke');
 
 	},

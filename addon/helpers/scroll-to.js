@@ -6,6 +6,10 @@ export default Helper.extend({
 	compute(args, { position = 0, duration = 0, element, container }) {
 		return function() {
 
+			if (typeof FastBoot !== 'undefined') {
+				return;
+			}
+
 			if (element) {
 				position = $(element).offset().top;
 			}
