@@ -58,18 +58,20 @@ export default Helper.extend({
 		}
 
 		defineProperty(this, 'content', filter('array', item => {
-			return A(props).any(prop => {
+			return A(value).every(v => {
+				return A(props).any(p => {
 
-				let field = get(item, prop);
+					let field = get(item, p);
 
-				if (isString(field)) {
-					return A(value).any(i => field.toLowerCase().includes(i) );
-				}
+					if (isString(field)) {
+						return field.toLowerCase().includes(v);
+					}
 
-				if (isArray(field)) {
-					return A(value).any(i => A(field).any(f => f.toLowerCase().includes(i) ));
-				}
+					if (isArray(field)) {
+						return A(field).any(f => f.toLowerCase().includes(v));
+					}
 
+				});
 			});
 		}));
 

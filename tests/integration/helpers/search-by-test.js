@@ -7,22 +7,23 @@ moduleForComponent('search-by', 'helper:search-by', {
 
 test('It ensures search-by works correctly', function(assert) {
 
+	let testOne = [
+		{ name: 'A', one: 'abc def', two: 'jhi jkl' },
+		{ name: 'B', one: 'mno pqr', two: 'stu vwx' },
+		{ name: 'C', one: 'abc def mno pqr', two: 'jhi jkl stu vwx' },
+	];
 
-	let oneA1 = 'abc def';
-	let oneA2 = ['abc', 'def'];
-	let twoA1 = 'jhi jkl';
-	let twoA2 = ['jhi', 'jkl'];
+	let testTwo = [
+		{ name: 'A', one: ['abc', 'def'], two: ['jhi', 'jkl'] },
+		{ name: 'B', one: ['mno', 'pqr'], two: ['stu', 'vwx'] },
+		{ name: 'C', one: ['abc', 'def', 'mno', 'pqr'], two: ['jhi', 'jkl', 'stu', 'vwx'] },
+	];
 
-	let oneB1 = 'mno pqr';
-	let oneB2 = ['mno', 'pqr'];
-	let twoB1 = 'stu vwx';
-	let twoB2 = ['stu', 'vwx'];
+	assert.expect(16);
 
-	assert.expect(14);
-
-	this.set('value', 'abc');
 	this.set('input', undefined);
 	this.render(hbs`{{#each (search-by 'one' 'two' value input) as |v|}}{{v.name}} {{/each}}`);
+	this.set('value', 'abc');
 	assert.equal(this.$().text().trim(), '');
 	this.set('value', 'mno');
 	assert.equal(this.$().text().trim(), '');
@@ -31,30 +32,34 @@ test('It ensures search-by works correctly', function(assert) {
 	this.set('value', 'jhi stu');
 	assert.equal(this.$().text().trim(), '');
 
-	this.set('value', 'abc');
-	this.set('input', [{name: 'A', one: oneA1, two: twoA1}, {name: 'B', one: oneB1, two: twoB1}]);
+	this.set('input', testOne);
 	this.render(hbs`{{#each (search-by 'one' 'two' value input) as |v|}}{{v.name}} {{/each}}`);
-	assert.equal(this.$().text().trim(), 'A');
+	this.set('value', 'abc');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'mno');
-	assert.equal(this.$().text().trim(), 'B');
+	assert.equal(this.$().text().trim(), 'B C');
 	this.set('value', 'jkl');
-	assert.equal(this.$().text().trim(), 'A');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'kl');
-	assert.equal(this.$().text().trim(), 'A');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'jhi stu');
-	assert.equal(this.$().text().trim(), 'A B');
+	assert.equal(this.$().text().trim(), 'C');
+	this.set('value', 'abc mno jhi stu');
+	assert.equal(this.$().text().trim(), 'C');
 
-	this.set('value', 'abc');
-	this.set('input', [{name: 'A', one: oneA2, two: twoA2}, {name: 'B', one: oneB2, two: twoB2}]);
+	this.set('input', testTwo);
 	this.render(hbs`{{#each (search-by 'one' 'two' value input) as |v|}}{{v.name}} {{/each}}`);
-	assert.equal(this.$().text().trim(), 'A');
+	this.set('value', 'abc');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'mno');
-	assert.equal(this.$().text().trim(), 'B');
+	assert.equal(this.$().text().trim(), 'B C');
 	this.set('value', 'jkl');
-	assert.equal(this.$().text().trim(), 'A');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'kl');
-	assert.equal(this.$().text().trim(), 'A');
+	assert.equal(this.$().text().trim(), 'A C');
 	this.set('value', 'jhi stu');
-	assert.equal(this.$().text().trim(), 'A B');
+	assert.equal(this.$().text().trim(), 'C');
+	this.set('value', 'abc mno jhi stu');
+	assert.equal(this.$().text().trim(), 'C');
 
 });
