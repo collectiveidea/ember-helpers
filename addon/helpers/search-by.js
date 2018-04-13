@@ -10,7 +10,7 @@ function isString(value) {
 
 export default Helper.extend({
 
-	compute([...params]) {
+	compute([...params], optns={}) {
 
 		let props = params.slice(0, -2);
 		let array = params.slice(-1)[0];
@@ -19,6 +19,7 @@ export default Helper.extend({
 		this.set('props', props);
 		this.set('value', value);
 		this.set('array', array);
+		this.set('optns', optns);
 
 		return this.get('content');
 
@@ -28,10 +29,11 @@ export default Helper.extend({
 		this.recompute();
 	}),
 
-	searchDidChange: observer('props', 'value', function() {
+	searchDidChange: observer('props', 'value', 'optns', function() {
 
 		let props = get(this, 'props');
 		let value = get(this, 'value');
+		let optns = get(this, 'optns');
 
 		if (typeOf(value) === 'string') {
 			value = value.toLowerCase().split(' ');
@@ -64,11 +66,23 @@ export default Helper.extend({
 					let field = get(item, p);
 
 					if (isString(field)) {
-						return field.toLowerCase().includes(v);
+						switch (optns.exact) {
+						case true:
+							return field.toLowerCase() == v;
+						default:
+							return field.toLowerCase().includes(v);
+						}
 					}
 
 					if (isArray(field)) {
-						return A(field).any(f => f.toLowerCase().includes(v));
+						return A(field).any(f => {
+							switch (optns.exact) {
+							case true:
+								return f.toLowerCase() == v;
+							default:
+								return f.toLowerCase().includes(v);
+							}
+						});
 					}
 
 				});
