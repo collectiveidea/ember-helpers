@@ -35,6 +35,10 @@ export default Helper.extend({
 		let value = get(this, 'value');
 		let optns = get(this, 'optns');
 
+		if (typeOf(value) === 'number') {
+			value = String(value).split(' ');
+		}
+
 		if (typeOf(value) === 'string') {
 			value = value.toLowerCase().split(' ');
 		}
