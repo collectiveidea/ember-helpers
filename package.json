@@ -1,6 +1,6 @@
 {
   "name": "@abcum/ember-helpers",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "A collection of helpers for Ember.js enabling advanced templating logic.",
   "keywords": [
     "ember-addon"
