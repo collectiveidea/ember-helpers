@@ -53,7 +53,7 @@ export default Helper.extend({
 
 		set(this, 'match', props.any(prop => {
 			let value = String( model.get(prop) ).toLowerCase();
-			return found.any(i => value.includes(i) );
+			return found.any(i => value.indexOf(i) !== -1 );
 		}));
 
 	}),

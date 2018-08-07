@@ -74,7 +74,7 @@ export default Helper.extend({
 						case true:
 							return field.toLowerCase() == v;
 						default:
-							return field.toLowerCase().includes(v);
+							return field.toLowerCase().indexOf(v) !== -1;
 						}
 					}
 
@@ -84,7 +84,7 @@ export default Helper.extend({
 							case true:
 								return f.toLowerCase() == v;
 							default:
-								return f.toLowerCase().includes(v);
+								return f.toLowerCase().indexOf(v) !== -1;
 							}
 						});
 					}
