@@ -170,8 +170,9 @@ duration                              | `{{duration 1283719281 exact=false}}`   
 email                                 | `{{email "info@abcum.com"}}`                 | mailto:info@abcum.com
 linkify                               | `{{linkify "Click https://abcum.com"}}`      | Click <a href="https://abcum.com">https://abcum.com</a>
 md5                                   | `{{md5 "info@abcum.com"}}`                   | 2a14a47beb82beba88c705145d572702
-money                                 | `{{money 10000 symbol="GBP"}}`               | £10,000.00
-number                                | `{{number 134153 decimals=0}}`               | 13,415,53
+money                                 | `{{money 10000 currency="GBP"}}`             | £10,000
+number                                | `{{number 134153 minimumFractionDigits=2}}`  | 13,415,53.00
+percent                               | `{{percent 0.3 minimumFractionDigits=2}}`    | 30.00%
 regexp                                | `{{regexp "[a-zA-Z]*" "ig"}}`                | `new RegExp('[a-zA-Z]*', 'ig')`
 uuid                                  | `{{uuid}}`                                   | 2690242b-a1f9-47a0-9347-4ed8bc7f09a8
 
@@ -258,7 +259,6 @@ max                                   | `{{max a b c ...}}`                     
 min                                   | `{{min a b c ...}}`                          | `Math.min([a, b, c, ...])`             
 mod                                   | `{{mod a b ...}}`                            | `a % b % ...`                         
 mult                                  | `{{mult a b ...}}`                           | `a * b * ...`                         
-percent                               | `{{percent a b}}`                            | `a / b * 100`                   
 random                                | `{{random a b}}`                             | `Math.random(a, b)`             
 round                                 | `{{round a}}`                                | `Math.round(a)`                  
 sqrt                                  | `{{sqrt a}}`                                 | `Math.sqrt(a)`                 

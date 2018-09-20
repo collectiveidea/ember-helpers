@@ -1,8 +1,10 @@
 import { helper } from '@ember/component/helper';
-import format from '../utils/format';
+import { copy } from '@ember/object/internals';
 
-export function percent(params, hash) {
-	return format(params[0] / params[1] * 100, hash.decimals, hash.decimalPoint, hash.thousandsSeparator);
+export function percent(params, hash = { style: 'percent' }) {
+	let options = copy(hash);
+	options.style = 'percent';
+	return Number(params[0]).toLocaleString([], options);
 }
 
 export default helper(percent);
