@@ -132,6 +132,7 @@ Helper                                | HTMLBars                                
 [slice](#slice)                       | `{{#each (slice 0 5 users)}}`                | items `0` through `4` from `users`
 [search-by](#search-by)               | `{{#each (search-by "name" search users)}}`  | `users` where `name` contains `search`
 [sort-by](#sort-by)                   | `{{#each (sort-by "name:desc" users)}}`      | `users` sorted by `name` descending
+[sort-locale-by](#sort-locale-by)     | `{{#each (sort-locale-by "age" users)}}`     | `users` locale sorted by `age` descending
 [split](#split)                       | `{{#each (split "/" "app/css/app.less")}}`   | `["app", "css", "app.less"]`
 [take](#take)                         | `{{#each (take 3 users)}}`                   | first `3` models from `users`
 [union](#union)                       | `{{#each (union admins users)}}`             | union of `admins` and `users`
@@ -621,7 +622,7 @@ Possible values are `case`, `accent`, `variant`, or `base` (default).
 
 ```handlebars
 {{#each (sort-by (natural-sort "name" sensitivity='case') people) as |person|}}
-	{{!-- All people sorted by name with specify sensitivity case ordering --}}
+	{{!-- All people sorted by name with specifc sensitivity case ordering --}}
 {{/each}}
 ```
 
@@ -1239,6 +1240,58 @@ You can also pass an action as second argument.
 ```handlebars
 {{#each (sort-by (action "mySortAction") people) as |person|}}
 	{{!-- All people sorted by the custom sorting action --}}
+{{/each}}
+```
+
+##### sort-locale-by
+
+Returns the given array sorted by the defined properties.
+
+```handlebars
+{{#each (sort-locale-by "name:asc" people) as |person|}}
+	{{!-- All people sorted by name ascending --}}
+{{/each}}
+```
+
+You can also pass `asc` or `desc` suffixes to specify sort ordering.
+
+```handlebars
+{{#each (sort-locale-by "name:desc" people) as |person|}}
+	{{!-- All people sorted by name descending --}}
+{{/each}}
+```
+
+Or you can specify that numeric collation should be used when sorting.
+
+```handlebars
+{{#each (sort-locale-by "age" people numeric=true) as |person|}}
+	{{!-- All people sorted by age with numbers sorting correctly --}}
+{{/each}}
+```
+
+Or you can specify that punctuation should be ignored when sorting.
+
+```handlebars
+{{#each (sort-locale-by "name" people ignorePunctuation=false) as |person|}}
+	{{!-- All people sorted by name with punctuation ignored --}}
+{{/each}}
+```
+
+Or you can specify which case should sort first. 
+Possible values are `lower`, `upper`, or `false` (default).
+
+```handlebars
+{{#each (sort-locale-by "name" people caseFirst='upper') as |person|}}
+	{{!-- All people sorted by name with upper case ordered first --}}
+{{/each}}
+```
+
+Or you can specify the sensitivity of the locale sort algorithm. 
+Possible values are `case`, `accent`, `variant`, or `base` (default).
+
+```handlebars
+{{#each (sort-locale-by "name" people sensitivity='case') as |person|}}
+	{{!-- All people sorted by name with specifc sensitivity case ordering --}}
 {{/each}}
 ```
 
